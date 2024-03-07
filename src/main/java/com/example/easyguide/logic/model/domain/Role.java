@@ -1,21 +1,22 @@
 package com.example.easyguide.logic.model.domain;
 
+
 public enum Role {
-    TOURIST(1),
-    GUIDE(2);
+    TOURIST("tourist"),
+    GUIDE("guide");
 
-    private final int id;
-    private Role(int id) { this.id = id; }
+    private final String id;
+    private Role(String id) { this.id = id; }
 
-    public static Role fromInt(int id){
-        for (Role type : values()){
-            if (type.getId() == id){
+    public static Role fromString(String id){
+        for(Role type : values()){
+            if(type.getId().equals(id)){
                 return type;
             }
         }
         return null;
     }
-    public int getId() {return id; }
+    public String getId() {return id; }
 }
 
 

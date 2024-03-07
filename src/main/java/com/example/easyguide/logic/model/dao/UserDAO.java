@@ -27,7 +27,7 @@ public class UserDAO {
 
         if(rs.getString(ROLE).equals("Student"))
             role = Role.TOURIST;
-        else if (rs.getString(ROLE).equals("Professor"))
+        else
             role = Role.GUIDE;
 
         user = new User(
@@ -35,7 +35,7 @@ public class UserDAO {
                 rs.getString(NAME),
                 rs.getString(SURNAME),
                 rs.getString(EMAIL),
-                Role.TOURIST);
+                role);
 
         return user;
     }
@@ -49,7 +49,7 @@ public class UserDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT * FROM User WHERE " + USERNAME + " = ?";
+        String sql = "SELECT * FROM user WHERE " + USERNAME + " = ?";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, username);
@@ -80,7 +80,7 @@ public class UserDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT * FROM User WHERE " + USERNAME + " = ? AND " + PSW + " = ?;";
+        String sql = "SELECT * FROM user WHERE " + USERNAME + " = ? AND " + PSW + " = ?;";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, username);
@@ -112,7 +112,7 @@ public class UserDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO User (" + USERNAME + ", " + NAME +", " + SURNAME +", " + EMAIL + ", " + PSW + ", " + ROLE + ")"
+        String sql = "INSERT INTO user (" + USERNAME + ", " + NAME +", " + SURNAME +", " + EMAIL + ", " + PSW + ", " + ROLE + ")"
                 + " VALUES(?, ?, ?, ?, ?, ?)";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

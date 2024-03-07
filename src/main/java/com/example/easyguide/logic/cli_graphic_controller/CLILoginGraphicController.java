@@ -36,7 +36,7 @@ public class CLILoginGraphicController extends AbstractCLIGraphicController{
         CLIPrinter.printMessage("What do you want to do?\n");
         CLIPrinter.printMessage("1) Login\n");
         CLIPrinter.printMessage("2) Sign Up\n");
-        CLIPrinter.printMessage("Quit\n");
+        CLIPrinter.printMessage("3) Quit\n");
 
         return getMenuChoice(1, 3);
     }
@@ -51,6 +51,7 @@ public class CLILoginGraphicController extends AbstractCLIGraphicController{
             String password = reader.readLine();
             CredentialsBean bean = new CredentialsBean(username,password);
             loginController.login(bean);
+
             new CLIHomeGraphicController().start();
         }
         catch (SessionUserException e){
