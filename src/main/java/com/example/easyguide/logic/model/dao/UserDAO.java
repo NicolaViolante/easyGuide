@@ -51,32 +51,26 @@ public class UserDAO {
 
         String sql = "SELECT * FROM user WHERE " + USERNAME + " = ?";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
-        ResultSet rs = null;
-        try {
-            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            stmt.setString(1, username);
+        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        stmt.setString(1, username);
 
-            rs = stmt.executeQuery();
+        ResultSet rs = stmt.executeQuery();
 
-            // Verify if ResultSet is empty
-            if (!rs.first()) {
-                return null;
-            }
-
-            // Repositioning of the cursor
-            rs.first();
-
-            user = getUser(rs);
-
-            // Closing ResultSet and freeing resources
-           // rs.close();
-            //stmt.close();
-
-            return user;
-        } finally {
-            rs.close();
-            stmt.close();
+        // Verify if ResultSet is empty
+        if(!rs.first()) {
+            return null;
         }
+
+        // Repositioning of the cursor
+        rs.first();
+
+        user = getUser(rs);
+
+        // Closing ResultSet and freeing resources
+        rs.close();
+        stmt.close();
+
+        return user;
     }
 
     public User findUser(String username, String password) throws DAOException, SQLException {
