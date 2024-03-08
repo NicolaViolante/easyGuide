@@ -9,12 +9,8 @@ import java.util.List;
 public class SessionManager {
     private static SessionManager instance = null;
     protected User currentUser;
-   // protected List<User> loggedUsers;
     public User getCurrentUser() {return currentUser;}
- //   public List<User> getLoggedUsers() {return loggedUsers;}
-
     protected SessionManager() {
-     //   loggedUsers = new ArrayList<>();
         currentUser = null;
     }
 
