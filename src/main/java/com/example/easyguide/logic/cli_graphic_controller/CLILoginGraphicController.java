@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 
-import static com.example.easyguide.logic.utilities.CLIPrinter.printMessage;
 
 public class CLILoginGraphicController extends AbstractCLIGraphicController{
     @Override
@@ -21,10 +20,15 @@ public class CLILoginGraphicController extends AbstractCLIGraphicController{
             try{
                 choice = showMenu();
                 switch (choice){
-                    case 1 -> login();
-                   // case 2 -> new CLISignUpGraphicController.start();
-                    case 3 -> System.exit(0);
-                    default -> throw new InvalidFormatException("invalid choice");
+                    case 1 :
+                        login();
+                        break;
+                   // case 2 :
+                    //  new CLISignUpGraphicController.start();
+                    case 3 :
+                        System.exit(0);
+                        break;
+                    default : throw new InvalidFormatException("invalid choice");
                 }
             } catch (IOException | InvalidFormatException e){
                 logger.log(Level.INFO, e.getMessage());

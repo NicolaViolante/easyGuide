@@ -1,12 +1,11 @@
 package com.example.easyguide.logic.beans;
 
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
-import com.example.easyguide.logic.model.domain.Role;
 
 public class CredentialsBean {
     private final String username;
     private final String password;
-    public CredentialsBean(String username, String password) throws InvalidFormatException {
+    public CredentialsBean(String username, String password) {
         this.username = username;
         this.password = password;
     }
