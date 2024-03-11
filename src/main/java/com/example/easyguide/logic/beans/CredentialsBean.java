@@ -5,7 +5,9 @@ import com.example.easyguide.logic.exceptions.InvalidFormatException;
 public class CredentialsBean {
     private final String username;
     private final String password;
-    public CredentialsBean(String username, String password) {
+    public CredentialsBean(String username, String password) throws InvalidFormatException{
+        checkUsername(username);
+        checkPassword(password);
         this.username = username;
         this.password = password;
     }

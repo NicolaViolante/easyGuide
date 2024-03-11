@@ -1,10 +1,7 @@
 package com.example.easyguide.logic.session;
 
-import com.example.easyguide.logic.exceptions.SessionUserException;
 import com.example.easyguide.logic.model.domain.User;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class SessionManager {
     private static SessionManager instance = null;
@@ -20,7 +17,7 @@ public class SessionManager {
         return instance;
     }
 
-    public synchronized void login(User user) throws SessionUserException{
+    public synchronized void login(User user) {
         currentUser = user;
     }
 

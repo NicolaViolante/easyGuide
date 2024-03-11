@@ -1,7 +1,6 @@
 package com.example.easyguide.logic.controller;
 
 import com.example.easyguide.logic.beans.SignUpBean;
-import com.example.easyguide.logic.exceptions.SessionUserException;
 import com.example.easyguide.logic.model.dao.UserDAO;
 import com.example.easyguide.logic.model.domain.Role;
 import com.example.easyguide.logic.model.domain.User;
@@ -9,7 +8,7 @@ import com.example.easyguide.logic.model.domain.User;
 import java.sql.SQLException;
 
 public class SignUpController extends AbstractController {
-    public int signUp(SignUpBean signUpBean) throws SQLException, SessionUserException {
+    public int signUp(SignUpBean signUpBean) throws SQLException {
         User user = null;
         int result = -1;
 

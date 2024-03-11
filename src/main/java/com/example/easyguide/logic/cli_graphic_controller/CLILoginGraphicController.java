@@ -3,7 +3,6 @@ package com.example.easyguide.logic.cli_graphic_controller;
 import com.example.easyguide.logic.beans.CredentialsBean;
 import com.example.easyguide.logic.controller.LoginController;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
-import com.example.easyguide.logic.exceptions.SessionUserException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.io.BufferedReader;
@@ -53,10 +52,7 @@ public class CLILoginGraphicController extends AbstractCLIGraphicController{
 
             new CLIHomeGraphicController().start();
         }
-        catch (SessionUserException e){
-            logger.log(Level.INFO, e.getMessage());
-            new CLIHomeGraphicController().start();
-        }
+
         catch (Exception e){
             logger.log(Level.INFO, e.getMessage());
         }
