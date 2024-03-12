@@ -12,7 +12,6 @@ import java.util.logging.Level;
 
 
 public class CLILoginGraphicController extends AbstractCLIGraphicController{
-    @Override
     public void start(){
         while (true){
             int choice;

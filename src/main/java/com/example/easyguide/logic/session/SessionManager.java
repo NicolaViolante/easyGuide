@@ -5,9 +5,10 @@ import com.example.easyguide.logic.model.domain.User;
 
 public class SessionManager {
     private static SessionManager instance = null;
+
     protected User currentUser;
     public User getCurrentUser() {return currentUser;}
-    protected SessionManager() {
+    private SessionManager() {
         currentUser = null;
     }
 

@@ -11,7 +11,7 @@ public class SignUpBean {
     private final String role;
 
     public SignUpBean(String username, String name, String surname, String email, String password, String role) throws InvalidFormatException{
-        checkAttribures(username, name, surname, email, password, role);
+        checkAttributes(username, name, surname, email, password, role);
         this.username = username;
         this.name = name;
         this.surname = surname;
@@ -26,7 +26,7 @@ public class SignUpBean {
     public String getPassword() { return password; }
     public String getRole() { return role; }
 
-    private void checkAttribures(String username, String name, String surname, String email, String password, String role) throws InvalidFormatException{
+    private void checkAttributes(String username, String name, String surname, String email, String password, String role) throws InvalidFormatException{
         if(username.isEmpty() || name.isEmpty() || surname.isEmpty() || email.isEmpty() || password.isEmpty() || role.isEmpty())
             throw new InvalidFormatException("there is one or more empty fields\n");
     }
