@@ -14,16 +14,16 @@ import java.sql.SQLException;
 
 
 public class TourDAO {
-    protected static String PHOTO = "photo";
-    protected static String NAME = "name";
-    protected static String DESCRIPTION = "description";
-    protected static String GUIDE = "guide";
-    protected static String GUIDEMAIL = "guidemail";
-    protected static String PRICE = "price";
-    protected static String DURATION = "duration";
-    protected static String DATE = "date";
-    protected static String TIMES = "times";
-    protected static String CITY = "city";
+    protected final static String PHOTO = "photo";
+    protected final static String NAME = "name";
+    protected final static String DESCRIPTION = "description";
+    protected final static String GUIDE = "guide";
+    protected final static String GUIDEMAIL = "guidemail";
+    protected final static String PRICE = "price";
+    protected final static String DURATION = "duration";
+    protected final static  String DATE = "date";
+    protected final static String TIMES = "times";
+    protected final static String CITY = "city";
 
     public List<Tour> findTourOfTheCity(TourSearchBean selectedCity) throws SQLException{
         List<Tour> tours = new ArrayList<>();
@@ -33,7 +33,7 @@ public class TourDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT " + "DISTINCT " + NAME + "," + PRICE + " FROM tour WHERE " + CITY + " = ?";
+        String sql = "SELECT DISTINCT " + NAME + "," + PRICE + " FROM tour WHERE " + CITY + " = ?";
 
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, selectedCity.getCity());

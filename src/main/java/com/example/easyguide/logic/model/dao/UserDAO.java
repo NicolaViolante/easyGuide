@@ -25,7 +25,7 @@ public class UserDAO {
         User user;
         Role role;
 
-        if(rs.getString(ROLE).equals("Student"))
+        if(rs.getString(ROLE).equals("tourist"))
             role = Role.TOURIST;
         else
             role = Role.GUIDE;
