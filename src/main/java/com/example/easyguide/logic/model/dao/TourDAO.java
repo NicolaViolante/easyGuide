@@ -14,16 +14,16 @@ import java.sql.SQLException;
 
 
 public class TourDAO {
-    protected final static String PHOTO = "photo";
-    protected final static String NAME = "name";
-    protected final static String DESCRIPTION = "description";
-    protected final static String GUIDE = "guide";
-    protected final static String GUIDEMAIL = "guidemail";
-    protected final static String PRICE = "price";
-    protected final static String DURATION = "duration";
-    protected final static  String DATE = "date";
-    protected final static String TIMES = "times";
-    protected final static String CITY = "city";
+    protected static final  String PHOTO = "photo";
+    protected static final  String NAME = "name";
+    protected static final  String DESCRIPTION = "description";
+    protected static final  String GUIDE = "guide";
+    protected static final  String GUIDEMAIL = "guidemail";
+    protected static final  String PRICE = "price";
+    protected static final  String DURATION = "duration";
+    protected static final   String DATE = "date";
+    protected static final  String TIMES = "times";
+    protected static final  String CITY = "city";
 
     public List<Tour> findTourOfTheCity(TourSearchBean selectedCity) throws SQLException{
         List<Tour> tours = new ArrayList<>();
