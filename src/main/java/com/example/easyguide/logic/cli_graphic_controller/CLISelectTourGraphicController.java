@@ -15,7 +15,7 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
             System.out.printf("%s) Tour: %s, prezzo %s\n",i , tour.getTourName(), tour.getPrice());
             i++;
         }
-        CLIPrinter.printMessage("programma terminato\n");
+        CLIPrinter.printMessage("programma terminatoo\n");
         System.exit(0);
     }
 
