@@ -30,7 +30,6 @@ public class CLISignUpGraphicController extends AbstractCLIGraphicController{
         }
     }
 
-    @Override
     public int showMenu() throws IOException {
         CLIPrinter.printMessage("What do you want to do?\n");
         CLIPrinter.printMessage("1) SignUp\n");

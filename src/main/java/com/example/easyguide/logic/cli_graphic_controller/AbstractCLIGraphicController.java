@@ -4,7 +4,7 @@ import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
-public abstract class AbstractCLIGraphicController implements CLIGraphicControllerInterface {
+public abstract class AbstractCLIGraphicController {
     Logger logger = Logger.getAnonymousLogger();
 
     protected int getMenuChoice(int min, int max){

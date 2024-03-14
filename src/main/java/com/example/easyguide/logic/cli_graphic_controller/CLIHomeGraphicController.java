@@ -39,7 +39,6 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
         }
     }
 
-    @Override
     public int showMenu() throws IOException {
 
         CLIPrinter.printMessage("What do you want to do?\n");
