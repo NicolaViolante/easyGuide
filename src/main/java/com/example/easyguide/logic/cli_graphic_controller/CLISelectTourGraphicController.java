@@ -1,10 +1,15 @@
 package com.example.easyguide.logic.cli_graphic_controller;
 
+import com.example.easyguide.logic.beans.SelectedTourBean;
+import com.example.easyguide.logic.beans.SpecifiedTourBean;
 import com.example.easyguide.logic.beans.TourBean;
+import com.example.easyguide.logic.controller.JoinTourController;
+import com.example.easyguide.logic.controller.LoginController;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -36,6 +41,8 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
                 }
             } catch (IOException | InvalidFormatException e) {
                 logger.log(Level.INFO, e.getMessage());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -56,20 +63,23 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
 
         return getMenuChoice(1,i+4);
     }
-    private void specifiedTour(String a){
-        System.out.printf("HO SCELTO %s\n",a);
+    private void specifiedTour(String tour) throws SQLException {
+        SelectedTourBean selectedTourBean = new SelectedTourBean(tour);
+        List<SpecifiedTourBean> details = new JoinTourController().showTour(selectedTourBean);
+        new CLISelectedTourGraphicController().start(details);
     }
     private void goBack(){
-        CLIPrinter.printMessage("backed\n");
+        new CLIHomeGraphicController().start();
     }
     private void goHome(){
-        CLIPrinter.printMessage("home\n");
+        new CLIHomeGraphicController().start();
     }
     private void viewMessages(){
-        CLIPrinter.printMessage("visti messaggi\n");
+        CLIPrinter.printMessage("da implementare\n");
     }
     private void logout(){
-        CLIPrinter.printMessage("logout\n");
+        new LoginController().logout();
+        new CLILoginGraphicController().start();
     }
 
 }

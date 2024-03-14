@@ -1,6 +1,7 @@
 package com.example.easyguide.logic.model.dao;
 
 
+import com.example.easyguide.logic.beans.SelectedTourBean;
 import com.example.easyguide.logic.beans.TourSearchBean;
 import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.session.ConnectionFactory;
@@ -44,6 +45,47 @@ public class TourDAO {
             Tour tour = new Tour(rs.getString(1), rs.getFloat(2));
             tours.add(tour);
         }
+        rs.close();
+        stmt.close();
+
+        return tours;
+    }
+
+    public List<Tour> findTourDetails(SelectedTourBean selectedTour) throws SQLException {
+        List<Tour> tours = new ArrayList<>();
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        PreparedStatement stmt2 = null;
+
+        conn = ConnectionFactory.getConnection();
+
+        String sql = "SELECT DISTINCT " + PHOTO + "," + NAME + "," + DESCRIPTION + "," + GUIDE + "," + GUIDEMAIL + "," + PRICE + "," + DURATION + "," + DATE +" FROM tour WHERE " + NAME + " = ?";
+
+        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        stmt.setString(1, selectedTour.getTour());
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()){
+            Tour tour = new Tour(rs.getString(1), rs.getString(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5), rs.getFloat(6),rs.getFloat(7),
+            rs.getDate(8));
+            tours.add(tour);
+            String sql1 = "SELECT DISTINCT " + TIMES + " FROM tour WHERE " + NAME + " = ?" + " and " + DATE + " = ?";
+
+            stmt2 = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt2.setString(1, tour.getName());
+            stmt2.setDate(2, tour.getDate());
+
+            ResultSet rs2 = stmt2.executeQuery();
+            while(rs2.next()){
+                System.out.printf("wowowowowowoow   %s wowowoowo\n", rs2.getTime(1));
+                tour.addTimes(rs2.getTime(1));
+            }
+            rs2.close();
+            stmt2.close();
+        }
+
         rs.close();
         stmt.close();
 
