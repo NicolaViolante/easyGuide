@@ -59,7 +59,8 @@ public class TourDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT DISTINCT " + PHOTO + "," + NAME + "," + DESCRIPTION + "," + GUIDE + "," + GUIDEMAIL + "," + PRICE + "," + DURATION + "," + DATE +" FROM tour WHERE " + NAME + " = ?";
+        String sql = "SELECT DISTINCT " + PHOTO + "," + NAME + "," + DESCRIPTION + "," + GUIDE + "," + GUIDEMAIL + "," +
+                PRICE + "," + DURATION + "," + DATE + "," + CITY +" FROM tour WHERE " + NAME + " = ?";
 
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, selectedTour.getTour());
@@ -69,7 +70,7 @@ public class TourDAO {
         while (rs.next()){
             Tour tour = new Tour(rs.getString(1), rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5), rs.getFloat(6),rs.getFloat(7),
-            rs.getDate(8));
+            rs.getDate(8),rs.getString(9));
             tours.add(tour);
             String sql1 = "SELECT DISTINCT " + TIMES + " FROM tour WHERE " + NAME + " = ?" + " and " + DATE + " = ?";
 

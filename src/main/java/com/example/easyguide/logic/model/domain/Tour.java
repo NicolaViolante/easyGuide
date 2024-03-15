@@ -33,7 +33,7 @@ public class Tour {
     }
 
     public Tour(String photo, String name, String description, String guide, String guideMail, Float price, Float duration
-            ,java.sql.Date date) {
+            ,java.sql.Date date, String city) {
         this.photo = photo;
         this.name = name;
         this.description = description;
@@ -42,6 +42,7 @@ public class Tour {
         this.price = price;
         this.duration = duration;
         this.date = date;
+        this.city = city;
     }
     public Tour(String name,Float price) {
         this.name = name;
