@@ -29,8 +29,8 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
         if (reservationInfoBean.getDate() == null || reservationInfoBean.getTime() == null || reservationInfoBean.getPeople() < 1){
             throw new MissingDatesException("Dates missing");
         }
-        System.out.printf("TUTTO OK");
-        System.exit(0);
+        new JoinTourController().completeReservation(reservationInfoBean);
+        new CLIHomeGraphicController().start();
 
     }
 

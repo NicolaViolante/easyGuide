@@ -1,9 +1,6 @@
 package com.example.easyguide.logic.controller;
 
-import com.example.easyguide.logic.beans.SelectedTourBean;
-import com.example.easyguide.logic.beans.SpecifiedTourBean;
-import com.example.easyguide.logic.beans.TourBean;
-import com.example.easyguide.logic.beans.TourSearchBean;
+import com.example.easyguide.logic.beans.*;
 import com.example.easyguide.logic.model.dao.TourDAO;
 import com.example.easyguide.logic.model.domain.Tour;
 
@@ -37,5 +34,9 @@ public class JoinTourController {
         }
 
         return specifiedTourBeanList;
+    }
+
+    public void completeReservation(ReservationInfoBean reservationInfoBean){
+
     }
 }
