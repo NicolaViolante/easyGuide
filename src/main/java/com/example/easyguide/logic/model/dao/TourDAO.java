@@ -79,7 +79,6 @@ public class TourDAO {
 
             ResultSet rs2 = stmt2.executeQuery();
             while(rs2.next()){
-                System.out.printf("wowowowowowoow   %s wowowoowo\n", rs2.getTime(1));
                 tour.addTimes(rs2.getTime(1));
             }
             rs2.close();

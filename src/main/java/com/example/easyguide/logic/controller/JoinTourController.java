@@ -31,7 +31,7 @@ public class JoinTourController {
 
         for (Tour tour : tourList){
             SpecifiedTourBean specifiedTourBean = new SpecifiedTourBean(tour.getPhoto(), tour.getName(), tour.getDescription(),
-                    tour.getGuide(), tour.getPrice(), tour.getDuration(), tour.getDate(), tour.getTimes());
+                    tour.getGuide(), tour.getGuideMail(), tour.getPrice(), tour.getDuration(), tour.getDate(), tour.getTimes());
             specifiedTourBeanList.add(specifiedTourBean);
         }
 
