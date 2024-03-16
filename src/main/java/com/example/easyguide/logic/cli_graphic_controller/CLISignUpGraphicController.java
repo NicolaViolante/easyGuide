@@ -64,8 +64,11 @@ public class CLISignUpGraphicController extends AbstractCLIGraphicController{
             else throw new InvalidFormatException("Invalid role");
 
             SignUpBean bean = new SignUpBean(username,name,surname,email,password,role.getId());
-            signUpController.signUp(bean);
-            new CLIHomeGraphicController().start();
+            int result = signUpController.signUp(bean);
+
+            if (result == 1) new CLIHomeGraphicController().start();
+            else if(result == -1) logger.log(Level.INFO,"Username already in use");
+            else logger.log(Level.INFO,"Unknown error");
 
         } catch (Exception e) {
             logger.log(Level.INFO, e.getMessage());
