@@ -20,7 +20,7 @@ public class ReservationDAO {
     protected static final String TOURNAME = "tourname";
     protected static final String STATE = "state";
 
-    public Integer registerReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
+    public void registerReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
         PreparedStatement stmt = null;
         Connection conn = null;
         Integer result = -1;
@@ -51,6 +51,5 @@ public class ReservationDAO {
 
         stmt.close();
 
-        return result;
     }
 }

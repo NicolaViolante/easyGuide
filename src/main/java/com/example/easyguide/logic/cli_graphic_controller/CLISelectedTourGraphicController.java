@@ -25,10 +25,11 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
         showOptions(specifiedTourBeans, reservationInfoBean);
     }
 
-    private void sendReservation(ReservationInfoBean reservationInfoBean) throws MissingDatesException{
+    private void sendReservation(ReservationInfoBean reservationInfoBean) throws MissingDatesException, SQLException {
         if (reservationInfoBean.getDate() == null || reservationInfoBean.getTime() == null || reservationInfoBean.getPeople() < 1){
             throw new MissingDatesException("Dates missing");
         }
+        new CLIPaymentGraphicController().pay();
         new JoinTourController().completeReservation(reservationInfoBean);
         new CLIHomeGraphicController().start();
 

@@ -1,8 +1,10 @@
 package com.example.easyguide.logic.controller;
 
 import com.example.easyguide.logic.beans.*;
+import com.example.easyguide.logic.model.dao.ReservationDAO;
 import com.example.easyguide.logic.model.dao.TourDAO;
 import com.example.easyguide.logic.model.domain.Tour;
+import com.example.easyguide.logic.utilities.PaymentBoundary;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,7 +38,19 @@ public class JoinTourController {
         return specifiedTourBeanList;
     }
 
-    public void completeReservation(ReservationInfoBean reservationInfoBean){
+    public void completeReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
+        new ReservationDAO().registerReservation(reservationInfoBean);
+    }
+
+    public void pay(){
+        new PaymentBoundary().pay();
+    }
+
+    public void showMessages(String username){
+
+    }
+
+    public void showRequests(String username){
 
     }
 }
