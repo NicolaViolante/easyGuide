@@ -74,9 +74,6 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
     private void goHome(){
         new CLIHomeGraphicController().start();
     }
-    private void viewMessages(){
-        CLIPrinter.printMessage("da implementare\n");
-    }
     private void logout(){
         new LoginController().logout();
         new CLILoginGraphicController().start();

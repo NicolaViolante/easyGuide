@@ -75,10 +75,6 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
         new CLISelectTourGraphicController().start(listOfTours);
     }
 
-    private void viewMessages() {
-        CLIPrinter.printMessage("da implementare\n");
-    }
-
     private void logout() {
         new LoginController().logout();
         new CLILoginGraphicController().start();

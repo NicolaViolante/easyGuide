@@ -1,10 +1,13 @@
 package com.example.easyguide.logic.cli_graphic_controller;
 
+import com.example.easyguide.logic.beans.RequestSearchBean;
 import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.beans.TourSearchBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.controller.LoginController;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
+import com.example.easyguide.logic.model.domain.Role;
+import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.io.BufferedReader;
@@ -12,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.logging.Level;
+
+import static com.example.easyguide.logic.model.domain.Role.TOURIST;
 
 public class CLIHomeGraphicController extends AbstractCLIGraphicController {
     JoinTourController joinTourController;
@@ -62,9 +67,7 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
             logger.log(Level.INFO, e.getMessage());
         }
     }
-    private void viewMessages(){
-        CLIPrinter.printMessage("da implementare\n");
-    }
+
     private void logout(){
         new LoginController().logout();
         new CLILoginGraphicController().start();

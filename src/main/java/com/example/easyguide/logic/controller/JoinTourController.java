@@ -46,11 +46,11 @@ public class JoinTourController {
         new PaymentBoundary().pay();
     }
 
-    public void showMessages(String username){
+    public void showMessages(RequestSearchBean requestSearchBean){
 
     }
 
-    public void showRequests(String username){
+    public void showRequests(RequestSearchBean requestSearchBean){
 
     }
 }
