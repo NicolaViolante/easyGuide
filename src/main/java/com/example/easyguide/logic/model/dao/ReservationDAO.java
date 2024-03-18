@@ -34,8 +34,9 @@ public class ReservationDAO {
         conn = ConnectionFactory.getConnection();
 
         String sql = "INSERT INTO reservation (" + GUIDEMAIL + ", " + TOURISTMAIL +", " + PEOPLE +", " + TIME + ", " + DATE
-                + ", " + PRICE + ", " +TOURNAME + ", " + STATE  + ")"
+                + ", " + PRICE + ", " + TOURNAME + ", " + STATE  + ")"
                 + " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, reservationInfoBean.getGuideMail());
