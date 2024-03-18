@@ -64,7 +64,8 @@ public class JoinTourController {
 
         return reservationInfoBeansList;
     }
-    public void changeStatus(AcceptationBean acceptationBean){
+    public void changeStatus(AcceptationBean acceptationBean) throws SQLException {
+        new ReservationDAO().changeStatus(acceptationBean);
 
     }
 }

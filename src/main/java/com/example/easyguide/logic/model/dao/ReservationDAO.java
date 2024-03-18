@@ -1,5 +1,6 @@
 package com.example.easyguide.logic.model.dao;
 
+import com.example.easyguide.logic.beans.AcceptationBean;
 import com.example.easyguide.logic.beans.RequestSearchBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.model.domain.Reservation;
@@ -16,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ReservationDAO {
-    protected static final String GUIDMAIL = "guidemail";
+    protected static final String GUIDEMAIL = "guidemail";
     protected static final String TOURISTMAIL = "touristmail";
     protected static final String PEOPLE = "people";
     protected static final String TIME = "time";
@@ -32,7 +33,7 @@ public class ReservationDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO reservation (" + GUIDMAIL + ", " + TOURISTMAIL +", " + PEOPLE +", " + TIME + ", " + DATE
+        String sql = "INSERT INTO reservation (" + GUIDEMAIL + ", " + TOURISTMAIL +", " + PEOPLE +", " + TIME + ", " + DATE
                 + ", " + PRICE + ", " +TOURNAME + ", " + STATE  + ")"
                 + " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
@@ -66,7 +67,7 @@ public class ReservationDAO {
         conn = ConnectionFactory.getConnection();
 
         String sql = "SELECT " + TOURISTMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
-                TOURNAME  +" FROM reservation WHERE " + GUIDMAIL + " = ?" + " AND " + STATE + " = ?";
+                TOURNAME  +" FROM reservation WHERE " + GUIDEMAIL + " = ?" + " AND " + STATE + " = ?";
 
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, requestSearch.getMail());
@@ -85,5 +86,34 @@ public class ReservationDAO {
         stmt.close();
 
         return reservations;
+    }
+
+    public void changeStatus(AcceptationBean acceptationBean) throws SQLException{
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        Integer result = -1;
+
+        conn = ConnectionFactory.getConnection();
+
+        String sql = "UPDATE reservation SET " + STATE + " = ?" + " WHERE " + TOURISTMAIL + " = ?" +", " + GUIDEMAIL + " = ?" +", "
+                + DATE + " = ?" +", " + TIME + " = ?";
+        // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
+        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        stmt.setInt(1, acceptationBean.getState());
+        stmt.setString(2, acceptationBean.getTouristMail());
+        stmt.setString(3, acceptationBean.getGuideMail());
+        stmt.setDate(4, acceptationBean.getDate());
+        stmt.setTime(5, acceptationBean.getTime());
+
+        result = stmt.executeUpdate();
+
+        if (result > 0) {
+            Logger.getAnonymousLogger().log(Level.INFO, "ROW INSERTED");
+        } else {
+            Logger.getAnonymousLogger().log(Level.INFO, "ROW NOT INSERTED");
+        }
+
+        stmt.close();
+
     }
 }
