@@ -1,7 +1,7 @@
 package com.example.easyguide.logic.model.domain;
 
 public class Reservation {
-    private final String guideMail;
+    private String guideMail;
     private final String touristMail;
     private final int people;
     private final java.sql.Time time;
@@ -21,11 +21,21 @@ public class Reservation {
         this.time = time;
     }
 
+    public Reservation( String touristMail, int people, java.sql.Time time, java.sql.Date date,
+                       Float price, String tourName){
+        this.date = date;
+        this.price = price;
+        this.people = people;
+        this.touristMail = touristMail;
+        this.tourName = tourName;
+        this.time = time;
+    }
+
     public String getGuideMail(){ return guideMail; }
     public String getTouristMail(){ return touristMail; }
     public int getPeople(){ return people; }
     public java.sql.Time getTime(){ return time; }
-    public java.sql.Date date(){ return date; }
+    public java.sql.Date getDate(){ return date; }
     public Float getPrice(){ return price; }
     public String getTourName(){ return tourName; }
     public int getState(){ return state; }

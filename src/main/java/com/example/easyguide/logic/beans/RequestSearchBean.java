@@ -5,5 +5,5 @@ public class RequestSearchBean {
     public RequestSearchBean(String mail){
         this.mail = mail;
     }
-    public String getMail(String mail) { return mail; }
+    public String getMail() { return mail; }
 }

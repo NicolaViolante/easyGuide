@@ -1,13 +1,15 @@
 package com.example.easyguide.logic.beans;
 
+import com.example.easyguide.logic.model.domain.Reservation;
+
 public class ReservationInfoBean {
-    private final String guideMail;
-    private final String toutistMail;
+    private String guideMail;
+    private String toutistMail;
     private  java.sql.Date date;
     private  java.sql.Time time;
     private  int people;
-    private final String tourName;
-    private final float price;
+    private String tourName;
+    private float price;
 
     public ReservationInfoBean(String guideMail, String touristMail, String tourName, float price){
         this.guideMail = guideMail;
@@ -15,6 +17,18 @@ public class ReservationInfoBean {
         this.tourName = tourName;
         this.price = price;
     }
+
+    public ReservationInfoBean(String guideMail, String toutistMail, java.sql.Date date, java.sql.Time time, int people,
+    String tourName, float price){
+        this.guideMail = guideMail;
+        this.toutistMail = toutistMail;
+        this.date = date;
+        this.time = time;
+        this.people = people;
+        this.tourName = tourName;
+        this.price = price;
+    }
+
     public void setDate(java.sql.Date date) { this.date = date; }
     public void setTime(java.sql.Time time) { this.time = time; }
     public void setPeople(int people) { this.people = people; }

@@ -1,12 +1,17 @@
 package com.example.easyguide.logic.model.dao;
 
+import com.example.easyguide.logic.beans.RequestSearchBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
+import com.example.easyguide.logic.model.domain.Reservation;
+import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.session.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +44,7 @@ public class ReservationDAO {
         stmt.setDate(5, reservationInfoBean.getDate());
         stmt.setFloat(6, reservationInfoBean.getPrice());
         stmt.setString(7, reservationInfoBean.getTourName());
-        stmt.setInt(8, 1);
+        stmt.setInt(8, 0);
 
         result = stmt.executeUpdate();
 
@@ -51,5 +56,34 @@ public class ReservationDAO {
 
         stmt.close();
 
+    }
+
+    public List<Reservation> findTourDetailsByMail(RequestSearchBean requestSearch) throws SQLException {
+        List<Reservation> reservations = new ArrayList<>();
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        conn = ConnectionFactory.getConnection();
+
+        String sql = "SELECT " + TOURISTMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
+                TOURNAME  +" FROM reservation WHERE " + GUIDMAIL + " = ?" + " AND " + STATE + " = ?";
+
+        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        stmt.setString(1, requestSearch.getMail());
+        stmt.setInt(2, 0);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()){
+            Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
+                    rs.getDate(4), rs.getFloat(5), rs.getString(6));
+            reservations.add(reservation);
+
+        }
+
+        rs.close();
+        stmt.close();
+
+        return reservations;
     }
 }

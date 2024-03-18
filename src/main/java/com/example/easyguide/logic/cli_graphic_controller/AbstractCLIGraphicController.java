@@ -1,10 +1,13 @@
 package com.example.easyguide.logic.cli_graphic_controller;
 
 import com.example.easyguide.logic.beans.RequestSearchBean;
+import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -27,7 +30,7 @@ public abstract class AbstractCLIGraphicController {
         return choice;
     }
 
-    protected void viewMessages() {
+    protected void viewMessages() throws SQLException {
         RequestSearchBean requestSearchBean = new RequestSearchBean(SessionManager.getInstance().getCurrentUser().getEmail());
         if (SessionManager.getInstance().getCurrentUser().getUserType() == TOURIST) {
             new JoinTourController().showMessages(requestSearchBean);
@@ -42,8 +45,8 @@ public abstract class AbstractCLIGraphicController {
                 new JoinTourController().showMessages(requestSearchBean);
                 new CLIMessagesGraphicController();
             } else if (choice == 2) {
-                new JoinTourController().showRequests(requestSearchBean);
-                new CLIMessagesGraphicController();
+                List<ReservationInfoBean> tourInfo = new JoinTourController().showRequests(requestSearchBean);
+                new CLIRequestsGraphicController().start(tourInfo);
             }
         }
 

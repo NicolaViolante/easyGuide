@@ -3,7 +3,9 @@ package com.example.easyguide.logic.controller;
 import com.example.easyguide.logic.beans.*;
 import com.example.easyguide.logic.model.dao.ReservationDAO;
 import com.example.easyguide.logic.model.dao.TourDAO;
+import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Tour;
+import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.PaymentBoundary;
 
 import java.sql.SQLException;
@@ -50,7 +52,16 @@ public class JoinTourController {
 
     }
 
-    public void showRequests(RequestSearchBean requestSearchBean){
+    public List<ReservationInfoBean> showRequests(RequestSearchBean requestSearchBean) throws SQLException{
+        List<Reservation> reservationList = new ReservationDAO().findTourDetailsByMail(requestSearchBean);
+        List<ReservationInfoBean> reservationInfoBeansList = new ArrayList<>();
+        for (Reservation reservation : reservationList){
+            ReservationInfoBean reservationInfoBean = new ReservationInfoBean(SessionManager.getInstance().getCurrentUser().getEmail(),
+                    reservation.getTouristMail(), reservation.getDate(), reservation.getTime(), reservation.getPeople(),
+                    reservation.getTourName(), reservation.getPrice());
+            reservationInfoBeansList.add(reservationInfoBean);
+        }
 
+        return reservationInfoBeansList;
     }
 }
