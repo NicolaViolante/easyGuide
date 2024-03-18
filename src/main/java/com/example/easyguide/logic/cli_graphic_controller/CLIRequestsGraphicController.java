@@ -61,9 +61,9 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
         AcceptationBean acceptationBean = null;
         int choice = getMenuChoice(1,2);
         if (choice == 1)  acceptationBean = new AcceptationBean(1, reservationInfoBean.getGuideMail(),
-                reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime());
+                reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime(), reservationInfoBean.getTourName());
         else if (choice == 2)  acceptationBean = new AcceptationBean(2, reservationInfoBean.getGuideMail(),
-                reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime());
+                reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime(), reservationInfoBean.getTourName());
         new JoinTourController().changeStatus(acceptationBean);
         reservationInfoBeanList.remove(i);
         start(reservationInfoBeanList);
