@@ -64,4 +64,7 @@ public class JoinTourController {
 
         return reservationInfoBeansList;
     }
+    public void changeStatus(AcceptationBean acceptationBean){
+
+    }
 }

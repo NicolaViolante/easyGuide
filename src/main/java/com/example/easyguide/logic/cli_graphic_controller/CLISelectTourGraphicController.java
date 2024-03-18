@@ -71,12 +71,6 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
     private void goBack(){
         new CLIHomeGraphicController().start();
     }
-    private void goHome(){
-        new CLIHomeGraphicController().start();
-    }
-    private void logout(){
-        new LoginController().logout();
-        new CLILoginGraphicController().start();
-    }
+
 
 }

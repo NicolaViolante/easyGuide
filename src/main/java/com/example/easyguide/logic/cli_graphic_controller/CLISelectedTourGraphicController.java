@@ -65,9 +65,7 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
 
     }
 
-    private void goHome() {
-        new CLIHomeGraphicController().start();
-    }
+
 
     private void goBack(List<SpecifiedTourBean> specifiedTourBeans) throws InvalidFormatException, SQLException {
         TourSearchBean bean = new TourSearchBean(specifiedTourBeans.getFirst().getCity());
@@ -75,10 +73,7 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
         new CLISelectTourGraphicController().start(listOfTours);
     }
 
-    private void logout() {
-        new LoginController().logout();
-        new CLILoginGraphicController().start();
-    }
+
 
     public int showMenu() throws IOException {
 
