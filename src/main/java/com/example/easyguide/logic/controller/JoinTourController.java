@@ -1,11 +1,13 @@
 package com.example.easyguide.logic.controller;
 
 import com.example.easyguide.logic.beans.*;
+import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.model.dao.ReservationDAO;
 import com.example.easyguide.logic.model.dao.TourDAO;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.session.SessionManager;
+import com.example.easyguide.logic.utilities.CLIPrinter;
 import com.example.easyguide.logic.utilities.PaymentBoundary;
 
 import java.sql.SQLException;
@@ -50,7 +52,7 @@ public class JoinTourController {
     }
 
     public void showMessages(RequestSearchBean requestSearchBean){
-
+        CLIPrinter.printMessage("NOT IMPLEMENTED\n");
     }
 
     public List<ReservationInfoBean> showRequests(RequestSearchBean requestSearchBean) throws SQLException{
@@ -65,9 +67,12 @@ public class JoinTourController {
 
         return reservationInfoBeansList;
     }
-    public void changeStatus(AcceptationBean acceptationBean) throws SQLException {
+    public void changeStatus(AcceptationBean acceptationBean) throws SQLException, EmailSenderException {
+        Reservation reservation = new Reservation(acceptationBean.getState(), acceptationBean.getGuideMail(), acceptationBean.getTouristMail(),
+                acceptationBean.getDate(), acceptationBean.getTime(),acceptationBean.getTourName());
+        new ReservationDAO().changeStatus(reservation);
+        reservation.notifyPublication();
 
-        new ReservationDAO().changeStatus(acceptationBean);
 
     }
 }

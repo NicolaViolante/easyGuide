@@ -3,6 +3,7 @@ package com.example.easyguide.logic.model.dao;
 import com.example.easyguide.logic.beans.AcceptationBean;
 import com.example.easyguide.logic.beans.RequestSearchBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
+import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.session.ConnectionFactory;
@@ -89,7 +90,7 @@ public class ReservationDAO {
         return reservations;
     }
 
-    public void changeStatus(AcceptationBean acceptationBean) throws SQLException{
+    public void changeStatus(Reservation reservation) throws SQLException{
         PreparedStatement stmt = null;
         Connection conn = null;
         Integer result = -1;
@@ -100,12 +101,12 @@ public class ReservationDAO {
                 + DATE + " = ?" +" and " + TIME + " = ?"  + " and " + TOURNAME + " = ?";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setInt(1, acceptationBean.getState());
-        stmt.setString(2, acceptationBean.getTouristMail());
-        stmt.setString(3, acceptationBean.getGuideMail());
-        stmt.setDate(4, acceptationBean.getDate());
-        stmt.setTime(5, acceptationBean.getTime());
-        stmt.setString(6,acceptationBean.getTourName());
+        stmt.setInt(1, reservation.getState());
+        stmt.setString(2, reservation.getTouristMail());
+        stmt.setString(3, reservation.getGuideMail());
+        stmt.setDate(4, reservation.getDate());
+        stmt.setTime(5, reservation.getTime());
+        stmt.setString(6,reservation.getTourName());
 
         result = stmt.executeUpdate();
 
@@ -115,6 +116,23 @@ public class ReservationDAO {
             Logger.getAnonymousLogger().log(Level.INFO, "ROW NOT INSERTED");
         }
 
+        stmt.close();
+
+        String sql1 = "SELECT " + PEOPLE + "," +  PRICE + " FROM reservation WHERE " + TOURISTMAIL + " = ?" +" and " + GUIDEMAIL + " = ?" +" and "
+                + DATE + " = ?" +" and " + TIME + " = ?"  + " and " + TOURNAME + " = ?";
+        stmt = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        stmt.setString(1, reservation.getTouristMail());
+        stmt.setString(2, reservation.getGuideMail());
+        stmt.setDate(3, reservation.getDate());
+        stmt.setTime(4, reservation.getTime());
+        stmt.setString(5,reservation.getTourName());
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()){
+            reservation.setPeople(rs.getInt(1));
+            reservation.setPrice(rs.getFloat(2));
+        }
+        rs.close();
         stmt.close();
 
     }

@@ -5,6 +5,7 @@ import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.beans.TourSearchBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.controller.LoginController;
+import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
@@ -37,7 +38,7 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
             }
             catch (IOException | InvalidFormatException e){
                 logger.log(Level.INFO, e.getMessage());
-            } catch (SQLException e) {
+            } catch (SQLException  e) {
                 throw new RuntimeException(e);
             }
         }

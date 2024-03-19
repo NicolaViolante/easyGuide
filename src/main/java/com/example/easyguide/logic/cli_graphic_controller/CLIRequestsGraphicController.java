@@ -3,6 +3,7 @@ package com.example.easyguide.logic.cli_graphic_controller;
 import com.example.easyguide.logic.beans.AcceptationBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.controller.JoinTourController;
+import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
@@ -33,7 +34,7 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
                     case 4 -> System.exit(0);
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
-            } catch (IOException | InvalidFormatException | SQLException e) {
+            } catch (IOException | InvalidFormatException | SQLException | EmailSenderException e) {
                 logger.log(Level.INFO, e.getMessage());
             }
         }
@@ -56,7 +57,7 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
         return getMenuChoice(1,i+2);
     }
 
-    private void acceptOrDecline(ReservationInfoBean reservationInfoBean, int i, List<ReservationInfoBean> reservationInfoBeanList) throws SQLException {
+    private void acceptOrDecline(ReservationInfoBean reservationInfoBean, int i, List<ReservationInfoBean> reservationInfoBeanList) throws SQLException, EmailSenderException {
         CLIPrinter.printMessage("1 to accept, 2 to decline\n");
         AcceptationBean acceptationBean = null;
         int choice = getMenuChoice(1,2);
@@ -64,6 +65,7 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
                 reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime(), reservationInfoBean.getTourName());
         else if (choice == 2)  acceptationBean = new AcceptationBean(2, reservationInfoBean.getGuideMail(),
                 reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime(), reservationInfoBean.getTourName());
+        assert acceptationBean != null;
         new JoinTourController().changeStatus(acceptationBean);
         reservationInfoBeanList.remove(i);
         start(reservationInfoBeanList);
