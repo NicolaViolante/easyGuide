@@ -41,6 +41,7 @@ public class JoinTourController {
     }
 
     public void completeReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
+
         new ReservationDAO().registerReservation(reservationInfoBean);
     }
 
@@ -65,6 +66,7 @@ public class JoinTourController {
         return reservationInfoBeansList;
     }
     public void changeStatus(AcceptationBean acceptationBean) throws SQLException {
+
         new ReservationDAO().changeStatus(acceptationBean);
 
     }
