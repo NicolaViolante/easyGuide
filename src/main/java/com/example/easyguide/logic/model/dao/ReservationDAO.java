@@ -96,8 +96,8 @@ public class ReservationDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "UPDATE reservation SET " + STATE + " = ?" + " WHERE " + TOURISTMAIL + " = ?" +", " + GUIDEMAIL + " = ?" +", "
-                + DATE + " = ?" +", " + TIME + " = ?" + TOURNAME + " = ?";
+        String sql = "UPDATE reservation SET " + STATE + " = ?" + " WHERE " + TOURISTMAIL + " = ?" +" and " + GUIDEMAIL + " = ?" +" and "
+                + DATE + " = ?" +" and " + TIME + " = ?"  + " and " + TOURNAME + " = ?";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setInt(1, acceptationBean.getState());
