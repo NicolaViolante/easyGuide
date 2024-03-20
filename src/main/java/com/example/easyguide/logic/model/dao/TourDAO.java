@@ -24,6 +24,7 @@ public class TourDAO {
     protected static final  String TIMES = "times";
     protected static final  String CITY = "city";
     protected static final String FTW = " FROM tour WHERE ";
+    protected static final String SD = " SELECT DISTINCT ";
 
     public List<Tour> findTourOfTheCity(Tour selectedCity) throws SQLException{
         List<Tour> tours = new ArrayList<>();
@@ -33,7 +34,7 @@ public class TourDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT DISTINCT " + NAME + "," + PRICE + FTW + CITY + " = ?";
+        String sql = SD + NAME + "," + PRICE + FTW + CITY + " = ?";
 
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, selectedCity.getCity());
@@ -58,7 +59,7 @@ public class TourDAO {
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT DISTINCT " + PHOTO + "," + NAME + "," + DESCRIPTION + "," + GUIDE + "," + GUIDEMAIL + "," +
+        String sql = SD + PHOTO + "," + NAME + "," + DESCRIPTION + "," + GUIDE + "," + GUIDEMAIL + "," +
                 PRICE + "," + DURATION + "," + DATE + "," + CITY +FTW + NAME + " = ?";
 
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -71,7 +72,7 @@ public class TourDAO {
                     rs.getString(4), rs.getString(5), rs.getFloat(6),rs.getFloat(7),
             rs.getDate(8),rs.getString(9));
             tours.add(tour);
-            String sql1 = "SELECT DISTINCT " + TIMES + FTW + NAME + " = ?" + " and " + DATE + " = ?";
+            String sql1 = SD + TIMES + FTW + NAME + " = ?" + " and " + DATE + " = ?";
 
             stmt2 = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             stmt2.setString(1, tour.getName());
