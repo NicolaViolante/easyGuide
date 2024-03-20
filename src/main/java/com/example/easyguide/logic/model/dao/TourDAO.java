@@ -36,17 +36,22 @@ public class TourDAO {
 
         String sql = SD + NAME + "," + PRICE + FTW + CITY + " = ?";
 
-        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, selectedCity.getCity());
+        try {
+            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt.setString(1, selectedCity.getCity());
 
-        ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()){
-            Tour tour = new Tour(rs.getString(1), rs.getFloat(2));
-            tours.add(tour);
+            while (rs.next()) {
+                Tour tour = new Tour(rs.getString(1), rs.getFloat(2));
+                tours.add(tour);
+            }
+            rs.close();
         }
-        rs.close();
-        stmt.close();
+        finally{
+            assert stmt != null;
+            stmt.close();
+        }
 
         return tours;
     }
@@ -62,6 +67,7 @@ public class TourDAO {
         String sql = SD + PHOTO + "," + NAME + "," + DESCRIPTION + "," + GUIDE + "," + GUIDEMAIL + "," +
                 PRICE + "," + DURATION + "," + DATE + "," + CITY +FTW + NAME + " = ?";
 
+        try{
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, selectedTour.getName());
 
@@ -74,6 +80,9 @@ public class TourDAO {
             tours.add(tour);
             String sql1 = SD + TIMES + FTW + NAME + " = ?" + " and " + DATE + " = ?";
 
+            try {
+
+
             stmt2 = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             stmt2.setString(1, tour.getName());
             stmt2.setDate(2, tour.getDate());
@@ -82,12 +91,20 @@ public class TourDAO {
             while(rs2.next()){
                 tour.addTimes(rs2.getTime(1));
             }
-            rs2.close();
-            stmt2.close();
+            rs2.close();}
+            finally {
+                assert stmt2 != null;
+                stmt2.close();
+            }
+
         }
 
-        rs.close();
-        stmt.close();
+        rs.close();}
+        finally {
+            assert stmt != null;
+            stmt.close();
+        }
+
 
         return tours;
     }

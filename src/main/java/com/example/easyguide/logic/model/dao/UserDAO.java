@@ -51,25 +51,29 @@ public class UserDAO {
 
         String sql = "SELECT * FROM user WHERE " + USERNAME + " = ?";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
-        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, username);
+        try {
+            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt.setString(1, username);
 
-        ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        // Verify if ResultSet is empty
-        if(!rs.first()) {
-            return null;
+            // Verify if ResultSet is empty
+            if (!rs.first()) {
+                return null;
+            }
+
+            // Repositioning of the cursor
+            rs.first();
+
+            user = getUser(rs);
+
+            // Closing ResultSet and freeing resources
+            rs.close();
         }
-
-        // Repositioning of the cursor
-        rs.first();
-
-        user = getUser(rs);
-
-        // Closing ResultSet and freeing resources
-        rs.close();
-        stmt.close();
-
+        finally {
+            assert stmt != null;
+            stmt.close();
+        }
         return user;
     }
 
@@ -82,25 +86,30 @@ public class UserDAO {
 
         String sql = "SELECT * FROM user WHERE " + USERNAME + " = ? AND " + PSW + " = ?;";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
-        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, username);
-        stmt.setString(2, password);
+        try {
+            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
 
-        ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        // Verify if ResultSet is empty
-        if(!rs.first()) {
-            throw new DAOException("Utente non trovato");
+            // Verify if ResultSet is empty
+            if (!rs.first()) {
+                throw new DAOException("Utente non trovato");
+            }
+
+            // Repositioning of the cursor
+            rs.first();
+
+            user = getUser(rs);
+
+            // Closing ResultSet and freeing resources
+            rs.close();
         }
-
-        // Repositioning of the cursor
-        rs.first();
-
-        user = getUser(rs);
-
-        // Closing ResultSet and freeing resources
-        rs.close();
-        stmt.close();
+        finally{
+            assert stmt != null;
+            stmt.close();
+        }
 
         return user;
     }
@@ -115,23 +124,28 @@ public class UserDAO {
         String sql = "INSERT INTO user (" + USERNAME + ", " + NAME +", " + SURNAME +", " + EMAIL + ", " + PSW + ", " + ROLE + ")"
                 + " VALUES(?, ?, ?, ?, ?, ?)";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
-        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, username);
-        stmt.setString(2, name);
-        stmt.setString(3, surname);
-        stmt.setString(4, email);
-        stmt.setString(5, psw);
-        stmt.setString(6, role);
+        try {
+            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt.setString(1, username);
+            stmt.setString(2, name);
+            stmt.setString(3, surname);
+            stmt.setString(4, email);
+            stmt.setString(5, psw);
+            stmt.setString(6, role);
 
-        result = stmt.executeUpdate();
+            result = stmt.executeUpdate();
 
-        if (result > 0) {
-            Logger.getAnonymousLogger().log(Level.INFO, "ROW INSERTED");
-        } else {
-            Logger.getAnonymousLogger().log(Level.INFO, "ROW NOT INSERTED");
+            if (result > 0) {
+                Logger.getAnonymousLogger().log(Level.INFO, "ROW INSERTED");
+            } else {
+                Logger.getAnonymousLogger().log(Level.INFO, "ROW NOT INSERTED");
+            }
+        }
+        finally {
+            assert stmt != null;
+            stmt.close();
         }
 
-        stmt.close();
 
         return result;
     }
