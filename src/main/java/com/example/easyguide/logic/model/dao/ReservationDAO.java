@@ -37,26 +37,29 @@ public class ReservationDAO {
                 + " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
-        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, reservationInfoBean.getGuideMail());
-        stmt.setString(2, reservationInfoBean.getTouristMail());
-        stmt.setInt(3, reservationInfoBean.getPeople());
-        stmt.setTime(4, reservationInfoBean.getTime());
-        stmt.setDate(5, reservationInfoBean.getDate());
-        stmt.setFloat(6, reservationInfoBean.getPrice());
-        stmt.setString(7, reservationInfoBean.getTourName());
-        stmt.setInt(8, 0);
+        try {
+            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt.setString(1, reservationInfoBean.getGuideMail());
+            stmt.setString(2, reservationInfoBean.getTouristMail());
+            stmt.setInt(3, reservationInfoBean.getPeople());
+            stmt.setTime(4, reservationInfoBean.getTime());
+            stmt.setDate(5, reservationInfoBean.getDate());
+            stmt.setFloat(6, reservationInfoBean.getPrice());
+            stmt.setString(7, reservationInfoBean.getTourName());
+            stmt.setInt(8, 0);
 
-        result = stmt.executeUpdate();
+            result = stmt.executeUpdate();
 
-        if (result > 0) {
-            Logger.getAnonymousLogger().log(Level.INFO, "ROW INSERTED");
-        } else {
-            Logger.getAnonymousLogger().log(Level.INFO, "ROW NOT INSERTED");
+            if (result > 0) {
+                Logger.getAnonymousLogger().log(Level.INFO, "ROW INSERTED");
+            } else {
+                Logger.getAnonymousLogger().log(Level.INFO, "ROW NOT INSERTED");
+            }
         }
-
-        stmt.close();
-
+        finally {
+            assert stmt != null;
+            stmt.close();
+        }
     }
 
     public List<Reservation> findTourDetailsByMail(User user) throws SQLException {
