@@ -10,23 +10,19 @@ public class SpecifiedTourBean {
     private final String guide;
     private final float price;
     private final float duration;
-    private final java.sql.Date date;
-    private final List<Time> times;
+    private  java.sql.Date date;
+    private  List<java.sql.Time> times;
     private final String guideMail;
-    private final String city;
+    private  String city;
 
-    public SpecifiedTourBean(String photo, String tourName, String description, String guide,String guideMail, float price, float duration,
-                             java.sql.Date date, List<Time> times, String city) {
+    public SpecifiedTourBean(String photo, String tourName, String description, String guide,String guideMail, float price, float duration) {
         this.photo = photo;
         this.tourName = tourName;
         this.description = description;
         this.guide = guide;
         this.price = price;
         this.duration = duration;
-        this.date = date;
-        this.times = times;
         this.guideMail = guideMail;
-        this.city = city;
     }
 
     public String getPhoto() { return photo; }
@@ -39,5 +35,7 @@ public class SpecifiedTourBean {
     public List<Time> getTimes() { return times; }
     public String getGuideMail() {return guideMail; }
     public String getCity(){ return city; }
+    public void setDateTimesCity(java.sql.Date date, List<java.sql.Time> times, String city ) {this.date = date; this.times = times;
+    this.city = city;}
 
 }
