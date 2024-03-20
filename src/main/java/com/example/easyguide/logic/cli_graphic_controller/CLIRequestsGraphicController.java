@@ -14,7 +14,8 @@ import java.util.logging.Level;
 
 public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
     public void start(List<ReservationInfoBean> reservationInfoBeanList){
-        while(true){
+        boolean bool = true;
+        while(bool){
             int choice;
             int i = reservationInfoBeanList.size();
             int reservation = -1;
@@ -28,10 +29,22 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
                 }
                 switch (choice)
                 {
-                    case 1 -> acceptOrDecline(reservationInfoBeanList.get(reservation), reservation,  reservationInfoBeanList);
-                    case 2 -> goHome();
-                    case 3 -> logout();
-                    case 4 -> System.exit(0);
+                    case 1 -> {
+                        bool = false;
+                        acceptOrDecline(reservationInfoBeanList.get(reservation), reservation,  reservationInfoBeanList);
+                    }
+                    case 2 -> {
+                        bool = false;
+                        goHome();
+                    }
+                    case 3 -> {
+                        bool = false;
+                        logout();
+                    }
+                    case 4 -> {
+                        bool = false;
+                        System.exit(0);
+                    }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
             } catch (IOException | InvalidFormatException | SQLException | EmailSenderException e) {
