@@ -57,10 +57,8 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
                     }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
-            } catch (IOException | InvalidFormatException e) {
+            } catch (IOException | InvalidFormatException | SQLException e) {
                 logger.log(Level.INFO, e.getMessage());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         }
     }
