@@ -7,7 +7,6 @@ import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,13 +46,13 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
                     }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
-            } catch (IOException | InvalidFormatException | SQLException | EmailSenderException e) {
+            } catch (InvalidFormatException | SQLException | EmailSenderException e) {
                 logger.log(Level.INFO, e.getMessage());
             }
         }
     }
 
-    public int showMenu(List<ReservationInfoBean> reservationInfoBeanList) throws IOException {
+    public int showMenu(List<ReservationInfoBean> reservationInfoBeanList) {
 
         int i = 1;
         CLIPrinter.printMessage("Select a tour: \n");
