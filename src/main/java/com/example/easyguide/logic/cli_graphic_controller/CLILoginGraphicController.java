@@ -13,7 +13,7 @@ import java.util.logging.Level;
 
 public class CLILoginGraphicController extends AbstractCLIGraphicController{
     public void start(){
-        Boolean bool = true;
+        boolean bool = true;
         while (bool){
             int choice;
             try{
