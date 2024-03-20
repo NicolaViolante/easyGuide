@@ -6,6 +6,7 @@ import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Tour;
+import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.ConnectionFactory;
 
 import java.sql.Connection;
@@ -61,7 +62,7 @@ public class ReservationDAO {
 
     }
 
-    public List<Reservation> findTourDetailsByMail(RequestSearchBean requestSearch) throws SQLException {
+    public List<Reservation> findTourDetailsByMail(User user) throws SQLException {
         List<Reservation> reservations = new ArrayList<>();
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -72,7 +73,7 @@ public class ReservationDAO {
                 TOURNAME  +" FROM reservation WHERE " + GUIDEMAIL + " = ?" + " AND " + STATE + " = ?";
 
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, requestSearch.getMail());
+        stmt.setString(1, user.getEmail());
         stmt.setInt(2, 0);
 
         ResultSet rs = stmt.executeQuery();

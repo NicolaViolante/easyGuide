@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Tour {
     private String photo;
-    private final String name;
+    private String name;
     private String description;
     private String guide;
     private String guideMail;
-    private final Float price;
+    private Float price;
     private Float duration;
     private java.sql.Date date;
     private List<java.sql.Time> times = new ArrayList<>();
@@ -18,18 +18,11 @@ public class Tour {
 
 
 
-    public Tour(String photo, String name, String description, String guide, String guideMail, Float price, Float duration
-    ,java.sql.Date date, List<Time> times, String city) {
-        this.photo = photo;
-        this.name = name;
-        this.description = description;
-        this.guide = guide;
-        this.guideMail = guideMail;
-        this.price = price;
-        this.duration = duration;
-        this.date = date;
-        this.times = times;
+    public Tour( String city) {
         this.city = city;
+    }
+    public Tour() {
+
     }
 
     public Tour(String photo, String name, String description, String guide, String guideMail, Float price, Float duration
@@ -77,6 +70,7 @@ public class Tour {
         return times;
     }
     public String getCity() { return city; }
+    public void setTourName(String tourName) { this.name = tourName; }
     public void addTimes(java.sql.Time time){
         this.times.add(time);
     }

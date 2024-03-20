@@ -6,6 +6,7 @@ import com.example.easyguide.logic.model.dao.ReservationDAO;
 import com.example.easyguide.logic.model.dao.TourDAO;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Tour;
+import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 import com.example.easyguide.logic.utilities.PaymentBoundary;
@@ -17,7 +18,8 @@ import java.util.List;
 public class JoinTourController {
     public List<TourBean> findTourOfCity(TourSearchBean tourSearchBean) throws SQLException {
 
-        List<Tour> tourList = new TourDAO().findTourOfTheCity(tourSearchBean);
+        Tour tourSearch = new Tour(tourSearchBean.getCity());
+        List<Tour> tourList = new TourDAO().findTourOfTheCity(tourSearch);
         List<TourBean> tourBeansList = new ArrayList<>();
 
             for (Tour tour : tourList){
@@ -29,7 +31,9 @@ public class JoinTourController {
     }
 
     public List<SpecifiedTourBean> showTour(SelectedTourBean selectedTourBean) throws SQLException{
-        List<Tour> tourList = new TourDAO().findTourDetails(selectedTourBean);
+        Tour selectedTour = new Tour();
+        selectedTour.setTourName(selectedTourBean.getTour());
+        List<Tour> tourList = new TourDAO().findTourDetails(selectedTour);
         List<SpecifiedTourBean> specifiedTourBeanList = new ArrayList<>();
 
         for (Tour tour : tourList){
@@ -56,7 +60,8 @@ public class JoinTourController {
     }
 
     public List<ReservationInfoBean> showRequests(RequestSearchBean requestSearchBean) throws SQLException{
-        List<Reservation> reservationList = new ReservationDAO().findTourDetailsByMail(requestSearchBean);
+        User user = SessionManager.getInstance().getCurrentUser();
+        List<Reservation> reservationList = new ReservationDAO().findTourDetailsByMail(user);
         List<ReservationInfoBean> reservationInfoBeansList = new ArrayList<>();
         for (Reservation reservation : reservationList){
             ReservationInfoBean reservationInfoBean = new ReservationInfoBean(SessionManager.getInstance().getCurrentUser().getEmail(),

@@ -27,7 +27,7 @@ public class TourDAO {
     protected static final  String TIMES = "times";
     protected static final  String CITY = "city";
 
-    public List<Tour> findTourOfTheCity(TourSearchBean selectedCity) throws SQLException{
+    public List<Tour> findTourOfTheCity(Tour selectedCity) throws SQLException{
         List<Tour> tours = new ArrayList<>();
 
         PreparedStatement stmt = null;
@@ -52,7 +52,7 @@ public class TourDAO {
         return tours;
     }
 
-    public List<Tour> findTourDetails(SelectedTourBean selectedTour) throws SQLException {
+    public List<Tour> findTourDetails(Tour selectedTour) throws SQLException {
         List<Tour> tours = new ArrayList<>();
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -64,7 +64,7 @@ public class TourDAO {
                 PRICE + "," + DURATION + "," + DATE + "," + CITY +" FROM tour WHERE " + NAME + " = ?";
 
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, selectedTour.getTour());
+        stmt.setString(1, selectedTour.getName());
 
         ResultSet rs = stmt.executeQuery();
 
