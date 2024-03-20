@@ -16,7 +16,8 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
 
 
     public void start(List<TourBean> tourBean){
-        while(true){
+        boolean bool = true;
+        while(bool){
             int choice;
             int i = tourBean.size();
             int tour = -1;
@@ -30,12 +31,30 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
                 }
                 switch (choice)
                 {
-                    case 1 -> specifiedTour(tourBean.get(tour).getTourName());
-                    case 2 -> goHome();
-                    case 3 -> goBack();
-                    case 4 -> viewMessages();
-                    case 5 -> logout();
-                    case 6 -> System.exit(0);
+                    case 1 -> {
+                        bool = false;
+                        specifiedTour(tourBean.get(tour).getTourName());
+                    }
+                    case 2 -> {
+                        bool = false;
+                        goHome();
+                    }
+                    case 3 -> {
+                        bool = false;
+                        goBack();
+                    }
+                    case 4 -> {
+                        bool = false;
+                        viewMessages();
+                    }
+                    case 5 -> {
+                        bool = false;
+                        logout();
+                    }
+                    case 6 -> {
+                        bool = false;
+                        System.exit(0);
+                    }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
             } catch (IOException | InvalidFormatException e) {
