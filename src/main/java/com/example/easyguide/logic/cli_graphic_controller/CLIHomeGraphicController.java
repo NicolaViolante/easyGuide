@@ -39,13 +39,13 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
                     default -> throw new InvalidFormatException("Invalid choice\n");
                 }
             }
-            catch (IOException | InvalidFormatException | SQLException e){
+            catch (InvalidFormatException | SQLException e){
                 logger.log(Level.INFO, e.getMessage());
             }
         }
     }
 
-    public int showMenu() throws IOException {
+    public int showMenu() {
 
         CLIPrinter.printMessage("What do you want to do?\n");
         CLIPrinter.printMessage("1) Chose a city\n");
