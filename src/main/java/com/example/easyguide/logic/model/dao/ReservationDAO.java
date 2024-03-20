@@ -97,6 +97,7 @@ public class ReservationDAO {
 
     public void changeStatus(Reservation reservation) throws SQLException{
         PreparedStatement stmt = null;
+        PreparedStatement stmt1 = null;
         Connection conn = null;
         Integer result = -1;
 
@@ -127,21 +128,26 @@ public class ReservationDAO {
         }
         String sql1 = "SELECT " + PEOPLE + "," +  PRICE + " FROM reservation WHERE " + TOURISTMAIL + " = ?" +AND + GUIDEMAIL + " = ?" +AND
                 + DATE + " = ?" +AND + TIME + " = ?"  + AND + TOURNAME + " = ?";
+        try {
+            stmt1 = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt1.setString(1, reservation.getTouristMail());
+            stmt1.setString(2, reservation.getGuideMail());
+            stmt1.setDate(3, reservation.getDate());
+            stmt1.setTime(4, reservation.getTime());
+            stmt1.setString(5, reservation.getTourName());
 
-        stmt = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, reservation.getTouristMail());
-        stmt.setString(2, reservation.getGuideMail());
-        stmt.setDate(3, reservation.getDate());
-        stmt.setTime(4, reservation.getTime());
-        stmt.setString(5,reservation.getTourName());
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()){
-            reservation.setPeople(rs.getInt(1));
-            reservation.setPrice(rs.getFloat(2));
+            ResultSet rs = stmt1.executeQuery();
+            while (rs.next()) {
+                reservation.setPeople(rs.getInt(1));
+                reservation.setPrice(rs.getFloat(2));
+            }
+            rs.close();
         }
-        rs.close();
-        stmt.close();
+        finally {
+            assert stmt1 != null;
+            stmt1.close();
+        }
+
 
     }
 }
