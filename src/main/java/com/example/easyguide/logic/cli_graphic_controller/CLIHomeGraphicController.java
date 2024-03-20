@@ -22,15 +22,20 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
 
 
     public void start() {
-        while (true) {
+        boolean bool = true;
+        while (bool) {
             int choice;
             try{
                 choice = showMenu();
                 switch (choice){
-                    case 1 -> specifyCity();
-                    case 2 -> viewMessages();
-                    case 3 -> logout();
-                    case 4 -> System.exit(0);
+                    case 1 -> {bool = false;
+                                specifyCity();}
+                    case 2 -> {bool = false;
+                                viewMessages();}
+                    case 3 -> {bool = false;
+                                logout();}
+                    case 4 -> {bool = false;
+                                System.exit(0);}
                     default -> throw new InvalidFormatException("Invalid choice\n");
                 }
             }
