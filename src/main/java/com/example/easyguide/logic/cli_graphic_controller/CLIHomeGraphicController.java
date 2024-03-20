@@ -8,7 +8,6 @@ import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.List;
@@ -39,13 +38,13 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
                     default -> throw new InvalidFormatException("Invalid choice\n");
                 }
             }
-            catch (IOException | InvalidFormatException | SQLException e){
+            catch (InvalidFormatException | SQLException e){
                 logger.log(Level.INFO, e.getMessage());
             }
         }
     }
 
-    public int showMenu() throws IOException {
+    public int showMenu() {
 
         CLIPrinter.printMessage("What do you want to do?\n");
         CLIPrinter.printMessage("1) Chose a city\n");
