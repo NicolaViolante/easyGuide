@@ -1,6 +1,5 @@
 package com.example.easyguide.logic.beans;
 
-import com.example.easyguide.logic.model.domain.Reservation;
 
 public class ReservationInfoBean {
     private String guideMail;
