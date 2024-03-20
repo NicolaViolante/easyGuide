@@ -7,7 +7,6 @@ import com.example.easyguide.logic.model.domain.Role;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 
@@ -34,13 +33,13 @@ public class CLISignUpGraphicController extends AbstractCLIGraphicController{
                     }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
-            } catch (IOException | InvalidFormatException e) {
+            } catch (InvalidFormatException e) {
                 logger.log(Level.INFO, e.getMessage());
             }
         }
     }
 
-    public int showMenu() throws IOException {
+    public int showMenu() {
         CLIPrinter.printMessage("What do you want to do?\n");
         CLIPrinter.printMessage("1) SignUp\n");
         CLIPrinter.printMessage("2) Login\n");
