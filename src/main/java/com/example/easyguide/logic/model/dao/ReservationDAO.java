@@ -127,7 +127,7 @@ public class ReservationDAO {
         }
         String sql1 = "SELECT " + PEOPLE + "," +  PRICE + " FROM reservation WHERE " + TOURISTMAIL + " = ?" +AND + GUIDEMAIL + " = ?" +AND
                 + DATE + " = ?" +AND + TIME + " = ?"  + AND + TOURNAME + " = ?";
-        try{
+
         stmt = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setString(1, reservation.getTouristMail());
         stmt.setString(2, reservation.getGuideMail());
@@ -141,11 +141,7 @@ public class ReservationDAO {
             reservation.setPrice(rs.getFloat(2));
         }
         rs.close();
-        }
-        finally {
-            stmt.close();
-        }
-
+        stmt.close();
 
     }
 }
