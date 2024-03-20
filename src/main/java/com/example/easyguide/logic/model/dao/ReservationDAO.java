@@ -98,6 +98,7 @@ public class ReservationDAO {
         String sql = "UPDATE reservation SET " + STATE + " = ?" + " WHERE " + TOURISTMAIL + " = ?" +AND + GUIDEMAIL + " = ?" +AND
                 + DATE + " = ?" +AND + TIME + " = ?"  + AND + TOURNAME + " = ?";
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
+        try{
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         stmt.setInt(1, reservation.getState());
         stmt.setString(2, reservation.getTouristMail());
@@ -112,10 +113,11 @@ public class ReservationDAO {
             Logger.getAnonymousLogger().log(Level.INFO, "ROW INSERTED");
         } else {
             Logger.getAnonymousLogger().log(Level.INFO, "ROW NOT INSERTED");
+        }}
+        finally {
+            assert stmt != null;
+            stmt.close();
         }
-
-        stmt.close();
-
         String sql1 = "SELECT " + PEOPLE + "," +  PRICE + " FROM reservation WHERE " + TOURISTMAIL + " = ?" +AND + GUIDEMAIL + " = ?" +AND
                 + DATE + " = ?" +AND + TIME + " = ?"  + AND + TOURNAME + " = ?";
         stmt = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
