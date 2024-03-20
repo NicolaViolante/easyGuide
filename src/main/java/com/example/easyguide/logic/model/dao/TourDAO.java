@@ -75,8 +75,9 @@ public class TourDAO {
 
         while (rs.next()){
             Tour tour = new Tour(rs.getString(1), rs.getString(2), rs.getString(3),
-                    rs.getString(4), rs.getString(5), rs.getFloat(6),rs.getFloat(7),
+                     rs.getFloat(6),rs.getFloat(7),
             rs.getDate(8),rs.getString(9));
+            tour.setGuideGuideMail(rs.getString(4),rs.getString(5));
             tours.add(tour);
             String sql1 = SD + TIMES + FTW + NAME + " = ?" + " and " + DATE + " = ?";
 

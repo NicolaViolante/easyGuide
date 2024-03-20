@@ -25,13 +25,11 @@ public class Tour {
 
     }
 
-    public Tour(String photo, String name, String description, String guide, String guideMail, Float price, Float duration
+    public Tour(String photo, String name, String description, Float price, Float duration
             ,java.sql.Date date, String city) {
         this.photo = photo;
         this.name = name;
         this.description = description;
-        this.guide = guide;
-        this.guideMail = guideMail;
         this.price = price;
         this.duration = duration;
         this.date = date;
@@ -56,6 +54,10 @@ public class Tour {
     }
     public String getGuideMail() {
         return guideMail;
+    }
+    public void setGuideGuideMail(String guide, String guideMail) {
+        this.guide = guide;
+        this.guideMail = guideMail;
     }
     public float getPrice() {
         return price;
