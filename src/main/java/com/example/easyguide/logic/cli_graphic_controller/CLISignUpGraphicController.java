@@ -14,14 +14,24 @@ import java.util.logging.Level;
 public class CLISignUpGraphicController extends AbstractCLIGraphicController{
 
     public void start(){
-        while(true){
+        boolean bool = true;
+        while(bool){
             int choice;
             try{
                 choice = showMenu();
                 switch (choice){
-                    case 1 -> signUp();
-                    case 2 -> new CLILoginGraphicController().start();
-                    case 3 -> System.exit(0);
+                    case 1 -> {
+                        bool = false;
+                        signUp();
+                    }
+                    case 2 -> {
+                        bool = false;
+                        new CLILoginGraphicController().start();
+                    }
+                    case 3 -> {
+                        bool = false;
+                        System.exit(0);
+                    }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
             } catch (IOException | InvalidFormatException e) {
