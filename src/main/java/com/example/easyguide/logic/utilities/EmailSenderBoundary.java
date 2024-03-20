@@ -47,7 +47,6 @@ public class EmailSenderBoundary implements Observer {
 
         if(!f.canWrite())
             throw new EmailSenderException("Cannot write on file");
-
     }
 }
 
