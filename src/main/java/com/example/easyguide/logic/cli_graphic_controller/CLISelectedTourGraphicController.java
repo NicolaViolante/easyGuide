@@ -74,7 +74,7 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
 
 
 
-    public int showMenu() throws IOException {
+    public int showMenu() {
 
         CLIPrinter.printMessage("What do you want to do?: \n");
         CLIPrinter.printMessage("1) Select date and time\n");
@@ -131,10 +131,8 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
                     }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
-            } catch (IOException | InvalidFormatException | MissingDatesException e) {
+            } catch (IOException | InvalidFormatException | MissingDatesException | SQLException e) {
                 logger.log(Level.INFO, e.getMessage());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         }
     }
