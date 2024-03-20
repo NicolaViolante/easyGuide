@@ -91,19 +91,44 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
     }
 
     public void showOptions(List<SpecifiedTourBean> specifiedTourBeans, ReservationInfoBean reservationInfoBean) {
-        while (true) {
+        boolean bool = true;
+        while (bool) {
             int choice;
             try {
                 choice = showMenu();
                 switch (choice) {
-                    case 1 -> selectDateAndTime(specifiedTourBeans, reservationInfoBean);
-                    case 2 -> selectNumberOfPeople(specifiedTourBeans, reservationInfoBean);
-                    case 3 -> sendReservation(reservationInfoBean);
-                    case 4 -> goHome();
-                    case 5 -> goBack(specifiedTourBeans);
-                    case 6 -> viewMessages();
-                    case 7 -> logout();
-                    case 8 -> System.exit(0);
+                    case 1 -> {
+                        bool = false;
+                        selectDateAndTime(specifiedTourBeans, reservationInfoBean);
+                    }
+                    case 2 -> {
+                        bool = false;
+                        selectNumberOfPeople(specifiedTourBeans, reservationInfoBean);
+                    }
+                    case 3 -> {
+                        bool = false;
+                        sendReservation(reservationInfoBean);
+                    }
+                    case 4 -> {
+                        bool = false;
+                        goHome();
+                    }
+                    case 5 -> {
+                        bool = false;
+                        goBack(specifiedTourBeans);
+                    }
+                    case 6 -> {
+                        bool = false;
+                        viewMessages();
+                    }
+                    case 7 -> {
+                        bool = false;
+                        logout();
+                    }
+                    case 8 -> {
+                        bool = false;
+                        System.exit(0);
+                    }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
             } catch (IOException | InvalidFormatException | MissingDatesException e) {
