@@ -10,7 +10,6 @@ import com.example.easyguide.logic.exceptions.MissingDatesException;
 import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -34,7 +33,7 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
 
     }
 
-    private void selectDateAndTime(List<SpecifiedTourBean> specifiedTourBeans, ReservationInfoBean reservationInfoBean) throws IOException {
+    private void selectDateAndTime(List<SpecifiedTourBean> specifiedTourBeans, ReservationInfoBean reservationInfoBean)  {
         int i = 1;
         for (SpecifiedTourBean tour : specifiedTourBeans) {
             CLIPrinter.printListOfAvailableDates(i,tour.getDate());
@@ -131,7 +130,7 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
                     }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
-            } catch (IOException | InvalidFormatException | MissingDatesException | SQLException e) {
+            } catch (InvalidFormatException | MissingDatesException | SQLException e) {
                 logger.log(Level.INFO, e.getMessage());
             }
         }
