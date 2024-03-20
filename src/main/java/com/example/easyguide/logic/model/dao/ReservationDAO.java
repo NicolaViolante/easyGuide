@@ -72,22 +72,26 @@ public class ReservationDAO {
         String sql = "SELECT " + TOURISTMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
                 TOURNAME  +" FROM reservation WHERE " + GUIDEMAIL + " = ?" + AND + STATE + " = ?";
 
-        stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setString(1, user.getEmail());
-        stmt.setInt(2, 0);
+        try {
+            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt.setString(1, user.getEmail());
+            stmt.setInt(2, 0);
 
-        ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()){
-            Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
-                    rs.getDate(4), rs.getFloat(5), rs.getString(6));
-            reservations.add(reservation);
+            while (rs.next()) {
+                Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
+                        rs.getDate(4), rs.getFloat(5), rs.getString(6));
+                reservations.add(reservation);
 
+            }
+
+            rs.close();
         }
-
-        rs.close();
-        stmt.close();
-
+        finally {
+            assert stmt != null;
+            stmt.close();
+        }
         return reservations;
     }
 
