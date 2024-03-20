@@ -8,7 +8,9 @@ public class SessionManager {
 
     protected User currentUser;
     public User getCurrentUser() {return currentUser;}
-
+    private SessionManager() {
+        currentUser = null;
+    }
 
     public static synchronized SessionManager getInstance(){
         if(SessionManager.instance == null)
