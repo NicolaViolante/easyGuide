@@ -4,7 +4,6 @@ import com.example.easyguide.logic.beans.RequestSearchBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.controller.LoginController;
-import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 

@@ -1,9 +1,6 @@
 package com.example.easyguide.logic.model.dao;
 
 
-import com.example.easyguide.logic.beans.RequestSearchBean;
-import com.example.easyguide.logic.beans.SelectedTourBean;
-import com.example.easyguide.logic.beans.TourSearchBean;
 import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.session.ConnectionFactory;
 

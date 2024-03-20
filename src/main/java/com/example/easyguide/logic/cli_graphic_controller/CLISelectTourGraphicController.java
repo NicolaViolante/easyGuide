@@ -4,7 +4,6 @@ import com.example.easyguide.logic.beans.SelectedTourBean;
 import com.example.easyguide.logic.beans.SpecifiedTourBean;
 import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.controller.JoinTourController;
-import com.example.easyguide.logic.controller.LoginController;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 

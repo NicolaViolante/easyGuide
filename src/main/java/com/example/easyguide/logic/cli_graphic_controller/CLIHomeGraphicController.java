@@ -4,8 +4,6 @@ package com.example.easyguide.logic.cli_graphic_controller;
 import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.beans.TourSearchBean;
 import com.example.easyguide.logic.controller.JoinTourController;
-import com.example.easyguide.logic.controller.LoginController;
-import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 

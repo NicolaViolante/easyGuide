@@ -1,11 +1,7 @@
 package com.example.easyguide.logic.model.dao;
 
-import com.example.easyguide.logic.beans.AcceptationBean;
-import com.example.easyguide.logic.beans.RequestSearchBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
-import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.model.domain.Reservation;
-import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.ConnectionFactory;
 
