@@ -55,7 +55,7 @@ public class JoinTourController {
         new PaymentBoundary().pay();
     }
 
-    public void showMessages(RequestSearchBean requestSearchBean){
+    public void showMessages(){
         CLIPrinter.printMessage("NOT IMPLEMENTED\n");
     }
 

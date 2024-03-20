@@ -48,6 +48,8 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
         }
         int choice2 = getMenuChoice(1,j-1);
         reservationInfoBean.setTime(specifiedTourBeans.get(choice-1).getTimes().get(choice2-1));
+        showOptions(specifiedTourBeans, reservationInfoBean);
+
     }
     private void selectNumberOfPeople(List<SpecifiedTourBean> specifiedTourBeans, ReservationInfoBean reservationInfoBean) {
         Scanner input = new Scanner(System.in);

@@ -42,7 +42,7 @@ public abstract class AbstractCLIGraphicController {
     protected void viewMessages() throws SQLException{
         RequestSearchBean requestSearchBean = new RequestSearchBean(SessionManager.getInstance().getCurrentUser().getEmail());
         if (SessionManager.getInstance().getCurrentUser().getUserType() == TOURIST) {
-            new JoinTourController().showMessages(requestSearchBean);
+            new JoinTourController().showMessages();
             new CLIMessagesGraphicController();
         } else {
             CLIPrinter.printNumbers(1);
@@ -51,7 +51,7 @@ public abstract class AbstractCLIGraphicController {
             CLIPrinter.printMessage("Show requests\n");
             int choice = getMenuChoice(1, 2);
             if (choice == 1) {
-                new JoinTourController().showMessages(requestSearchBean);
+                new JoinTourController().showMessages();
                 new CLIMessagesGraphicController();
             } else if (choice == 2) {
                 List<ReservationInfoBean> tourInfo = new JoinTourController().showRequests(requestSearchBean);
