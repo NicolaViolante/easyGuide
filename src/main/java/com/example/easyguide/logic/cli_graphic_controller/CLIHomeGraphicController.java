@@ -39,10 +39,8 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
                     default -> throw new InvalidFormatException("Invalid choice\n");
                 }
             }
-            catch (IOException | InvalidFormatException e){
+            catch (IOException | InvalidFormatException | SQLException e){
                 logger.log(Level.INFO, e.getMessage());
-            } catch (SQLException  e) {
-                throw new RuntimeException(e);
             }
         }
     }
