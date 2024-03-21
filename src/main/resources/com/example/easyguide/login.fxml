@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.easyguide.logic.graphic_controller.LoginGraphicController">
+   <children>
+      <ImageView fitHeight="73.0" fitWidth="60.0" layoutX="338.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+         <image>
+            <Image url="@../immagini/Logo-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="364.20000000000005" layoutY="39.2" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="85.79999999999995" AnchorPane.topAnchor="39.2">
+         <image>
+            <Image url="@../immagini/Nome-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="268.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="268.859375" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="74.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="74.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
+      <TextField fx:id="usernameField" layoutX="74.0" layoutY="176.0" onAction="#setUsnm" prefHeight="26.0" prefWidth="168.0" />
+      <PasswordField fx:id="passwordField" layoutX="74.0" layoutY="256.0" onAction="#setPsw" prefHeight="26.0" prefWidth="168.0" />
+      <Line endX="-4.0" endY="-86.60000610351562" layoutX="303.0" layoutY="168.0" startX="-4.0" startY="183.20001220703125" />
+      <Text layoutX="74.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
+      <Button fx:id="signBtn" layoutX="133.0" layoutY="285.0" mnemonicParsing="false" onAction="#signin" prefHeight="0.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Signin" underline="true" />
+      <Circle fill="WHITE" layoutX="391.0" layoutY="224.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="55.0" fitWidth="64.0" layoutX="364.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../immagini/Google__G__logo.svg.png" />
+         </image>
+      </ImageView>
+      <Circle fill="WHITE" layoutX="494.0" layoutY="224.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="462.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../immagini/vecteezy_facebook-logo-png-facebook-logo-transparent-png-facebook_23986613.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

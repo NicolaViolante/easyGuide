@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         String firstPage = "Login.fxml";
         Parent root = FXMLLoader.load(getClass().getResource(firstPage));
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 600, 400);
         scene.setFill(Color.TRANSPARENT);
 
         NavigatorSingleton n = NavigatorSingleton.getInstance(primaryStage);
