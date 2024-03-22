@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.easyguide.logic.graphic_controller.SelectedTourGraphicController">
+   <children>
+      <Text layoutX="234.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour details" textAlignment="CENTER" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="homeButton" fitHeight="69.0" fitWidth="60.0" layoutX="35.2" layoutY="25.8" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../immagini/casa.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backButton" fitHeight="71.0" fitWidth="66.0" layoutX="92.0" layoutY="26.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../immagini/freccia.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="messageButton" fitHeight="71.0" fitWidth="77.0" layoutX="156.0" layoutY="23.0" onMouseClicked="#goMessage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../immagini/msg.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="logoutButton" layoutX="507.79999999999995" layoutY="64.8" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #000000;" text="Logout" textFill="WHITE" AnchorPane.rightAnchor="38.6" AnchorPane.topAnchor="44.8">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#fafafa" height="200.0" layoutX="338.0" layoutY="139.0" stroke="BLACK" strokeType="INSIDE" width="224.0" />
+      <Text fx:id="tourName" fill="#34e0a1" layoutX="35.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour name">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guide:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Info:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="guideName" layoutX="95.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="price" layoutX="87.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="duration" layoutX="120.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="info" layoutX="77.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="368.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="488.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <MenuButton fx:id="datePicker" layoutX="360.0" layoutY="198.0" mnemonicParsing="false" onAction="#showDates" prefHeight="26.0" prefWidth="55.0">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <MenuButton fx:id="TimePicker" layoutX="481.0" layoutY="198.0" mnemonicParsing="false" onAction="#showTimes" prefHeight="26.0" prefWidth="55.0">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <Text layoutX="386.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="People">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="peopleField" layoutX="450.0" layoutY="241.0" onAction="#setPeople" prefHeight="26.0" prefWidth="47.0" />
+      <Button fx:id="subscribeButton" layoutX="397.0" layoutY="279.0" mnemonicParsing="false" onAction="#sendSubscription" style="-fx-background-color: #34e0a1;" text="Subscribe">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
