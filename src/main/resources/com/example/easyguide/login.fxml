@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.easyguide.logic.graphic_controller.LoginGraphicController">
    <children>
       <ImageView fitHeight="73.0" fitWidth="60.0" layoutX="338.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
@@ -24,7 +23,7 @@
             <Image url="@../immagini/Nome-removebg-preview.png" />
          </image>
       </ImageView>
-      <Text layoutX="268.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="268.859375" AnchorPane.topAnchor="30.0">
+      <Text layoutX="268.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="268.859375" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -42,7 +41,7 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
       <TextField fx:id="usernameField" layoutX="74.0" layoutY="176.0" onAction="#setUsnm" prefHeight="26.0" prefWidth="168.0" />
       <PasswordField fx:id="passwordField" layoutX="74.0" layoutY="256.0" onAction="#setPsw" prefHeight="26.0" prefWidth="168.0" />
-      <Line endX="-4.0" endY="-86.60000610351562" layoutX="303.0" layoutY="168.0" startX="-4.0" startY="183.20001220703125" />
+      <Line endX="-4.0" endY="-86.60000610351562" layoutX="303.0" layoutY="168.0" startX="-4.0" startY="183.20001220703125" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
       <Text layoutX="74.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
       <Button fx:id="signBtn" layoutX="133.0" layoutY="285.0" mnemonicParsing="false" onAction="#signin" prefHeight="0.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Signin" underline="true" />
       <Circle fill="WHITE" layoutX="391.0" layoutY="224.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
