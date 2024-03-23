@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        String firstPage = "Login.fxml";
+        String firstPage = "login.fxml";
         Parent root = FXMLLoader.load(getClass().getResource(firstPage));
         Scene scene = new Scene(root, 600, 400);
         scene.setFill(Color.TRANSPARENT);
@@ -26,6 +26,7 @@ public class Main extends Application {
         n.getStg().setResizable(false);
         n.getStg().setScene(scene);
         n.getStg().show();
+
     }
 
     public static void main(String[] args) {

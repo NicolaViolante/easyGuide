@@ -8,6 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 public class LoginGraphicController {
 
     @FXML
@@ -17,6 +25,9 @@ public class LoginGraphicController {
     private URL location;
 
     @FXML
+    private Button loginButton;
+
+    @FXML
     private PasswordField passwordField;
 
     @FXML
@@ -24,6 +35,11 @@ public class LoginGraphicController {
 
     @FXML
     private TextField usernameField;
+
+    @FXML
+    void login(ActionEvent event) {
+
+    }
 
     @FXML
     void setPsw(ActionEvent event) {
@@ -42,6 +58,7 @@ public class LoginGraphicController {
 
     @FXML
     void initialize() {
+        assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'login.fxml'.";
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'login.fxml'.";
         assert signBtn != null : "fx:id=\"signBtn\" was not injected: check your FXML file 'login.fxml'.";
         assert usernameField != null : "fx:id=\"usernameField\" was not injected: check your FXML file 'login.fxml'.";

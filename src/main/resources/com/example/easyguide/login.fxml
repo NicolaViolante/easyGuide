@@ -28,22 +28,22 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="74.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <Text layoutX="55.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="74.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="55.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
-      <TextField fx:id="usernameField" layoutX="74.0" layoutY="176.0" onAction="#setUsnm" prefHeight="26.0" prefWidth="168.0" />
-      <PasswordField fx:id="passwordField" layoutX="74.0" layoutY="256.0" onAction="#setPsw" prefHeight="26.0" prefWidth="168.0" />
+      <TextField fx:id="usernameField" layoutX="55.0" layoutY="176.0" onAction="#setUsnm" prefHeight="26.0" prefWidth="168.0" />
+      <PasswordField fx:id="passwordField" layoutX="55.0" layoutY="256.0" onAction="#setPsw" prefHeight="26.0" prefWidth="168.0" />
       <Line endX="-4.0" endY="-86.60000610351562" layoutX="303.0" layoutY="168.0" startX="-4.0" startY="183.20001220703125" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
-      <Text layoutX="74.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
-      <Button fx:id="signBtn" layoutX="133.0" layoutY="285.0" mnemonicParsing="false" onAction="#signin" prefHeight="0.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Signin" underline="true" />
+      <Text layoutX="55.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
+      <Button fx:id="signBtn" layoutX="114.0" layoutY="284.0" mnemonicParsing="false" onAction="#signin" prefHeight="0.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Signin" underline="true" />
       <Circle fill="WHITE" layoutX="391.0" layoutY="224.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fitHeight="55.0" fitWidth="64.0" layoutX="364.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -56,5 +56,10 @@
             <Image url="@../immagini/vecteezy_facebook-logo-png-facebook-logo-transparent-png-facebook_23986613.png" />
          </image>
       </ImageView>
+      <Button fx:id="loginButton" layoutX="230.0" layoutY="211.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="64.0" style="-fx-background-color: #34e0a1;" text="Login">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
