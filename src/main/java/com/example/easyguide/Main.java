@@ -1,5 +1,6 @@
 package com.example.easyguide;
 
+import com.example.easyguide.logic.graphic_controller.LoginGraphicController;
 import com.example.easyguide.logic.utilities.NavigatorSingleton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,19 +15,16 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        String firstPage = "login.fxml";
-        Parent root = FXMLLoader.load(getClass().getResource(firstPage));
-        Scene scene = new Scene(root, 600, 400);
-        scene.setFill(Color.TRANSPARENT);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
 
         NavigatorSingleton n = NavigatorSingleton.getInstance(primaryStage);
 
-        n.getStg().initStyle(StageStyle.TRANSPARENT);
         n.getStg().setTitle("EasyGuide");
         n.getStg().setResizable(false);
-        n.getStg().setScene(scene);
-        n.getStg().show();
-
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
