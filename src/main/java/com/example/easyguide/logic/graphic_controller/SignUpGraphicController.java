@@ -1,20 +1,22 @@
 package com.example.easyguide.logic.graphic_controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+
+import com.example.easyguide.logic.beans.SignUpBean;
+import com.example.easyguide.logic.exceptions.InvalidRoleException;
+import com.example.easyguide.logic.model.domain.Role;
+import com.example.easyguide.logic.controller.SignUpController;
+import com.example.easyguide.logic.exceptions.InvalidFormatException;
+import com.example.easyguide.logic.utilities.AbsDialogNavigationController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
-public class SignUpGraphicController {
+import java.sql.SQLException;
+import java.util.logging.Level;
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+public class SignUpGraphicController extends AbsDialogNavigationController {
 
     @FXML
     private RadioButton guideRadioButton;
@@ -42,54 +44,66 @@ public class SignUpGraphicController {
 
     @FXML
     private TextField usernameField;
+    private SignUpController signUpController;
+    private Role role = null;
+    private int result;
 
     @FXML
     void signIn(ActionEvent event) {
-
+        goToPage("signup.fxml");
     }
 
     @FXML
     void register(ActionEvent event) {
-
+            try {
+                if (role == null) {
+                    throw new InvalidRoleException("Role MUST be specified");
+                }
+                SignUpBean signUpBean = new SignUpBean(
+                        usernameField.getText(),
+                        nameField.getText(),
+                        surnameField.getText(),
+                        mailField.getText(),
+                        passwordField.getText(),
+                        role.getId()
+                );
+                result = signUpController.signUp(signUpBean);
+                if (result == 1) goToPage("home.fxml");
+                else if (result == -1) showInfoAlert("Username already in use","This username isn't selectable","Choose an other username");
+                else showErrorAlert("Unknown error","","");
+            }
+            catch (InvalidRoleException e){
+                logger.log(Level.INFO, e.getMessage());
+                showInfoAlert("Role", "No role is specified", "Specify role");
+            }
+            catch (InvalidFormatException e){
+                logger.log(Level.INFO, e.getMessage());
+                showErrorAlert("Credential error","Invalid format","Some fields are in invalid format");
+            }
+            catch (SQLException e){
+                logger.log(Level.INFO, e.getMessage());
+                showInfoAlert("DB is not working","","");
+            }
     }
 
-    @FXML
-    void setMail(ActionEvent event) {
-
-    }
-
-    @FXML
-    void setName(ActionEvent event) {
-
-    }
-
-    @FXML
-    void setPsw(ActionEvent event) {
-
-    }
 
     @FXML
     void setRoleGuide(ActionEvent event) {
-
+        role = Role.GUIDE;
+        touristRadioButton.setDisable(true);
     }
 
     @FXML
     void setRoleTourist(ActionEvent event) {
-
+        role = Role.TOURIST;
+        guideRadioButton.setDisable(true);
     }
 
-    @FXML
-    void setSurname(ActionEvent event) {
 
-    }
-
-    @FXML
-    void setUsnm(ActionEvent event) {
-
-    }
-
-    @FXML
-    void initialize() {
+    @FXML @Override
+    public void initialize() {
+        super.initialize();
+        signUpController = new SignUpController();
         assert guideRadioButton != null : "fx:id=\"guideRadioButton\" was not injected: check your FXML file 'signup.fxml'.";
         assert signInButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'signup.fxml'.";
         assert mailField != null : "fx:id=\"mailField\" was not injected: check your FXML file 'signup.fxml'.";

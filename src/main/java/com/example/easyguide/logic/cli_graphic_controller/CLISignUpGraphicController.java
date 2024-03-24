@@ -3,11 +3,14 @@ package com.example.easyguide.logic.cli_graphic_controller;
 import com.example.easyguide.logic.beans.SignUpBean;
 import com.example.easyguide.logic.controller.SignUpController;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
+import com.example.easyguide.logic.exceptions.InvalidRoleException;
 import com.example.easyguide.logic.model.domain.Role;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class CLISignUpGraphicController extends AbstractCLIGraphicController{
@@ -70,7 +73,7 @@ public class CLISignUpGraphicController extends AbstractCLIGraphicController{
 
             else if (role1.equals("2")) role = Role.GUIDE;
 
-            else throw new InvalidFormatException("Invalid role");
+            else throw new InvalidRoleException("Invalid role");
 
             SignUpBean bean = new SignUpBean(username,name,surname,email,password,role.getId());
             int result = signUpController.signUp(bean);
@@ -79,7 +82,7 @@ public class CLISignUpGraphicController extends AbstractCLIGraphicController{
             else if(result == -1) logger.log(Level.INFO,"Username already in use");
             else logger.log(Level.INFO,"Unknown error");
 
-        } catch (Exception e) {
+        } catch (SQLException | IOException | InvalidRoleException | InvalidFormatException e) {
             logger.log(Level.INFO, e.getMessage());
         }
     }

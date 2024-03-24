@@ -65,7 +65,7 @@ public class CLILoginGraphicController extends AbstractCLIGraphicController{
             new CLIHomeGraphicController().start();
         } catch (InvalidFormatException | DAOException | IOException | SQLException e) {
             logger.log(Level.INFO, e.getMessage());
-            login();
+            start();
         }
     }
 }

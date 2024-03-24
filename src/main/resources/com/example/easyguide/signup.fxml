@@ -39,31 +39,31 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="nameField" layoutX="45.0" layoutY="154.0" onAction="#setName" prefHeight="26.0" prefWidth="168.0" />
+      <TextField fx:id="nameField" layoutX="45.0" layoutY="154.0"  prefHeight="26.0" prefWidth="168.0" />
       <Text layoutX="45.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="surnameField" layoutX="45.0" layoutY="228.0" onAction="#setSurname" prefHeight="26.0" prefWidth="168.0" />
+      <TextField fx:id="surnameField" layoutX="45.0" layoutY="228.0"  prefHeight="26.0" prefWidth="168.0" />
       <Text layoutX="45.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameField" layoutX="45.0" layoutY="300.0" onAction="#setUsnm" prefHeight="26.0" prefWidth="168.0" />
+      <TextField fx:id="usernameField" layoutX="45.0" layoutY="300.0"  prefHeight="26.0" prefWidth="168.0" />
       <Text layoutX="339.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="mailField" layoutX="339.0" layoutY="154.0" onAction="#setMail" prefHeight="26.0" prefWidth="168.0" />
+      <TextField fx:id="mailField" layoutX="339.0" layoutY="154.0"  prefHeight="26.0" prefWidth="168.0" />
       <Text layoutX="339.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="passwordField" layoutX="339.0" layoutY="228.0" onAction="#setPsw" prefHeight="26.0" prefWidth="168.0" />
+      <TextField fx:id="passwordField" layoutX="339.0" layoutY="228.0"  prefHeight="26.0" prefWidth="168.0" />
       <Text layoutX="339.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role">
          <font>
             <Font name="System Bold" size="24.0" />
