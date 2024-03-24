@@ -39,11 +39,11 @@
          </font>
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
-      <TextField fx:id="usernameField" layoutX="55.0" layoutY="176.0" onAction="#setUsnm" prefHeight="26.0" prefWidth="168.0" />
-      <PasswordField fx:id="passwordField" layoutX="55.0" layoutY="256.0" onAction="#setPsw" prefHeight="26.0" prefWidth="168.0" />
+      <TextField fx:id="usernameField" layoutX="55.0" layoutY="176.0"  prefHeight="26.0" prefWidth="168.0" />
+      <PasswordField fx:id="passwordField" layoutX="55.0" layoutY="256.0"  prefHeight="26.0" prefWidth="168.0" />
       <Line endX="-4.0" endY="-86.60000610351562" layoutX="303.0" layoutY="168.0" startX="-4.0" startY="183.20001220703125" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
       <Text layoutX="55.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" />
-      <Button fx:id="signBtn" layoutX="114.0" layoutY="284.0" mnemonicParsing="false" onAction="#signin" prefHeight="0.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Signin" underline="true" />
+      <Button fx:id="signBtn" layoutX="114.0" layoutY="284.0" mnemonicParsing="false" onAction="#signIn" prefHeight="0.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Signin" underline="true" />
       <Circle fill="WHITE" layoutX="391.0" layoutY="224.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fitHeight="55.0" fitWidth="64.0" layoutX="364.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
          <image>

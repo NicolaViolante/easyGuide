@@ -20,7 +20,7 @@ public class SignUpGraphicController {
     private RadioButton guideRadioButton;
 
     @FXML
-    private Button logoutButton;
+    private Button signInButton;
 
     @FXML
     private TextField mailField;
@@ -44,7 +44,7 @@ public class SignUpGraphicController {
     private TextField usernameField;
 
     @FXML
-    void logout(ActionEvent event) {
+    void signIn(ActionEvent event) {
 
     }
 
@@ -91,7 +91,7 @@ public class SignUpGraphicController {
     @FXML
     void initialize() {
         assert guideRadioButton != null : "fx:id=\"guideRadioButton\" was not injected: check your FXML file 'signup.fxml'.";
-        assert logoutButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'signup.fxml'.";
+        assert signInButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'signup.fxml'.";
         assert mailField != null : "fx:id=\"mailField\" was not injected: check your FXML file 'signup.fxml'.";
         assert nameField != null : "fx:id=\"nameField\" was not injected: check your FXML file 'signup.fxml'.";
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'signup.fxml'.";

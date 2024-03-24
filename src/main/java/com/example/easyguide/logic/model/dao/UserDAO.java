@@ -95,7 +95,7 @@ public class UserDAO {
 
             // Verify if ResultSet is empty
             if (!rs.first()) {
-                throw new DAOException("Utente non trovato");
+                throw new DAOException("Utente non trovato(username o password errati)");
             }
 
             // Repositioning of the cursor

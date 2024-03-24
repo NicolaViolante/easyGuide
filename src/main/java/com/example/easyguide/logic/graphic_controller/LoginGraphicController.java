@@ -1,28 +1,23 @@
 package com.example.easyguide.logic.graphic_controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+
+import com.example.easyguide.logic.beans.CredentialsBean;
+import com.example.easyguide.logic.controller.LoginController;
+import com.example.easyguide.logic.exceptions.DAOException;
+import com.example.easyguide.logic.exceptions.InvalidFormatException;
+import com.example.easyguide.logic.utilities.AbsDialogNavigationController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+public class LoginGraphicController extends AbsDialogNavigationController {
 
-public class LoginGraphicController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button loginButton;
@@ -36,28 +31,44 @@ public class LoginGraphicController {
     @FXML
     private TextField usernameField;
 
+    private LoginController loginController;
+
     @FXML
-    void login(ActionEvent event) {
+    public void login(ActionEvent event) {
+        try{
+            CredentialsBean credentialsBean = new CredentialsBean(
+                    usernameField.getText(),
+                    passwordField.getText()
+            );
+            loginController.login(credentialsBean);
+            goToPage("home.fxml");
+        }
+        catch (InvalidFormatException e) {
+            logger.log(Level.INFO, e.getMessage());
+            showErrorAlert("Credential error","Invalid format","Username or password are in an invalid format");
+        }
+        catch (DAOException e) {
+            logger.log(Level.INFO, e.getMessage());
+            showErrorAlert("Credential error","User not found","Username or password are wrong");
+        }
+        catch (SQLException e) {
+            logger.log(Level.INFO, e.getMessage());
+            showInfoAlert("DB is not working","","");
+        }
 
     }
 
-    @FXML
-    void setPsw(ActionEvent event) {
 
+    @FXML
+    void signIn(ActionEvent event) {
+        goToPage("signup.fxml");
     }
 
-    @FXML
-    void setUsnm(ActionEvent event) {
+    @FXML @Override
+    public void initialize() {
+        super.initialize();
+        loginController = new LoginController();
 
-    }
-
-    @FXML
-    void signin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void initialize() {
         assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'login.fxml'.";
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'login.fxml'.";
         assert signBtn != null : "fx:id=\"signBtn\" was not injected: check your FXML file 'login.fxml'.";

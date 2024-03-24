@@ -11,6 +11,7 @@ public class AbsDialogNavigationController {
     protected Alert errorAlert;
     protected Alert infoAlert;
     protected Alert confirmationAlert;
+    protected Logger logger = Logger.getAnonymousLogger();
 
     @FXML
     public void initialize(){
