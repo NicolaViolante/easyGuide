@@ -2,11 +2,14 @@ package com.example.easyguide.logic.cli_graphic_controller;
 
 import com.example.easyguide.logic.beans.CredentialsBean;
 import com.example.easyguide.logic.controller.LoginController;
+import com.example.easyguide.logic.exceptions.DAOException;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 
@@ -48,22 +51,21 @@ public class CLILoginGraphicController extends AbstractCLIGraphicController{
         return getMenuChoice(1, 3);
     }
 
-    private void login(){
+    private void login() {
         LoginController loginController = new LoginController();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try{
+        try {
             CLIPrinter.printMessage("username: ");
             String username = reader.readLine();
             CLIPrinter.printMessage("password: ");
             String password = reader.readLine();
-            CredentialsBean bean = new CredentialsBean(username,password);
+            CredentialsBean bean = new CredentialsBean(username, password);
             loginController.login(bean);
 
             new CLIHomeGraphicController().start();
-        }
-
-        catch (Exception e){
+        } catch (InvalidFormatException | DAOException | IOException | SQLException e) {
             logger.log(Level.INFO, e.getMessage());
+            login();
         }
     }
 }
