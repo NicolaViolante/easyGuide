@@ -35,7 +35,7 @@ import javafx.scene.input.MouseEvent;
 
 import static com.example.easyguide.logic.model.domain.Role.TOURIST;
 
-public class HomeGraphicController extends AbsDialogNavigationController{
+public class HomeGraphicController extends AbstractGraphicController{
 
     @FXML
     private ResourceBundle resources;
@@ -63,8 +63,7 @@ public class HomeGraphicController extends AbsDialogNavigationController{
 
     @FXML
     void logout(ActionEvent event) {
-        new LoginController().logout();
-        goToPage("login.fxml");
+        super.logout(event);
     }
 
     @FXML
