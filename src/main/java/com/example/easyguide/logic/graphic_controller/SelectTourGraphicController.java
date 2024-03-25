@@ -86,7 +86,6 @@ public class SelectTourGraphicController extends AbstractGraphicController {
         tourBeanObservableList.addAll(new HomeGraphicController().getTourBeans());
         tourTable.setItems(tourBeanObservableList);
     }
-
 }
 
 
