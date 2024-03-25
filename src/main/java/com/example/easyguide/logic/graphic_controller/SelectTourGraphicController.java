@@ -41,10 +41,11 @@ public class SelectTourGraphicController extends AbstractGraphicController {
     private TableView<TourBean> tourTable = new TableView<>();
 
     @FXML
-    private TableColumn<TourBean, String> tourName = new TableColumn<>();
+    private TableColumn<TourBean, String> tourName;
 
     @FXML
-    private TableColumn<TourBean, Float> tourPrice = new TableColumn<>();
+    private TableColumn<TourBean, Float> tourPrice;
+    ObservableList<TourBean> tourBeanObservableList = FXCollections.observableArrayList();
 
 
 
@@ -59,26 +60,13 @@ public class SelectTourGraphicController extends AbstractGraphicController {
             SelectedTourBean selectedTourBean = new SelectedTourBean(tourName.getCellData(index));
 
     }
-    public void setTourTable(ObservableList<TourBean> tour){
-//System.out.printf(tour.getFirst().getTourName() + tour.getLast().getTourName());
 
-        tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
-        tourPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        tourTable.setItems(tour);
-
-    }
 
     @FXML
     void goBack(MouseEvent event) {
 
     }
-    public void setTours(List<TourBean> tours){
-        ObservableList<TourBean> tourBeanObservableList = FXCollections.observableArrayList();
 
-        tourBeanObservableList.addAll(tours);
-            setTourTable(tourBeanObservableList);
-    }
 
     @FXML
     public void initialize() {
@@ -93,7 +81,10 @@ public class SelectTourGraphicController extends AbstractGraphicController {
         assert tourName != null : "fx:id=\"tourName\" was not injected: check your FXML file 'selectTour.fxml'.";
         assert tourPrice != null : "fx:id=\"tourPrice\" was not injected: check your FXML file 'selectTour.fxml'.";
         assert tourTable != null : "fx:id=\"tourTable\" was not injected: check your FXML file 'selectTour.fxml'.";
-
+        tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
+        tourPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        tourBeanObservableList.addAll(new HomeGraphicController().getTourBeans());
+        tourTable.setItems(tourBeanObservableList);
     }
 
 }
