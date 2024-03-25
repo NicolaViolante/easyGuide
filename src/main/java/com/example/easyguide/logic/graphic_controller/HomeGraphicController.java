@@ -57,25 +57,27 @@ public class HomeGraphicController extends AbstractGraphicController{
     private JoinTourController joinTourController;
 
     @FXML
-    void goMessage(MouseEvent event) {
+    public void goMessage(MouseEvent event) {
 
     }
 
     @FXML
-    void logout(ActionEvent event) {
+    public void logout(ActionEvent event) {
         super.logout(event);
     }
 
     @FXML
-    void search(ActionEvent event) {
+    public void search(ActionEvent event) {
 
     }
+
 
 
     @FXML @Override
     public void initialize() {
         super.initialize();
         joinTourController = new JoinTourController();
+
 
         assert logoutButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'home.fxml'.";
         assert messageButton != null : "fx:id=\"messageButton\" was not injected: check your FXML file 'home.fxml'.";
