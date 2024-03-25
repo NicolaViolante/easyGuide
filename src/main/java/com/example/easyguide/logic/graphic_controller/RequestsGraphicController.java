@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class RequestsGraphicController {
+public class RequestsGraphicController extends AbstractGraphicController {
 
     @FXML
     private ResourceBundle resources;
@@ -46,17 +46,8 @@ public class RequestsGraphicController {
     private TableColumn<?, ?> touristMail;
 
     @FXML
-    void goHome(MouseEvent event) {
-
-    }
-
-    @FXML
-    void logout(ActionEvent event) {
-
-    }
-
-    @FXML
-    void initialize() {
+    public void initialize() {
+        super.initialize();
         assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'requests.fxml'.";
         assert logoutButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'requests.fxml'.";
         assert tourDate != null : "fx:id=\"tourDate\" was not injected: check your FXML file 'requests.fxml'.";
