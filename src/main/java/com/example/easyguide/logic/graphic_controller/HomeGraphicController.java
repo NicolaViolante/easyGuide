@@ -45,8 +45,7 @@ public class HomeGraphicController extends AbstractGraphicController{
             List<TourBean> listOfTours = joinTourController.findTourOfCity(bean);
 
 
-            SelectTourGraphicController selectTourGraphicController = new SelectTourGraphicController();
-            selectTourGraphicController.setTours(listOfTours);
+            new SelectTourGraphicController().setTours(listOfTours);
             goToPage("selectTour.fxml");
 
         } catch (InvalidFormatException e) {
