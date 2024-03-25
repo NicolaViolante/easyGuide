@@ -58,7 +58,7 @@ public class HomeGraphicController extends AbstractGraphicController{
 
     @FXML
     public void goMessage(MouseEvent event) {
-
+        super.goMessage(event);
     }
 
     @FXML
