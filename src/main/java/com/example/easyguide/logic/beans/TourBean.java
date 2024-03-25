@@ -10,4 +10,5 @@ public class TourBean {
 
     public String getTourName() { return tourName; }
     public float getPrice() { return price; }
+
 }

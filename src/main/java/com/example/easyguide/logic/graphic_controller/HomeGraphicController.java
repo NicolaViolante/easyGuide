@@ -7,6 +7,7 @@ import com.example.easyguide.logic.cli_graphic_controller.CLISelectTourGraphicCo
 import com.example.easyguide.logic.controller.JoinTourController;
 
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,8 +43,12 @@ public class HomeGraphicController extends AbstractGraphicController{
         try {
             TourSearchBean bean = new TourSearchBean(textField.getText());
             List<TourBean> listOfTours = joinTourController.findTourOfCity(bean);
-            new SelectTourGraphicController().setTours(listOfTours);
+
+
+            SelectTourGraphicController selectTourGraphicController = new SelectTourGraphicController();
+            selectTourGraphicController.setTours(listOfTours);
             goToPage("selectTour.fxml");
+
         } catch (InvalidFormatException e) {
             logger.log(Level.INFO, e.getMessage());
             showErrorAlert("City error","Invalid format","City is in an invalid format");
