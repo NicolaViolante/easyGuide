@@ -2,6 +2,8 @@ package com.example.easyguide.logic.graphic_controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.easyguide.logic.controller.JoinTourController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -48,6 +50,7 @@ public class RequestsGraphicController extends AbstractGraphicController {
     @FXML
     public void initialize() {
         super.initialize();
+        joinTourController = new JoinTourController();
         assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'requests.fxml'.";
         assert logoutButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'requests.fxml'.";
         assert tourDate != null : "fx:id=\"tourDate\" was not injected: check your FXML file 'requests.fxml'.";

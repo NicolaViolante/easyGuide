@@ -112,7 +112,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="peopleField" layoutX="450.0" layoutY="241.0" onAction="#setPeople" prefHeight="26.0" prefWidth="47.0" />
+      <TextField fx:id="peopleField" layoutX="450.0" layoutY="241.0"  prefHeight="26.0" prefWidth="47.0" />
       <Button fx:id="subscribeButton" layoutX="397.0" layoutY="279.0" mnemonicParsing="false" onAction="#sendSubscription" style="-fx-background-color: #34e0a1;" text="Subscribe">
          <font>
             <Font name="System Bold" size="18.0" />
