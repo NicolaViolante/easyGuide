@@ -1,8 +1,12 @@
 package com.example.easyguide.logic.graphic_controller;
 
 
+import com.example.easyguide.logic.beans.TourBean;
+import com.example.easyguide.logic.beans.TourSearchBean;
+import com.example.easyguide.logic.cli_graphic_controller.CLISelectTourGraphicController;
 import com.example.easyguide.logic.controller.JoinTourController;
 
+import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
 
 
 public class HomeGraphicController extends AbstractGraphicController{
@@ -32,9 +39,20 @@ public class HomeGraphicController extends AbstractGraphicController{
 
     @FXML
     public void search(ActionEvent event) {
-
+        try {
+            TourSearchBean bean = new TourSearchBean(textField.getText());
+            List<TourBean> listOfTours = joinTourController.findTourOfCity(bean);
+            new SelectTourGraphicController().setTours(listOfTours);
+            goToPage("selectTour.fxml");
+        } catch (InvalidFormatException e) {
+            logger.log(Level.INFO, e.getMessage());
+            showErrorAlert("City error","Invalid format","City is in an invalid format");
+        }
+        catch (SQLException e){
+            logger.log(Level.INFO, e.getMessage());
+            showInfoAlert("DB is not working","","");
+        }
     }
-
 
 
     @FXML @Override

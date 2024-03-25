@@ -1,7 +1,11 @@
 package com.example.easyguide.logic.graphic_controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import com.example.easyguide.logic.beans.TourBean;
+import com.example.easyguide.logic.controller.JoinTourController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class SelectTourGraphicController {
+public class SelectTourGraphicController extends AbstractGraphicController{
 
     @FXML
     private ResourceBundle resources;
@@ -38,29 +42,21 @@ public class SelectTourGraphicController {
 
     @FXML
     private TableView<?> tourTable;
+    private List<TourBean> tours;
 
     @FXML
     void goBack(MouseEvent event) {
 
     }
 
-    @FXML
-    void goHome(MouseEvent event) {
-
+    public void setTours(List<TourBean> tours) {
+        this.tours = tours;
     }
 
     @FXML
-    void goMessage(MouseEvent event) {
-
-    }
-
-    @FXML
-    void logout(ActionEvent event) {
-
-    }
-
-    @FXML
-    void initialize() {
+    public void initialize() {
+        super.initialize();
+        joinTourController = new JoinTourController();
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'Untitled'.";
         assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'Untitled'.";
         assert logoutButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'Untitled'.";

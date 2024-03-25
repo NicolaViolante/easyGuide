@@ -26,7 +26,7 @@ public class AbstractGraphicController extends AbsDialogNavigationController {
     protected void goMessage(MouseEvent event) {
         if (SessionManager.getInstance().getCurrentUser().getUserType() == TOURIST) {
             new JoinTourController().showMessages();
-            showInfoAlert("Not implemented","","");
+            showInfoAlert("Not implemented","Not implemented","Not implemented");
         } else if(SessionManager.getInstance().getCurrentUser().getUserType() == GUIDE){
             goToPage("selectionMessageOrRequests.fxml");
         }
