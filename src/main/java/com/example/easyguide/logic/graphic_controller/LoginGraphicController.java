@@ -1,8 +1,6 @@
 package com.example.easyguide.logic.graphic_controller;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 import com.example.easyguide.logic.beans.CredentialsBean;
