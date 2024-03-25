@@ -35,7 +35,6 @@ public class HomeGraphicController extends AbstractGraphicController{
 
     @FXML
     private TextField textField;
-    private JoinTourController joinTourController;
 
 
     @FXML
