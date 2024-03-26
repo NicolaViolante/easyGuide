@@ -1,5 +1,6 @@
 package com.example.easyguide.logic.graphic_controller;
 
+import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -7,7 +8,10 @@ import java.util.List;
 
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.beans.SpecifiedTourBean;
+import com.example.easyguide.logic.cli_graphic_controller.CLIHomeGraphicController;
+import com.example.easyguide.logic.cli_graphic_controller.CLIPaymentGraphicController;
 import com.example.easyguide.logic.controller.JoinTourController;
+import com.example.easyguide.logic.exceptions.MissingDatesException;
 import com.example.easyguide.logic.session.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,9 +75,15 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
 
 
     @FXML
-    void sendSubscription(ActionEvent event) {
-        System.out.printf(String.valueOf(reservationInfoBean.getDate()) + "\n"+ String.valueOf(reservationInfoBean.getTime()) + "\n" +peopleField.getText());
-
+    void sendSubscription(ActionEvent event) throws MissingDatesException, SQLException {
+        reservationInfoBean.setPeople(Integer.parseInt(peopleField.getText()));
+        if (reservationInfoBean.getDate() == null || reservationInfoBean.getTime() == null || reservationInfoBean.getPeople() < 1){
+            showErrorAlert("Dates missing","Dates missing","Dates missing");
+            throw new MissingDatesException("Dates missing");
+        }
+        new JoinTourController().pay();
+        new JoinTourController().completeReservation(reservationInfoBean);
+        goToPage("home.fxml");
     }
 
     @FXML
