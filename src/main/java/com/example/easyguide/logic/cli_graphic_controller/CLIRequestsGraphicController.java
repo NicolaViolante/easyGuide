@@ -57,14 +57,16 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
         int i = 1;
         CLIPrinter.printMessage("Select a tour: \n");
         for (ReservationInfoBean reservation : reservationInfoBeanList){
-            CLIPrinter.printReservation(i , reservation.getTourName(), reservation.getPrice(), reservation.getDate(),
+            CLIPrinter.printReservation(i, reservation.getTourName(), reservation.getPrice(), reservation.getDate(),
                     reservation.getTime(), reservation.getPeople(), reservation.getTouristMail());
             i++;
         }
         CLIPrinter.printMessage("-----------\n");
         CLIPrinter.printNumbers(i); CLIPrinter.printMessage("Go home\n");
-        CLIPrinter.printNumbers(i+1); CLIPrinter.printMessage("Logout\n");
-        CLIPrinter.printNumbers(i+2); CLIPrinter.printMessage("Quit\n");
+        CLIPrinter.printNumbers(i+1);
+        CLIPrinter.printMessage("Logout\n");
+        CLIPrinter.printNumbers(i+2);
+        CLIPrinter.printMessage("Quit\n");
 
         return getMenuChoice(1,i+2);
     }
@@ -73,10 +75,21 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
         CLIPrinter.printMessage("1 to accept, 2 to decline\n");
         AcceptationBean acceptationBean = null;
         int choice = getMenuChoice(1,2);
-        if (choice == 1)  acceptationBean = new AcceptationBean(1, reservationInfoBean.getGuideMail(),
-                reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime(), reservationInfoBean.getTourName());
-        else if (choice == 2)  acceptationBean = new AcceptationBean(2, reservationInfoBean.getGuideMail(),
-                reservationInfoBean.getTouristMail(), reservationInfoBean.getDate(), reservationInfoBean.getTime(), reservationInfoBean.getTourName());
+
+        if (choice == 1)  acceptationBean = new AcceptationBean(1,
+                reservationInfoBean.getGuideMail(),
+                reservationInfoBean.getTouristMail(),
+                reservationInfoBean.getDate(),
+                reservationInfoBean.getTime(),
+                reservationInfoBean.getTourName());
+
+        else if (choice == 2)  acceptationBean = new AcceptationBean(2,
+                reservationInfoBean.getGuideMail(),
+                reservationInfoBean.getTouristMail(),
+                reservationInfoBean.getDate(),
+                reservationInfoBean.getTime(),
+                reservationInfoBean.getTourName());
+
         assert acceptationBean != null;
         new JoinTourController().changeStatus(acceptationBean);
         reservationInfoBeanList.remove(i);

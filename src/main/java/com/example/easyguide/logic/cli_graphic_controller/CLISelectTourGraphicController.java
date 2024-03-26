@@ -71,10 +71,14 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
         }
         CLIPrinter.printMessage("-----------\n");
         CLIPrinter.printNumbers(i); CLIPrinter.printMessage("Go home\n");
-        CLIPrinter.printNumbers(i+1); CLIPrinter.printMessage("Go back\n");
-        CLIPrinter.printNumbers(i+2); CLIPrinter.printMessage("ViewMessages\n");
-        CLIPrinter.printNumbers(i+3); CLIPrinter.printMessage("Logout\n");
-        CLIPrinter.printNumbers(i+4); CLIPrinter.printMessage("Quit\n");
+        CLIPrinter.printNumbers(i+1);
+        CLIPrinter.printMessage("Go back\n");
+        CLIPrinter.printNumbers(i+2);
+        CLIPrinter.printMessage("ViewMessages\n");
+        CLIPrinter.printNumbers(i+3);
+        CLIPrinter.printMessage("Logout\n");
+        CLIPrinter.printNumbers(i+4);
+        CLIPrinter.printMessage("Quit\n");
 
         return getMenuChoice(1,i+4);
     }

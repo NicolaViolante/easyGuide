@@ -18,7 +18,8 @@ import java.util.logging.Level;
 public class CLISelectedTourGraphicController extends AbstractCLIGraphicController{
     public void start(List<SpecifiedTourBean> specifiedTourBeans){
         ReservationInfoBean reservationInfoBean = new ReservationInfoBean(specifiedTourBeans.getFirst().getGuideMail(),
-                SessionManager.getInstance().getCurrentUser().getEmail(), specifiedTourBeans.getFirst().getTourName(),
+                SessionManager.getInstance().getCurrentUser().getEmail(),
+                specifiedTourBeans.getFirst().getTourName(),
                 specifiedTourBeans.getFirst().getPrice());
         showOptions(specifiedTourBeans, reservationInfoBean);
     }
