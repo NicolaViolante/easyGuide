@@ -2,9 +2,12 @@ package com.example.easyguide.logic.utilities;
 
 import javafx.scene.control.Alert;
 import javafx.fxml.FXML;
+import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,11 +36,15 @@ public class AbsDialogNavigationController {
         errorAlert.setContentText(content);
         errorAlert.show();
     }
-    protected void showConfirmationAlert(String title, String header, String content){
+    protected ButtonType showConfirmationAlert(String title, String header, String content){
         confirmationAlert.setTitle(title);
         confirmationAlert.setHeaderText(header);
         confirmationAlert.setContentText(content);
-        confirmationAlert.show();
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isEmpty()) {
+            throw new InputMismatchException();
+        }
+        return result.get();
     }
 
     protected void goToPage(String page){

@@ -23,12 +23,6 @@ import javafx.scene.input.MouseEvent;
 public class SelectTourGraphicController extends AbstractGraphicController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private ImageView backButton;
 
     @FXML
