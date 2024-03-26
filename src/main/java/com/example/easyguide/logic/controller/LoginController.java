@@ -15,7 +15,11 @@ public class LoginController extends AbstractController {
                 credentialsBean.getUsername(),
                 credentialsBean.getPassword());
 
-        storeSessionUser(user.getUsername(), user.getName(), user.getSurname(), user.getEmail(), user.getUserType());
+        storeSessionUser(user.getUsername(),
+                user.getName(),
+                user.getSurname(),
+                user.getEmail(),
+                user.getUserType());
     }
     public void logout(){
         SessionManager sessionManager = SessionManager.getInstance();

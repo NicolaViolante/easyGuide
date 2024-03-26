@@ -37,7 +37,7 @@ public class Reservation extends Subject {
         this.attach(emailSender);
     }
 
-    public String getGuideMail(){ return guideMail; }
+    public String getGuideMail() { return guideMail;}
     public String getTouristMail(){ return touristMail; }
     public int getPeople(){ return people; }
     public void setPeople(int people) { this.people = people; }

@@ -15,12 +15,20 @@ public class SignUpController extends AbstractController {
         user = new UserDAO().findUsername(signUpBean.getUsername());
 
         if (user == null) {
-            result = new UserDAO().registerUser(signUpBean.getUsername(), signUpBean.getName(), signUpBean.getSurname(),
-                    signUpBean.getEmail(), signUpBean.getPassword(), signUpBean.getRole());
+            result = new UserDAO().registerUser(signUpBean.getUsername(),
+                    signUpBean.getName(),
+                    signUpBean.getSurname(),
+                    signUpBean.getEmail(),
+                    signUpBean.getPassword(),
+                    signUpBean.getRole());
         } else return result;
         Role role = Role.valueOf(signUpBean.getRole().toUpperCase());
 
-        storeSessionUser(signUpBean.getUsername(),signUpBean.getName(),signUpBean.getSurname(),signUpBean.getEmail(),role);
+        storeSessionUser(signUpBean.getUsername(),
+                signUpBean.getName(),
+                signUpBean.getSurname(),
+                signUpBean.getEmail(),
+                role);
         return result;
     }
 }

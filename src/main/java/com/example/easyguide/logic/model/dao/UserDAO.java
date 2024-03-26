@@ -40,7 +40,7 @@ public class UserDAO {
         return user;
     }
 
-    //DB calls
+
 
     public User findUsername(String username ) throws SQLException {
         PreparedStatement stmt = null;
@@ -50,24 +50,24 @@ public class UserDAO {
         conn = ConnectionFactory.getConnection();
 
         String sql = "SELECT * FROM user WHERE " + USERNAME + " = ?";
-        // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
+
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             stmt.setString(1, username);
 
             ResultSet rs = stmt.executeQuery();
 
-            // Verify if ResultSet is empty
+
             if (!rs.first()) {
                 return null;
             }
 
-            // Repositioning of the cursor
+
             rs.first();
 
             user = getUser(rs);
 
-            // Closing ResultSet and freeing resources
+
             rs.close();
         }
         finally {
@@ -85,7 +85,7 @@ public class UserDAO {
         conn = ConnectionFactory.getConnection();
 
         String sql = "SELECT * FROM user WHERE " + USERNAME + " = ? AND " + PSW + " = ?;";
-        // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
+
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             stmt.setString(1, username);
@@ -93,17 +93,17 @@ public class UserDAO {
 
             ResultSet rs = stmt.executeQuery();
 
-            // Verify if ResultSet is empty
+
             if (!rs.first()) {
                 throw new DAOException("Utente non trovato(username o password errati)");
             }
 
-            // Repositioning of the cursor
+
             rs.first();
 
             user = getUser(rs);
 
-            // Closing ResultSet and freeing resources
+
             rs.close();
         }
         finally{

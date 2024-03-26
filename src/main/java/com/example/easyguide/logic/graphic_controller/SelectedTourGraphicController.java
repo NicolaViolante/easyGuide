@@ -128,8 +128,10 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
         timePicker.setDisable(true);
         timePicker.getItems().removeFirst();
         timePicker.getItems().removeFirst();
+
         this.reservationInfoBean =  new ReservationInfoBean(specifiedTourBean.getGuideMail(),
-                SessionManager.getInstance().getCurrentUser().getEmail(), specifiedTourBean.getTourName(),
+                SessionManager.getInstance().getCurrentUser().getEmail(),
+                specifiedTourBean.getTourName(),
                 specifiedTourBean.getPrice());
     }
         private void setTimePicker(Date specifiedDate){

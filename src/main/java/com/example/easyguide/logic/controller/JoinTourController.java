@@ -37,9 +37,17 @@ public class JoinTourController {
         List<SpecifiedTourBean> specifiedTourBeanList = new ArrayList<>();
 
         for (Tour tour : tourList){
-            SpecifiedTourBean specifiedTourBean = new SpecifiedTourBean(tour.getPhoto(), tour.getName(), tour.getDescription(),
-                    tour.getGuide(), tour.getGuideMail(), tour.getPrice(), tour.getDuration());
-            specifiedTourBean.setDateTimesCity(tour.getDate(), tour.getTimes(), tour.getCity());
+            SpecifiedTourBean specifiedTourBean = new SpecifiedTourBean(tour.getPhoto(),
+                    tour.getName(),
+                    tour.getDescription(),
+                    tour.getGuide(),
+                    tour.getGuideMail(),
+                    tour.getPrice(),
+                    tour.getDuration());
+
+            specifiedTourBean.setDateTimesCity(tour.getDate(),
+                    tour.getTimes(),
+                    tour.getCity());
             specifiedTourBeanList.add(specifiedTourBean);
         }
 
@@ -65,16 +73,24 @@ public class JoinTourController {
         List<ReservationInfoBean> reservationInfoBeansList = new ArrayList<>();
         for (Reservation reservation : reservationList){
             ReservationInfoBean reservationInfoBean = new ReservationInfoBean(SessionManager.getInstance().getCurrentUser().getEmail(),
-                    reservation.getTouristMail(), reservation.getDate(), reservation.getTime(), reservation.getPeople(),
-                    reservation.getTourName(), reservation.getPrice());
+                    reservation.getTouristMail(),
+                    reservation.getDate(),
+                    reservation.getTime(),
+                    reservation.getPeople(),
+                    reservation.getTourName(),
+                    reservation.getPrice());
             reservationInfoBeansList.add(reservationInfoBean);
         }
 
         return reservationInfoBeansList;
     }
     public void changeStatus(AcceptationBean acceptationBean) throws SQLException, EmailSenderException {
-        Reservation reservation = new Reservation(acceptationBean.getState(), acceptationBean.getGuideMail(), acceptationBean.getTouristMail(),
-                acceptationBean.getDate(), acceptationBean.getTime(),acceptationBean.getTourName());
+        Reservation reservation = new Reservation(acceptationBean.getState(),
+                acceptationBean.getGuideMail(),
+                acceptationBean.getTouristMail(),
+                acceptationBean.getDate(),
+                acceptationBean.getTime(),
+                acceptationBean.getTourName());
         new ReservationDAO().changeStatus(reservation);
         reservation.notifyPublication();
 

@@ -60,15 +60,26 @@ public class RequestsGraphicController extends AbstractGraphicController {
         ButtonType choose = null;
         choose = showConfirmationAlert("Accept or refuse","Do you want to accept or refuse","Do you want to accept this request(OK to accept, cancel to refuse)");
         if(choose == ButtonType.OK){
-            acceptationBean = new AcceptationBean(1, SessionManager.getInstance().getCurrentUser().getEmail(),
-                    touristMail.getCellData(index),tourDate.getCellData(index),tourTime.getCellData(index),tourName.getCellData(index));
+
+            acceptationBean = new AcceptationBean(1,
+                    SessionManager.getInstance().getCurrentUser().getEmail(),
+                    touristMail.getCellData(index),
+                    tourDate.getCellData(index),
+                    tourTime.getCellData(index),
+                    tourName.getCellData(index));
+
             tourTable.getItems().remove(index);
             tourTable.refresh();
             joinTourController.changeStatus(acceptationBean);
         }
         else if(choose == ButtonType.CANCEL){
-            acceptationBean = new AcceptationBean(2, SessionManager.getInstance().getCurrentUser().getEmail(),
-                    touristMail.getCellData(index),tourDate.getCellData(index),tourTime.getCellData(index),tourName.getCellData(index));
+            acceptationBean = new AcceptationBean(2,
+                    SessionManager.getInstance().getCurrentUser().getEmail(),
+                    touristMail.getCellData(index),
+                    tourDate.getCellData(index),
+                    tourTime.getCellData(index),
+                    tourName.getCellData(index));
+
             tourTable.getItems().remove(index);
             tourTable.refresh();
             joinTourController.changeStatus(acceptationBean);
