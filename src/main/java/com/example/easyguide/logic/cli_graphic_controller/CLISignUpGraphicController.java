@@ -75,12 +75,24 @@ public class CLISignUpGraphicController extends AbstractCLIGraphicController{
 
             else throw new InvalidRoleException("Invalid role");
 
-            SignUpBean bean = new SignUpBean(username,name,surname,email,password,role.getId());
-            int result = signUpController.signUp(bean);
+            SignUpBean bean = new SignUpBean(
+                    username,
+                    name,
+                    surname,
+                    email,
+                    password,
+                    role.getId()
+            );
 
-            if (result == 1) new CLIHomeGraphicController().start();
-            else if(result == -1) logger.log(Level.INFO,"Username already in use");
-            else logger.log(Level.INFO,"Unknown error");
+            int result = signUpController.signUp(bean);
+            switch (result){
+                case 1 -> new CLIHomeGraphicController().start();
+
+                case -1 -> logger.log(Level.INFO,"Username already in use");
+
+                default -> logger.log(Level.INFO,"Unknown error");
+            }
+
 
         } catch (SQLException | IOException | InvalidRoleException | InvalidFormatException e) {
             logger.log(Level.INFO, e.getMessage());
