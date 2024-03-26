@@ -67,7 +67,7 @@ public class SelectTourGraphicController extends AbstractGraphicController {
     }
 
 
-    @FXML
+    @FXML  @Override
     public void initialize() {
         super.initialize();
         joinTourController = new JoinTourController();
