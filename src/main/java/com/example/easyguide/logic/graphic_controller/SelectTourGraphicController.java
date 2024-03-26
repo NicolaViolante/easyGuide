@@ -1,10 +1,12 @@
 package com.example.easyguide.logic.graphic_controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.example.easyguide.logic.beans.SelectedTourBean;
+import com.example.easyguide.logic.beans.SpecifiedTourBean;
 import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import javafx.collections.FXCollections;
@@ -46,25 +48,22 @@ public class SelectTourGraphicController extends AbstractGraphicController {
     @FXML
     private TableColumn<TourBean, Float> tourPrice;
     ObservableList<TourBean> tourBeanObservableList = FXCollections.observableArrayList();
-
-
-
-
-    private int index;
+    private static List<SpecifiedTourBean> tourDetails;
 
 
     @FXML
-    void chooseTour(MouseEvent event) {
-        index = tourTable.getSelectionModel().getSelectedIndex();
+    void chooseTour(MouseEvent event) throws SQLException {
+        int index = tourTable.getSelectionModel().getSelectedIndex();
 
             SelectedTourBean selectedTourBean = new SelectedTourBean(tourName.getCellData(index));
-
+            tourDetails = new JoinTourController().showTour(selectedTourBean);
+            goToPage("selectedTour.fxml");
     }
 
 
     @FXML
     void goBack(MouseEvent event) {
-
+        goToPage("home.fxml");
     }
 
 
@@ -86,6 +85,7 @@ public class SelectTourGraphicController extends AbstractGraphicController {
         tourBeanObservableList.addAll(new HomeGraphicController().getTourBeans());
         tourTable.setItems(tourBeanObservableList);
     }
+    public List<SpecifiedTourBean> getTourDetails() {return tourDetails;}
 }
 
 
