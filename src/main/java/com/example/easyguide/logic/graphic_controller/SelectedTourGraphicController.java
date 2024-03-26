@@ -70,7 +70,7 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
 
     @FXML
     void goBack(MouseEvent event) {
-
+        goToPage("selectTour.fxml");
     }
 
 
@@ -87,17 +87,7 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
     }
 
     @FXML
-    void showDates(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showTimes(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         super.initialize();
         joinTourController = new JoinTourController();
 
@@ -163,4 +153,6 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
         }
 
     }
+
+
 }

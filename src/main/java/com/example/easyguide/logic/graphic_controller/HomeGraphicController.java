@@ -60,7 +60,7 @@ public class HomeGraphicController extends AbstractGraphicController{
 
 
     @FXML @Override
-    public void initialize() {
+    public void initialize() throws SQLException {
         super.initialize();
         joinTourController = new JoinTourController();
 

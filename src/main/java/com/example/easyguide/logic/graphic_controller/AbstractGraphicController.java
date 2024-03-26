@@ -1,5 +1,6 @@
 package com.example.easyguide.logic.graphic_controller;
 
+import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.controller.LoginController;
 import com.example.easyguide.logic.session.SessionManager;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static com.example.easyguide.logic.model.domain.Role.GUIDE;
 import static com.example.easyguide.logic.model.domain.Role.TOURIST;
@@ -48,11 +50,10 @@ public class AbstractGraphicController extends AbsDialogNavigationController {
 
     @FXML
     protected void selectedViewRequests(ActionEvent event) throws SQLException {
-        new JoinTourController().showRequests();
         goToPage("requests.fxml");
     }
     @FXML @Override
-    public void initialize() {
+    public void initialize() throws SQLException {
         super.initialize();
         joinTourController = new JoinTourController();
 

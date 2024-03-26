@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +15,7 @@ public class AbsDialogNavigationController {
     protected Logger logger = Logger.getAnonymousLogger();
 
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException {
         errorAlert = new Alert(Alert.AlertType.ERROR);
         infoAlert = new Alert(Alert.AlertType.INFORMATION);
         confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
