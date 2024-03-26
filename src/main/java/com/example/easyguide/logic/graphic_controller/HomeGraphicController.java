@@ -3,18 +3,18 @@ package com.example.easyguide.logic.graphic_controller;
 
 import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.beans.TourSearchBean;
-import com.example.easyguide.logic.cli_graphic_controller.CLISelectTourGraphicController;
+
 import com.example.easyguide.logic.controller.JoinTourController;
 
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+
 
 import java.sql.SQLException;
 import java.util.List;
@@ -42,8 +42,7 @@ public class HomeGraphicController extends AbstractGraphicController{
     public void search(ActionEvent event) {
         try {
             TourSearchBean bean = new TourSearchBean(textField.getText());
-            List<TourBean> listOfTours = joinTourController.findTourOfCity(bean);
-            this.listOfTourBeans = listOfTours;
+            listOfTourBeans = joinTourController.findTourOfCity(bean);
 
             goToPage("selectTour.fxml");
 
@@ -71,6 +70,6 @@ public class HomeGraphicController extends AbstractGraphicController{
         assert textField != null : "fx:id=\"textField\" was not injected: check your FXML file 'home.fxml'.";
 
     }
-    public List<TourBean> getTourBeans(){ return this.listOfTourBeans;}
+    public List<TourBean> getTourBeans(){ return listOfTourBeans;}
 
 }

@@ -46,7 +46,6 @@ public class SignUpGraphicController extends AbsDialogNavigationController {
     private TextField usernameField;
     private SignUpController signUpController;
     private Role role = null;
-    private int result;
 
     @FXML
     void signIn(ActionEvent event) {
@@ -67,7 +66,7 @@ public class SignUpGraphicController extends AbsDialogNavigationController {
                         passwordField.getText(),
                         role.getId()
                 );
-                result = signUpController.signUp(signUpBean);
+                int result = signUpController.signUp(signUpBean);
                 if (result == 1) goToPage("home.fxml");
                 else if (result == -1) showInfoAlert("Username already in use","This username isn't selectable","Choose an other username");
                 else showErrorAlert("Unknown error","","");

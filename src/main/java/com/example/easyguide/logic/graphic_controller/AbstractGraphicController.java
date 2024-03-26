@@ -1,6 +1,6 @@
 package com.example.easyguide.logic.graphic_controller;
 
-import com.example.easyguide.logic.beans.ReservationInfoBean;
+
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.controller.LoginController;
 import com.example.easyguide.logic.session.SessionManager;
@@ -11,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.SQLException;
-import java.util.List;
-
 import static com.example.easyguide.logic.model.domain.Role.GUIDE;
 import static com.example.easyguide.logic.model.domain.Role.TOURIST;
 

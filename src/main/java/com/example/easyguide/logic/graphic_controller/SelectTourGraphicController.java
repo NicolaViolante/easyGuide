@@ -1,9 +1,8 @@
 package com.example.easyguide.logic.graphic_controller;
 
-import java.net.URL;
+
 import java.sql.SQLException;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.example.easyguide.logic.beans.SelectedTourBean;
 import com.example.easyguide.logic.beans.SpecifiedTourBean;
@@ -74,6 +73,7 @@ public class SelectTourGraphicController extends AbstractGraphicController {
         assert tourName != null : "fx:id=\"tourName\" was not injected: check your FXML file 'selectTour.fxml'.";
         assert tourPrice != null : "fx:id=\"tourPrice\" was not injected: check your FXML file 'selectTour.fxml'.";
         assert tourTable != null : "fx:id=\"tourTable\" was not injected: check your FXML file 'selectTour.fxml'.";
+
         tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
         tourPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         tourBeanObservableList.addAll(new HomeGraphicController().getTourBeans());

@@ -1,23 +1,18 @@
 package com.example.easyguide.logic.graphic_controller;
 
-import java.net.URL;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.example.easyguide.logic.beans.AcceptationBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
-import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.session.SessionManager;
-import com.example.easyguide.logic.utilities.CLIPrinter;
-import com.example.easyguide.logic.utilities.NavigatorSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;

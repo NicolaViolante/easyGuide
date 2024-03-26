@@ -2,14 +2,11 @@ package com.example.easyguide.logic.graphic_controller;
 
 import java.sql.SQLException;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.beans.SpecifiedTourBean;
-import com.example.easyguide.logic.cli_graphic_controller.CLIHomeGraphicController;
-import com.example.easyguide.logic.cli_graphic_controller.CLIPaymentGraphicController;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.exceptions.MissingDatesException;
 import com.example.easyguide.logic.session.SessionManager;
