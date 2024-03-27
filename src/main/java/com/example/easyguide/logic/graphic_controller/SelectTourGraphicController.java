@@ -54,7 +54,6 @@ public class SelectTourGraphicController extends AbstractGraphicController {
 
             SelectedTourBean selectedTourBean = new SelectedTourBean(tourName.getCellData(index));
             tourDetails = new JoinTourController().showTour(selectedTourBean);
-            //goToPage("selectedTour.fxml");
             goToWithController("selectedTour.fxml", new SelectedTourGraphicController(tourDetails, listOfTourBeans));
     }
 
