@@ -56,7 +56,7 @@ public class AbsDialogNavigationController {
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
     }
-    protected void goToWithController(String page, Objects controller){
+    protected void goToWithController(String page, Object controller){
         try {
             NavigatorSingleton.getInstance().goToWithController(page, controller);
         }

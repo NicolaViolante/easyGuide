@@ -35,16 +35,15 @@ public class HomeGraphicController extends AbstractGraphicController{
 
     @FXML
     private TextField textField;
-    private static List<TourBean> listOfTourBeans;
 
 
     @FXML
     public void search(ActionEvent event) {
         try {
             TourSearchBean bean = new TourSearchBean(textField.getText());
-            listOfTourBeans = joinTourController.findTourOfCity(bean);
+            List<TourBean> listOfTourBeans = joinTourController.findTourOfCity(bean);
 
-            goToPage("selectTour.fxml");
+            goToWithController("selectTour.fxml", new SelectTourGraphicController(listOfTourBeans));
 
 
         } catch (InvalidFormatException e) {
@@ -70,6 +69,6 @@ public class HomeGraphicController extends AbstractGraphicController{
         assert textField != null : "fx:id=\"textField\" was not injected: check your FXML file 'home.fxml'.";
 
     }
-    public List<TourBean> getTourBeans(){ return listOfTourBeans;}
+
 
 }

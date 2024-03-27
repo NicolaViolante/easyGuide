@@ -60,14 +60,15 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
 
     @FXML
     private Text tourName;
-    private  List<SpecifiedTourBean> tourDetails;
+    private final List<SpecifiedTourBean> tourDetails;
     private ReservationInfoBean reservationInfoBean;
     private MenuItem item;
     private int times = 0;
+    public SelectedTourGraphicController(List<SpecifiedTourBean> tourDetails){this.tourDetails = tourDetails;}
 
     @FXML
     void goBack(MouseEvent event) {
-        goToPage("selectTour.fxml");
+        goToWithController("selectTour.fxml", new SelectTourGraphicController());
     }
 
 
@@ -102,7 +103,6 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
         assert subscribeButton != null : "fx:id=\"subscribeButton\" was not injected: check your FXML file 'selectedTour.fxml'.";
         assert tourName != null : "fx:id=\"tourName\" was not injected: check your FXML file 'selectedTour.fxml'.";
 
-        this.tourDetails = new SelectTourGraphicController().getTourDetails();
         SpecifiedTourBean specifiedTourBean = tourDetails.getFirst();
         tourName.setText(specifiedTourBean.getTourName());
         price.setText(String.valueOf(specifiedTourBean.getPrice()));
@@ -146,12 +146,7 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
                         this.reservationInfoBean.setTime(time);
                     });
                 }
-
-
             }
         }
-
     }
-
-
 }

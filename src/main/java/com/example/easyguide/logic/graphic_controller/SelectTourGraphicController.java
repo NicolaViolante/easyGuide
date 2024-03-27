@@ -42,6 +42,10 @@ public class SelectTourGraphicController extends AbstractGraphicController {
     private TableColumn<TourBean, Float> tourPrice;
     ObservableList<TourBean> tourBeanObservableList = FXCollections.observableArrayList();
     private static List<SpecifiedTourBean> tourDetails;
+    private final List<TourBean> listOfTourBeans;
+    public SelectTourGraphicController(List<TourBean> listOfTourBeans){
+        this.listOfTourBeans = listOfTourBeans;
+    }
 
 
     @FXML
@@ -50,7 +54,8 @@ public class SelectTourGraphicController extends AbstractGraphicController {
 
             SelectedTourBean selectedTourBean = new SelectedTourBean(tourName.getCellData(index));
             tourDetails = new JoinTourController().showTour(selectedTourBean);
-            goToPage("selectedTour.fxml");
+            //goToPage("selectedTour.fxml");
+            goToWithController("selectedTour.fxml", new SelectedTourGraphicController(tourDetails));
     }
 
 
@@ -76,10 +81,10 @@ public class SelectTourGraphicController extends AbstractGraphicController {
 
         tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
         tourPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        tourBeanObservableList.addAll(new HomeGraphicController().getTourBeans());
+        tourBeanObservableList.addAll(listOfTourBeans);
         tourTable.setItems(tourBeanObservableList);
     }
-    public List<SpecifiedTourBean> getTourDetails() {return tourDetails;}
+    //public List<SpecifiedTourBean> getTourDetails() {return tourDetails;}
 }
 
 
