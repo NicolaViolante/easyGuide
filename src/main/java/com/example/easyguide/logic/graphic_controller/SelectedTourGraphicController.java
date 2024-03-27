@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.beans.SpecifiedTourBean;
+import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.exceptions.MissingDatesException;
 import com.example.easyguide.logic.session.SessionManager;
@@ -61,14 +62,20 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
     @FXML
     private Text tourName;
     private final List<SpecifiedTourBean> tourDetails;
+    private final List<TourBean> listOfTourBeans;
+
     private ReservationInfoBean reservationInfoBean;
     private MenuItem item;
     private int times = 0;
-    public SelectedTourGraphicController(List<SpecifiedTourBean> tourDetails){this.tourDetails = tourDetails;}
+    public SelectedTourGraphicController(List<SpecifiedTourBean> tourDetails, List<TourBean> listOfTourBeans)
+    {
+        this.tourDetails = tourDetails;
+        this.listOfTourBeans = listOfTourBeans;
+    }
 
     @FXML
     void goBack(MouseEvent event) {
-        goToWithController("selectTour.fxml", new SelectTourGraphicController());
+        goToWithController("selectTour.fxml", new SelectTourGraphicController(listOfTourBeans));
     }
 
 
