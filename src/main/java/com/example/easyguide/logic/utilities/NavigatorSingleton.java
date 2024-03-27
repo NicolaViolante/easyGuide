@@ -24,5 +24,11 @@ public class NavigatorSingleton {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
         stg.getScene().setRoot(pane);
     }
+    public void goToWithController(String fxml, Object controller) throws IOException{
+        FXMLLoader loader = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+        loader.setController(controller);
+        Parent pane = loader.load();
+        stg.getScene().setRoot(pane);
+    }
 
 }

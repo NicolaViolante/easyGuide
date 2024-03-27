@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +51,14 @@ public class AbsDialogNavigationController {
     protected void goToPage(String page){
         try{
             NavigatorSingleton.getInstance().goToPage(page);
+        }
+        catch (IOException e){
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        }
+    }
+    protected void goToWithController(String page, Objects controller){
+        try {
+            NavigatorSingleton.getInstance().goToWithController(page, controller);
         }
         catch (IOException e){
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
