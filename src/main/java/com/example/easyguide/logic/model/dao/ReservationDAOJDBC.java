@@ -26,7 +26,7 @@ public class ReservationDAOJDBC implements ReservationDAO{
     protected static final String AND = " and ";
 
     @Override
-    public void registerReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
+    public void registerReservation(Reservation reservationInfo) throws SQLException {
         PreparedStatement stmt = null;
         Connection conn = null;
         Integer result = -1;
@@ -40,13 +40,13 @@ public class ReservationDAOJDBC implements ReservationDAO{
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            stmt.setString(1, reservationInfoBean.getGuideMail());
-            stmt.setString(2, reservationInfoBean.getTouristMail());
-            stmt.setInt(3, reservationInfoBean.getPeople());
-            stmt.setTime(4, reservationInfoBean.getTime());
-            stmt.setDate(5, reservationInfoBean.getDate());
-            stmt.setFloat(6, reservationInfoBean.getPrice());
-            stmt.setString(7, reservationInfoBean.getTourName());
+            stmt.setString(1, reservationInfo.getGuideMail());
+            stmt.setString(2, reservationInfo.getTouristMail());
+            stmt.setInt(3, reservationInfo.getPeople());
+            stmt.setTime(4, reservationInfo.getTime());
+            stmt.setDate(5, reservationInfo.getDate());
+            stmt.setFloat(6, reservationInfo.getPrice());
+            stmt.setString(7, reservationInfo.getTourName());
             stmt.setInt(8, 0);
 
             result = stmt.executeUpdate();

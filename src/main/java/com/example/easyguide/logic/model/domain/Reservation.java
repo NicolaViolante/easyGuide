@@ -24,6 +24,17 @@ public class Reservation extends Subject {
         this.time = time;
 
     }
+    public Reservation( String guideMail, String touristMail, int people, java.sql.Time time, java.sql.Date date,
+                        Float price, String tourName)  {
+        this.date = date;
+        this.price = price;
+        this.people = people;
+        this.touristMail = touristMail;
+        this.tourName = tourName;
+        this.time = time;
+        this.guideMail = guideMail;
+
+    }
     public Reservation(int state, String guideMail, String touristMail, java.sql.Date date, java.sql.Time time, String tourName) throws EmailSenderException{
         this.state = state;
         this.guideMail = guideMail;

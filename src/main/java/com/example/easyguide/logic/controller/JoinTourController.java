@@ -60,13 +60,19 @@ public class JoinTourController {
 
     public void completeReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
 
-        //new ReservationDAOJDBC().registerReservation(reservationInfoBean);
+        Reservation reservation = new Reservation(reservationInfoBean.getGuideMail(),
+                reservationInfoBean.getTouristMail(),
+                reservationInfoBean.getPeople(),
+                reservationInfoBean.getTime(),
+                reservationInfoBean.getDate(),
+                reservationInfoBean.getPrice(),
+                reservationInfoBean.getTourName());
 
 
         ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
         try{
             ReservationDAO reservationDAO = reservationDAOFactory.createCategoryDAO();
-            reservationDAO.registerReservation(reservationInfoBean);
+            reservationDAO.registerReservation(reservation);
         }
         catch(Exception e){
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());

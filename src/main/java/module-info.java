@@ -3,6 +3,7 @@ module com.example.easyguide {
     requires javafx.fxml;
     requires java.logging;
     requires java.sql;
+    requires com.opencsv;
 
 
     opens com.example.easyguide to javafx.fxml;
