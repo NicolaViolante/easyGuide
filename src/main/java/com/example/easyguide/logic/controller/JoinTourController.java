@@ -3,10 +3,12 @@ package com.example.easyguide.logic.controller;
 import com.example.easyguide.logic.beans.*;
 import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.model.dao.ReservationDAO;
+import com.example.easyguide.logic.model.dao.ReservationDAOJDBC;
 import com.example.easyguide.logic.model.dao.TourDAO;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.model.domain.User;
+import com.example.easyguide.logic.pattern.ReservationDAOFactory;
 import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 import com.example.easyguide.logic.utilities.PaymentBoundary;
@@ -14,6 +16,8 @@ import com.example.easyguide.logic.utilities.PaymentBoundary;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JoinTourController {
     public List<TourBean> findTourOfCity(TourSearchBean tourSearchBean) throws SQLException {
@@ -56,7 +60,18 @@ public class JoinTourController {
 
     public void completeReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
 
-        new ReservationDAO().registerReservation(reservationInfoBean);
+        //new ReservationDAOJDBC().registerReservation(reservationInfoBean);
+
+
+        ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
+        try{
+            ReservationDAO reservationDAO = reservationDAOFactory.createCategoryDAO();
+            reservationDAO.registerReservation(reservationInfoBean);
+        }
+        catch(Exception e){
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        }
+
     }
 
     public void pay(){
@@ -69,17 +84,28 @@ public class JoinTourController {
 
     public List<ReservationInfoBean> showRequests() throws SQLException{
         User user = SessionManager.getInstance().getCurrentUser();
-        List<Reservation> reservationList = new ReservationDAO().findTourDetailsByMail(user);
         List<ReservationInfoBean> reservationInfoBeansList = new ArrayList<>();
-        for (Reservation reservation : reservationList){
-            ReservationInfoBean reservationInfoBean = new ReservationInfoBean(SessionManager.getInstance().getCurrentUser().getEmail(),
-                    reservation.getTouristMail(),
-                    reservation.getDate(),
-                    reservation.getTime(),
-                    reservation.getPeople(),
-                    reservation.getTourName(),
-                    reservation.getPrice());
-            reservationInfoBeansList.add(reservationInfoBean);
+        ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
+
+
+        try {
+            ReservationDAO reservationDAO = reservationDAOFactory.createCategoryDAO();
+            List<Reservation> reservationList = reservationDAO.findTourToAcceptOrDecline(user);
+
+            for (Reservation reservation : reservationList) {
+                ReservationInfoBean reservationInfoBean = new ReservationInfoBean(SessionManager.getInstance().getCurrentUser().getEmail(),
+                        reservation.getTouristMail(),
+                        reservation.getDate(),
+                        reservation.getTime(),
+                        reservation.getPeople(),
+                        reservation.getTourName(),
+                        reservation.getPrice());
+                reservationInfoBeansList.add(reservationInfoBean);
+            }
+
+
+        }catch(Exception e){
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
 
         return reservationInfoBeansList;
@@ -91,8 +117,17 @@ public class JoinTourController {
                 acceptationBean.getDate(),
                 acceptationBean.getTime(),
                 acceptationBean.getTourName());
-        new ReservationDAO().changeStatus(reservation);
-        reservation.notifyPublication();
+
+        ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
+        try {
+            ReservationDAO reservationDAO = reservationDAOFactory.createCategoryDAO();
+            reservationDAO.changeStatus(reservation);
+            reservation.notifyPublication();
+        } catch (Exception e){
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        }
+        //new ReservationDAOJDBC().changeStatus(reservation);
+        //reservation.notifyPublication();
 
 
     }
