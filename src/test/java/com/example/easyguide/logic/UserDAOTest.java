@@ -1,6 +1,7 @@
 package com.example.easyguide.logic;
 
 import com.example.easyguide.logic.model.dao.UserDAO;
+import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.ConnectionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class UserDAOTest {
@@ -30,10 +32,14 @@ class UserDAOTest {
     @Test
     void findUser(){
         UserDAO userDAO = new UserDAO();
-
+        User user;
         try {
-            userDAO.findUser("NicoViolans",
+            user = userDAO.findUser("NicoViolans",
                     "NicoViolans");
+            assertEquals("Nicola",user.getName());
+            assertEquals("Violante",user.getSurname());
+            assertEquals("GUIDE",user.getUserType().toString());
+            assertEquals("nico.violans@gmail.com",user.getEmail());
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
