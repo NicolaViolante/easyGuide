@@ -86,8 +86,8 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
     void sendSubscription(ActionEvent event) throws SQLException, MissingDatesException {
             reservationInfoBean.setPeople(Integer.parseInt(peopleField.getText()));
         if (reservationInfoBean.getDate() == null || reservationInfoBean.getTime() == null || reservationInfoBean.getPeople() < 1){
-            showErrorAlert("Dates missing","Dates missing","Dates missing");
-            throw new MissingDatesException("Dates missing");
+            showErrorAlert("Dates missing","There are missing dates","Select date, time and people");
+            throw new MissingDatesException("Impossible send reservation because there are dates missing");
         }
         if (new JoinTourController().completeReservation(reservationInfoBean) == -1){
             showInfoAlert("DB error","Already registered for this tour","There is already a request for this tour");
@@ -98,7 +98,7 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
 
     }
 
-    @FXML
+    @FXML @Override
     public void initialize() throws SQLException {
         super.initialize();
         joinTourController = new JoinTourController();

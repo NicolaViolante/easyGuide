@@ -86,7 +86,7 @@ public class RequestsGraphicController extends AbstractGraphicController {
         }
     }
 
-    @FXML
+    @FXML @Override
     public void initialize() throws SQLException {
         super.initialize();
         joinTourController = new JoinTourController();

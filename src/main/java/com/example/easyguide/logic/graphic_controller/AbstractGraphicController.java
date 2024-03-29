@@ -47,7 +47,7 @@ public class AbstractGraphicController extends AbsDialogNavigationController {
     }
 
     @FXML
-    protected void selectedViewRequests(ActionEvent event) throws SQLException {
+    protected void selectedViewRequests(ActionEvent event) {
         goToPage("requests.fxml");
     }
     @FXML @Override
