@@ -156,7 +156,8 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
                 this.times = date.getTimes().size();
                 for(Time time : date.getTimes()) {
                     String timeString = String.valueOf(time);
-                    timePicker.getItems().add(item = new MenuItem(timeString));
+                    item = new MenuItem(timeString);
+                    timePicker.getItems().add(item);
                     item.setOnAction(actionEvent -> {
                         this.reservationInfoBean.setTime(time);
                     });
