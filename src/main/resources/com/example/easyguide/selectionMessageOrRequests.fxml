@@ -29,12 +29,12 @@
             <Image url="@../immagini/casa.png" />
          </image>
       </ImageView>
-      <Button fx:id="SelectionMessagesButton" layoutX="100.0" layoutY="142.0" mnemonicParsing="false" onAction="#selectedViewMessages" prefHeight="166.0" prefWidth="166.0" style="-fx-background-color: #34E0A1;" text="View messages" textAlignment="CENTER" AnchorPane.leftAnchor="112.6">
+      <Button fx:id="selectionMessagesButton" layoutX="100.0" layoutY="142.0" mnemonicParsing="false" onAction="#selectedViewMessages" prefHeight="166.0" prefWidth="166.0" style="-fx-background-color: #34E0A1;" text="View messages" textAlignment="CENTER" AnchorPane.leftAnchor="112.6">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="SelectionRequestButton" layoutX="321.0" layoutY="142.0" mnemonicParsing="false" onAction="#selectedViewRequests" prefHeight="166.0" prefWidth="166.0" style="-fx-background-color: #34E0A1;" text="View requests" AnchorPane.rightAnchor="112.6">
+      <Button fx:id="selectionRequestButton" layoutX="321.0" layoutY="142.0" mnemonicParsing="false" onAction="#selectedViewRequests" prefHeight="166.0" prefWidth="166.0" style="-fx-background-color: #34E0A1;" text="View requests" AnchorPane.rightAnchor="112.6">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

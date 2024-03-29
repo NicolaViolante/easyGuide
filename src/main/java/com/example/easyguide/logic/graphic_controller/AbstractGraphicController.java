@@ -16,10 +16,10 @@ import static com.example.easyguide.logic.model.domain.Role.TOURIST;
 
 public class AbstractGraphicController extends AbsDialogNavigationController {
     @FXML
-    private Button SelectionMessagesButton;
+    private Button selectionMessagesButton;
 
     @FXML
-    private Button SelectionRequestButton;
+    private Button selectionRequestButton;
    JoinTourController joinTourController;
 
     @FXML
@@ -55,7 +55,7 @@ public class AbstractGraphicController extends AbsDialogNavigationController {
         super.initialize();
         joinTourController = new JoinTourController();
 
-        assert SelectionMessagesButton != null : "fx:id=\"SelectionMessagesButton\" was not injected: check your FXML file 'selectionMessageOrRequests.fxml'.";
-        assert SelectionRequestButton != null : "fx:id=\"SelectionRequestButton\" was not injected: check your FXML file 'selectionMessageOrRequests.fxml'.";
+        assert selectionMessagesButton != null : "fx:id=\"SelectionMessagesButton\" was not injected: check your FXML file 'selectionMessageOrRequests.fxml'.";
+        assert selectionRequestButton != null : "fx:id=\"SelectionRequestButton\" was not injected: check your FXML file 'selectionMessageOrRequests.fxml'.";
     }
 }
