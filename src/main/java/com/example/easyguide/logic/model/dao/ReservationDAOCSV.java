@@ -102,16 +102,13 @@ public class ReservationDAOCSV implements ReservationDAO{
 
         for(int i=0; i<csvBody.size(); i++){
             String[] strArray = csvBody.get(i);
-            for(int j=0; j<strArray.length; j++){
-                if(strArray[j].equalsIgnoreCase("0")
-                && strArray[j-7].equalsIgnoreCase(reservation.getGuideMail())
-                && strArray[j-6].equalsIgnoreCase(reservation.getTouristMail())
-                && strArray[j-4].equalsIgnoreCase(String.valueOf(reservation.getTime()))
-                && strArray[j-3].equalsIgnoreCase(String.valueOf(reservation.getDate()))
-                && strArray[j-1].equalsIgnoreCase(reservation.getTourName())) {
-                    csvBody.get(i)[j] = String.valueOf(reservation.getState());
+                if(strArray[INDEX_GUIDEMAIL].equalsIgnoreCase(reservation.getGuideMail())
+                && strArray[INDEX_TOURISTMAIL].equalsIgnoreCase(reservation.getTouristMail())
+                && strArray[INDEX_TIME].equalsIgnoreCase(String.valueOf(reservation.getTime()))
+                && strArray[INDEX_DATE].equalsIgnoreCase(String.valueOf(reservation.getDate()))
+                && strArray[INDEX_TOURNAME].equalsIgnoreCase(reservation.getTourName())) {
+                    csvBody.get(i)[INDEX_STATE] = String.valueOf(reservation.getState());
                 }
-            }
         }
         reader.close();
         CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd)));
