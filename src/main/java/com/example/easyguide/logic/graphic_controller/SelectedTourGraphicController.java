@@ -128,7 +128,8 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
         datePicker.getItems().removeFirst();
         for(SpecifiedTourBean date : tourDetails){
             String dateString = date.getDate().toString();
-            datePicker.getItems().add(item = new MenuItem(dateString));
+            item = new MenuItem(dateString);
+            datePicker.getItems().add(item);
             item.setOnAction(actionEvent -> {
                 for(int i = 0; i < times; i++){
                     timePicker.getItems().removeFirst();
