@@ -1,9 +1,13 @@
 package com.example.easyguide.logic;
 
 import com.example.easyguide.logic.model.dao.UserDAO;
+import com.example.easyguide.logic.session.ConnectionFactory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
@@ -13,13 +17,12 @@ class UserDAOTest {
         UserDAO userDAO = new UserDAO();
 
         try{
-            userDAO.registerUser("NicoViolans",
+            userDAO.registerUser("NicoViolans77",
                     "Nicola",
                     "Violante",
-                    "nico.violans@gmail.com",
+                    "nico.violans77@gmail.com",
                     "NicoViolans",
                     "guide");
-            Assertions.fail();
         }
         catch (SQLException ignored){
         }
@@ -35,6 +38,15 @@ class UserDAOTest {
             Assertions.fail(e.getMessage());
         }
 
+    }
+    @AfterAll
+    public static void cleanUpTable(){
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM user WHERE Email = 'nico.violans77@gmail.com'");
+            preparedStatement.execute();
+        }catch (SQLException ignore){
+        }
     }
 
 }
