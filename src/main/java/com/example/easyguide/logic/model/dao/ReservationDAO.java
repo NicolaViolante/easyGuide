@@ -3,6 +3,7 @@ package com.example.easyguide.logic.model.dao;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.User;
+import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
@@ -14,5 +15,5 @@ public interface ReservationDAO {
 
     List<Reservation> findTourToAcceptOrDecline(User user) throws SQLException, IOException, CsvValidationException;
 
-    void changeStatus(Reservation reservation) throws SQLException, IOException, CsvValidationException;
+    void changeStatus(Reservation reservation) throws SQLException, IOException, CsvException;
 }

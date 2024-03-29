@@ -14,6 +14,7 @@ import java.util.Objects;
 import com.example.easyguide.logic.session.SessionManager;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 
@@ -82,6 +83,7 @@ public class ReservationDAOCSV implements ReservationDAO{
                         date,
                         price,
                         tourName);
+
                 reservationList.add(reservation);
             }
         }
@@ -92,7 +94,32 @@ public class ReservationDAOCSV implements ReservationDAO{
     }
 
     @Override
-    public void changeStatus(Reservation reservation)  {
+    public void changeStatus(Reservation reservation) throws IOException, CsvException {
+
+
+        CSVReader reader = new CSVReader(new BufferedReader(new FileReader(fd)));
+        List<String[]> csvBody = reader.readAll();
+
+        for(int i=0; i<csvBody.size(); i++){
+            String[] strArray = csvBody.get(i);
+            for(int j=0; j<strArray.length; j++){
+                if(strArray[j].equalsIgnoreCase("0")
+                && strArray[j-7].equalsIgnoreCase(reservation.getGuideMail())
+                && strArray[j-6].equalsIgnoreCase(reservation.getTouristMail())
+                && strArray[j-4].equalsIgnoreCase(String.valueOf(reservation.getTime()))
+                && strArray[j-3].equalsIgnoreCase(String.valueOf(reservation.getDate()))
+                && strArray[j-1].equalsIgnoreCase(reservation.getTourName())) {
+                    csvBody.get(i)[j] = String.valueOf(reservation.getState());
+                }
+            }
+        }
+        reader.close();
+        CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd)));
+        csvWriter.writeAll(csvBody);
+        csvWriter.flush();
+        csvWriter.close();
 
     }
+
 }
+
