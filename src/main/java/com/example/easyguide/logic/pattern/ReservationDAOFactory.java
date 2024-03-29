@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ReservationDAOFactory{
-    public ReservationDAO createCategoryDAO() throws IOException{
+    public ReservationDAO createReservationDAO() throws IOException{
     InputStream input = new FileInputStream("src/main/java/com/example/easyguide/logic/model/dao/config.properties");
     Properties properties = new Properties();
     properties.load(input);
@@ -24,11 +24,11 @@ public class ReservationDAOFactory{
     }
 }
 
-        public ReservationDAO createCategoryDAOJDBC(){
+        public ReservationDAO createReservationDAOJDBC(){
             return new ReservationDAOJDBC();
         }
 
-        public ReservationDAO createCategoryDAOCSV() throws IOException {
+        public ReservationDAO createReservationDAOCSV() throws IOException {
             return new ReservationDAOCSV();
         }
 }

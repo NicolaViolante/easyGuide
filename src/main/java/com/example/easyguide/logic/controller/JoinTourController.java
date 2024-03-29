@@ -3,7 +3,6 @@ package com.example.easyguide.logic.controller;
 import com.example.easyguide.logic.beans.*;
 import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.model.dao.ReservationDAO;
-import com.example.easyguide.logic.model.dao.ReservationDAOJDBC;
 import com.example.easyguide.logic.model.dao.TourDAO;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Tour;
@@ -71,7 +70,7 @@ public class JoinTourController {
 
         ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
         try{
-            ReservationDAO reservationDAO = reservationDAOFactory.createCategoryDAO();
+            ReservationDAO reservationDAO = reservationDAOFactory.createReservationDAO();
             reservationDAO.registerReservation(reservation);
         }
         catch(Exception e){
@@ -95,7 +94,7 @@ public class JoinTourController {
 
 
         try {
-            ReservationDAO reservationDAO = reservationDAOFactory.createCategoryDAO();
+            ReservationDAO reservationDAO = reservationDAOFactory.createReservationDAO();
             List<Reservation> reservationList = reservationDAO.findTourToAcceptOrDecline(user);
 
             for (Reservation reservation : reservationList) {
@@ -126,7 +125,7 @@ public class JoinTourController {
 
         ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
         try {
-            ReservationDAO reservationDAO = reservationDAOFactory.createCategoryDAO();
+            ReservationDAO reservationDAO = reservationDAOFactory.createReservationDAO();
             reservationDAO.changeStatus(reservation);
             reservation.notifyPublication();
         } catch (Exception e){
