@@ -26,7 +26,7 @@ public class ReservationDAOJDBC implements ReservationDAO{
     protected static final String AND = " and ";
 
     @Override
-    public void registerReservation(Reservation reservationInfo) throws SQLException {
+    public int registerReservation(Reservation reservationInfo) throws SQLException {
         PreparedStatement stmt = null;
         Connection conn = null;
         Integer result = -1;
@@ -61,6 +61,7 @@ public class ReservationDAOJDBC implements ReservationDAO{
             assert stmt != null;
             stmt.close();
         }
+        return result;
     }
     @Override
     public List<Reservation> findTourToAcceptOrDecline(User user) throws SQLException {

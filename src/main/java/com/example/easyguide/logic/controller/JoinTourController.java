@@ -57,8 +57,8 @@ public class JoinTourController {
         return specifiedTourBeanList;
     }
 
-    public void completeReservation(ReservationInfoBean reservationInfoBean) throws SQLException {
-
+    public int completeReservation(ReservationInfoBean reservationInfoBean) {
+        int result = -1;
         Reservation reservation = new Reservation(reservationInfoBean.getGuideMail(),
                 reservationInfoBean.getTouristMail(),
                 reservationInfoBean.getPeople(),
@@ -71,12 +71,13 @@ public class JoinTourController {
         ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
         try{
             ReservationDAO reservationDAO = reservationDAOFactory.createReservationDAO();
-            reservationDAO.registerReservation(reservation);
+            result = reservationDAO.registerReservation(reservation);
+            return result;
         }
         catch(Exception e){
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
-
+        return result;
     }
 
     public void pay(){
@@ -131,8 +132,7 @@ public class JoinTourController {
         } catch (Exception e){
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
-        //new ReservationDAOJDBC().changeStatus(reservation);
-        //reservation.notifyPublication();
+
 
 
     }

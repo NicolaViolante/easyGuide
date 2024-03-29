@@ -40,7 +40,27 @@ public class ReservationDAOCSV implements ReservationDAO{
 
 
     @Override
-    public void registerReservation(Reservation reservation) throws IOException {
+    public int registerReservation(Reservation reservation) throws IOException, CsvException {
+
+        CSVReader reader = new CSVReader(new BufferedReader(new FileReader(fd)));
+        List<String[]> csvBody = reader.readAll();
+
+        for(int i=0; i<csvBody.size(); i++){
+            String[] strArray = csvBody.get(i);
+            if(strArray[INDEX_GUIDEMAIL].equalsIgnoreCase(reservation.getGuideMail())
+                    && strArray[INDEX_TOURISTMAIL].equalsIgnoreCase(reservation.getTouristMail())
+                    && strArray[INDEX_TIME].equalsIgnoreCase(String.valueOf(reservation.getTime()))
+                    && strArray[INDEX_DATE].equalsIgnoreCase(String.valueOf(reservation.getDate()))
+                    && strArray[INDEX_TOURNAME].equalsIgnoreCase(reservation.getTourName())) {
+                reader.close();
+                return -1;
+            }
+        }
+        reader.close();
+
+
+
+
         CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd, true)));
         String[] reservationRecord = new String[9];
 
@@ -57,6 +77,7 @@ public class ReservationDAOCSV implements ReservationDAO{
         csvWriter.writeNext(reservationRecord);
         csvWriter.flush();
         csvWriter.close();
+        return 1;
     }
 
     @Override

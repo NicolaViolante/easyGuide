@@ -52,7 +52,7 @@ public class HomeGraphicController extends AbstractGraphicController{
         }
         catch (SQLException e){
             logger.log(Level.INFO, e.getMessage());
-            showInfoAlert("DB is not working","","");
+            showErrorAlert("DB error","","");
         }
     }
 

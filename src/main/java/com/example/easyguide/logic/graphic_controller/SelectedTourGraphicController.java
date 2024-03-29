@@ -4,11 +4,14 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.beans.SpecifiedTourBean;
 import com.example.easyguide.logic.beans.TourBean;
 import com.example.easyguide.logic.controller.JoinTourController;
+import com.example.easyguide.logic.exceptions.DAOException;
 import com.example.easyguide.logic.exceptions.MissingDatesException;
 import com.example.easyguide.logic.session.SessionManager;
 import javafx.event.ActionEvent;
@@ -80,15 +83,19 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
 
 
     @FXML
-    void sendSubscription(ActionEvent event) throws MissingDatesException, SQLException {
-        reservationInfoBean.setPeople(Integer.parseInt(peopleField.getText()));
+    void sendSubscription(ActionEvent event) throws SQLException, MissingDatesException {
+            reservationInfoBean.setPeople(Integer.parseInt(peopleField.getText()));
         if (reservationInfoBean.getDate() == null || reservationInfoBean.getTime() == null || reservationInfoBean.getPeople() < 1){
             showErrorAlert("Dates missing","Dates missing","Dates missing");
             throw new MissingDatesException("Dates missing");
         }
+        if (new JoinTourController().completeReservation(reservationInfoBean) == -1){
+            showInfoAlert("DB error","Already registered for this tour","There is already a request for this tour");
+        }else{
         new JoinTourController().pay();
-        new JoinTourController().completeReservation(reservationInfoBean);
-        goToPage("home.fxml");
+        goToPage("home.fxml");}
+
+
     }
 
     @FXML

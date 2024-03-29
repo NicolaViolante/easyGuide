@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ReservationDAO {
-    void registerReservation(Reservation reservation) throws SQLException, IOException, CsvValidationException;
+    int registerReservation(Reservation reservation) throws SQLException, IOException, CsvException;
 
     List<Reservation> findTourToAcceptOrDecline(User user) throws SQLException, IOException, CsvValidationException;
 
