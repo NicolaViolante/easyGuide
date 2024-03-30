@@ -66,6 +66,7 @@ public class ReservationDAOCSV implements ReservationDAO{
 
 
         CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd, true)));
+        try {
         String[] reservationRecord = new String[9];
 
         reservationRecord[INDEX_GUIDEMAIL] = reservation.getGuideMail();
@@ -80,8 +81,11 @@ public class ReservationDAOCSV implements ReservationDAO{
 
         csvWriter.writeNext(reservationRecord);
         csvWriter.flush();
-        csvWriter.close();
-        return 1;
+
+        return 1;}
+        finally {
+            csvWriter.close();
+        }
     }
 
     @Override
