@@ -1,6 +1,5 @@
 package com.example.easyguide.logic.model.dao;
 
-import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.User;
 import com.opencsv.exceptions.CsvException;

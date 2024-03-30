@@ -67,9 +67,11 @@ public class SignUpGraphicController extends AbsDialogNavigationController {
                         role.getId()
                 );
                 int result = signUpController.signUp(signUpBean);
-                if (result == 1) goToPage("home.fxml");
-                else if (result == -1) showInfoAlert("Username already in use","This username isn't selectable","Choose an other username");
-                else showErrorAlert("Unknown error","","");
+                switch (result){
+                    case 1 -> goToPage("home.fxml");
+                    case -1 -> showInfoAlert("Username already in use","This username isn't selectable","Choose an other username");
+                    default -> showErrorAlert("Unknown error","","");
+                }
             }
             catch (InvalidRoleException e){
                 logger.log(Level.INFO, e.getMessage());
