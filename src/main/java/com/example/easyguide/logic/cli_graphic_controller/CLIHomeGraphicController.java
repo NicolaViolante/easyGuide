@@ -34,6 +34,8 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
                     case 3 -> {choose = false;
                                 logout();}
                     case 4 -> {choose = false;
+                                viewProfile();}
+                    case 5 -> {choose = false;
                                 System.exit(0);}
                     default -> throw new InvalidFormatException("Invalid choice\n");
                 }
@@ -50,9 +52,10 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
         CLIPrinter.printMessage("1) Chose a city\n");
         CLIPrinter.printMessage("2) View messages\n");
         CLIPrinter.printMessage("3) Logout\n");
-        CLIPrinter.printMessage("4) Quit\n");
+        CLIPrinter.printMessage("4) View profile\n");
+        CLIPrinter.printMessage("5) Quit\n");
 
-        return getMenuChoice(1,4);
+        return getMenuChoice(1,5);
     }
     private void specifyCity() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -66,6 +69,10 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
         catch(Exception e){
             logger.log(Level.INFO, e.getMessage());
         }
+    }
+
+    private void viewProfile(){
+        new CLIViewProfile().start();
     }
 
 
