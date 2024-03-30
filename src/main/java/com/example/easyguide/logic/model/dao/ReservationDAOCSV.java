@@ -91,34 +91,40 @@ public class ReservationDAOCSV implements ReservationDAO{
     @Override
     public List<Reservation> findTourToAcceptOrDecline(User user) throws IOException, CsvValidationException {
         CSVReader csvReader = new CSVReader(new BufferedReader(new FileReader(fd)));
-        String[] reservationRecord;
-        List<Reservation> reservationList = new ArrayList<>();
 
-        while ((reservationRecord = csvReader.readNext())!= null){
-            String guideMail = reservationRecord[INDEX_GUIDEMAIL];
-            String touristMail = reservationRecord[INDEX_TOURISTMAIL];
-            int people = Integer.parseInt(reservationRecord[INDEX_PEOPLE]);
-            Time time = Time.valueOf(reservationRecord[INDEX_TIME]);
-            Date date = Date.valueOf(reservationRecord[INDEX_DATE]);
-            float price = Float.parseFloat(reservationRecord[INDEX_PRICE]);
-            String tourName = reservationRecord[INDEX_TOURNAME];
-            int state = Integer.parseInt(reservationRecord[INDEX_STATE]);
+        try {
+            String[] reservationRecord;
+            List<Reservation> reservationList = new ArrayList<>();
+
+            while ((reservationRecord = csvReader.readNext()) != null) {
+                String guideMail = reservationRecord[INDEX_GUIDEMAIL];
+                String touristMail = reservationRecord[INDEX_TOURISTMAIL];
+                int people = Integer.parseInt(reservationRecord[INDEX_PEOPLE]);
+                Time time = Time.valueOf(reservationRecord[INDEX_TIME]);
+                Date date = Date.valueOf(reservationRecord[INDEX_DATE]);
+                float price = Float.parseFloat(reservationRecord[INDEX_PRICE]);
+                String tourName = reservationRecord[INDEX_TOURNAME];
+                int state = Integer.parseInt(reservationRecord[INDEX_STATE]);
 
 
-            if (state == 0 && Objects.equals(guideMail, SessionManager.getInstance().getCurrentUser().getEmail())){
-                Reservation reservation = new Reservation(touristMail,
-                        people,
-                        time,
-                        date,
-                        price,
-                        tourName);
+                if (state == 0 && Objects.equals(guideMail, SessionManager.getInstance().getCurrentUser().getEmail())) {
+                    Reservation reservation = new Reservation(touristMail,
+                            people,
+                            time,
+                            date,
+                            price,
+                            tourName);
 
-                reservationList.add(reservation);
+                    reservationList.add(reservation);
+                }
             }
-        }
 
-        csvReader.close();
-        return reservationList;
+
+            return reservationList;
+        }
+        finally {
+            csvReader.close();
+        }
 
     }
 
@@ -127,24 +133,29 @@ public class ReservationDAOCSV implements ReservationDAO{
 
 
         CSVReader reader = new CSVReader(new BufferedReader(new FileReader(fd)));
-        List<String[]> csvBody = reader.readAll();
+        CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd)));
+        try {
+            List<String[]> csvBody = reader.readAll();
 
-        for(int i=0; i<csvBody.size(); i++){
-            String[] strArray = csvBody.get(i);
-                if(strArray[INDEX_GUIDEMAIL].equalsIgnoreCase(reservation.getGuideMail())
-                && strArray[INDEX_TOURISTMAIL].equalsIgnoreCase(reservation.getTouristMail())
-                && strArray[INDEX_TIME].equalsIgnoreCase(String.valueOf(reservation.getTime()))
-                && strArray[INDEX_DATE].equalsIgnoreCase(String.valueOf(reservation.getDate()))
-                && strArray[INDEX_TOURNAME].equalsIgnoreCase(reservation.getTourName())) {
+            for (int i = 0; i < csvBody.size(); i++) {
+                String[] strArray = csvBody.get(i);
+                if (strArray[INDEX_GUIDEMAIL].equalsIgnoreCase(reservation.getGuideMail())
+                        && strArray[INDEX_TOURISTMAIL].equalsIgnoreCase(reservation.getTouristMail())
+                        && strArray[INDEX_TIME].equalsIgnoreCase(String.valueOf(reservation.getTime()))
+                        && strArray[INDEX_DATE].equalsIgnoreCase(String.valueOf(reservation.getDate()))
+                        && strArray[INDEX_TOURNAME].equalsIgnoreCase(reservation.getTourName())) {
                     csvBody.get(i)[INDEX_STATE] = String.valueOf(reservation.getState());
                 }
-        }
-        reader.close();
-        CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd)));
-        csvWriter.writeAll(csvBody);
-        csvWriter.flush();
-        csvWriter.close();
+            }
 
+            csvWriter.writeAll(csvBody);
+            csvWriter.flush();
+            csvWriter.close();
+        }
+        finally {
+            reader.close();
+            csvWriter.close();
+        }
     }
 
 }
