@@ -30,7 +30,7 @@ public class CLIViewProfile extends AbstractCLIGraphicController {
                     default -> throw new InvalidFormatException("Invalid choice\n");
                 }
             }
-            catch (InvalidFormatException | SQLException e){
+            catch (InvalidFormatException e){
                 logger.log(Level.INFO, e.getMessage());
             }
         }
