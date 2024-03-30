@@ -144,6 +144,8 @@ public class ReservationDAOCSV implements ReservationDAO{
                         && strArray[INDEX_DATE].equalsIgnoreCase(String.valueOf(reservation.getDate()))
                         && strArray[INDEX_TOURNAME].equalsIgnoreCase(reservation.getTourName())) {
                     csvBody.get(i)[INDEX_STATE] = String.valueOf(reservation.getState());
+                    reservation.setPrice(Float.parseFloat(strArray[INDEX_PRICE]));
+                    reservation.setPeople(Integer.parseInt(strArray[INDEX_PEOPLE]));
                 }
             }
 
