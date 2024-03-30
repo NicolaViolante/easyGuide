@@ -63,7 +63,7 @@ public class LoginGraphicController extends AbsDialogNavigationController {
     }
 
     @FXML @Override
-    public void initialize() throws SQLException {
+    public void initialize()  {
         super.initialize();
         loginController = new LoginController();
 

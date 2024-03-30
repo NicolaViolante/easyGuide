@@ -51,7 +51,7 @@ public class AbstractGraphicController extends AbsDialogNavigationController {
         goToPage("requests.fxml");
     }
     @FXML @Override
-    public void initialize() throws SQLException {
+    public void initialize() {
         super.initialize();
         joinTourController = new JoinTourController();
 

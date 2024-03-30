@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.example.easyguide.logic.beans.AcceptationBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
@@ -87,7 +89,7 @@ public class RequestsGraphicController extends AbstractGraphicController {
     }
 
     @FXML @Override
-    public void initialize() throws SQLException {
+    public void initialize()  {
         super.initialize();
         joinTourController = new JoinTourController();
         assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'requests.fxml'.";
@@ -99,7 +101,9 @@ public class RequestsGraphicController extends AbstractGraphicController {
         assert tourTable != null : "fx:id=\"tourTable\" was not injected: check your FXML file 'requests.fxml'.";
         assert tourTime != null : "fx:id=\"tourTime\" was not injected: check your FXML file 'requests.fxml'.";
         assert touristMail != null : "fx:id=\"touristMail\" was not injected: check your FXML file 'requests.fxml'.";
-        List<ReservationInfoBean> tourInfo = new JoinTourController().showRequests();
+        try{
+            List<ReservationInfoBean> tourInfo = new JoinTourController().showRequests();
+
         tourDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
         tourPeople.setCellValueFactory(new PropertyValueFactory<>("people"));
@@ -108,6 +112,9 @@ public class RequestsGraphicController extends AbstractGraphicController {
         touristMail.setCellValueFactory(new PropertyValueFactory<>("touristMail"));
         reservationInfoBeanObservableList.addAll(tourInfo);
         tourTable.setItems(reservationInfoBeanObservableList);
+        }catch (Exception e){
+            logger.log(Level.INFO, e.getMessage());
+        }
     }
 
 }

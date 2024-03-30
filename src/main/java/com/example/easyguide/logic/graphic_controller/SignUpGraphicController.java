@@ -102,7 +102,7 @@ public class SignUpGraphicController extends AbsDialogNavigationController {
 
 
     @FXML @Override
-    public void initialize() throws SQLException {
+    public void initialize() {
         super.initialize();
         signUpController = new SignUpController();
         assert guideRadioButton != null : "fx:id=\"guideRadioButton\" was not injected: check your FXML file 'signup.fxml'.";

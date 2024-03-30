@@ -7,7 +7,6 @@ import javafx.scene.control.ButtonType;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +18,7 @@ public class AbsDialogNavigationController {
     protected Logger logger = Logger.getAnonymousLogger();
 
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize()  {
         errorAlert = new Alert(Alert.AlertType.ERROR);
         infoAlert = new Alert(Alert.AlertType.INFORMATION);
         confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);

@@ -88,7 +88,7 @@ public class JoinTourController {
         CLIPrinter.printMessage("NOT IMPLEMENTED\n");
     }
 
-    public List<ReservationInfoBean> showRequests() throws SQLException{
+    public List<ReservationInfoBean> showRequests(){
         User user = SessionManager.getInstance().getCurrentUser();
         List<ReservationInfoBean> reservationInfoBeansList = new ArrayList<>();
         ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
@@ -116,7 +116,7 @@ public class JoinTourController {
 
         return reservationInfoBeansList;
     }
-    public void changeStatus(AcceptationBean acceptationBean) throws SQLException, EmailSenderException {
+    public void changeStatus(AcceptationBean acceptationBean) throws EmailSenderException {
         Reservation reservation = new Reservation(acceptationBean.getState(),
                 acceptationBean.getGuideMail(),
                 acceptationBean.getTouristMail(),
