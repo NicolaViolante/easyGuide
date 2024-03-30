@@ -38,7 +38,7 @@ public abstract class AbstractCLIGraphicController {
         new CLIHomeGraphicController().start();
     }
 
-    protected void viewMessages() throws SQLException{
+    protected void viewMessages(){
         if (SessionManager.getInstance().getCurrentUser().getUserType() == TOURIST) {
             new JoinTourController().showMessages();
             new CLIMessagesGraphicController();

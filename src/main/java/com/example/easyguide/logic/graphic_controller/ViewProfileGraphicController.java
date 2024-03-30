@@ -41,7 +41,7 @@ public class ViewProfileGraphicController extends AbstractGraphicController {
 
     @FXML
     void goBack(MouseEvent event) {
-        goToPage("home.fxml");
+        goHome(event);
     }
 
 
