@@ -42,7 +42,8 @@ public class ReservationDAOCSV implements ReservationDAO{
     public int registerReservation(Reservation reservation) throws IOException, CsvException {
 
         CSVReader reader = new CSVReader(new BufferedReader(new FileReader(fd)));
-        List<String[]> csvBody = reader.readAll();
+        try{
+            List<String[]> csvBody = reader.readAll();
 
         for(int i=0; i<csvBody.size(); i++){
             String[] strArray = csvBody.get(i);
@@ -53,9 +54,13 @@ public class ReservationDAOCSV implements ReservationDAO{
                     && strArray[INDEX_TOURNAME].equalsIgnoreCase(reservation.getTourName())) {
                 reader.close();
                 return -1;
+                }
             }
         }
-        reader.close();
+        finally {
+            reader.close();
+        }
+
 
 
 
