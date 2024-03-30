@@ -40,7 +40,8 @@ class ReservationDAOJDBCTest {
                 "A spasso per Roma"
         );
         try{
-            reservationDAOJDBC.registerReservation(reservation);
+            int i = reservationDAOJDBC.registerReservation(reservation);
+            assertEquals(1,i);
         }catch (Exception ignored){
         }
     }

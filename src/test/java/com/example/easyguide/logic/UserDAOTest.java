@@ -19,12 +19,13 @@ class UserDAOTest {
         UserDAO userDAO = new UserDAO();
 
         try{
-            userDAO.registerUser("NicoViolans77",
+            int i = userDAO.registerUser("NicoViolans77",
                     "Nicola",
                     "Violante",
                     "nico.violans77@gmail.com",
                     "NicoViolans",
                     "guide");
+            assertEquals(1,i);
         }
         catch (SQLException ignored){
         }
