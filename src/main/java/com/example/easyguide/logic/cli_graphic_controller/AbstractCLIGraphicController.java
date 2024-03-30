@@ -6,7 +6,6 @@ import com.example.easyguide.logic.controller.LoginController;
 import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;

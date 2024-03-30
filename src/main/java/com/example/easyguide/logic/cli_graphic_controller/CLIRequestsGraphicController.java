@@ -7,7 +7,6 @@ import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -46,7 +45,7 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
                     }
                     default -> throw new InvalidFormatException("Invalid choice");
                 }
-            } catch (InvalidFormatException | SQLException | EmailSenderException e) {
+            } catch (InvalidFormatException | EmailSenderException e) {
                 logger.log(Level.INFO, e.getMessage());
             }
         }
@@ -71,7 +70,7 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
         return getMenuChoice(1,i+2);
     }
 
-    private void acceptOrDecline(ReservationInfoBean reservationInfoBean, int i, List<ReservationInfoBean> reservationInfoBeanList) throws SQLException, EmailSenderException {
+    private void acceptOrDecline(ReservationInfoBean reservationInfoBean, int i, List<ReservationInfoBean> reservationInfoBeanList) throws EmailSenderException {
         CLIPrinter.printMessage("1 to accept, 2 to decline\n");
         AcceptationBean acceptationBean = null;
         int choice = getMenuChoice(1,2);

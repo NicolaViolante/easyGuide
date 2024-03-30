@@ -4,7 +4,6 @@ import com.example.easyguide.logic.exceptions.InvalidFormatException;
 import com.example.easyguide.logic.session.SessionManager;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
-import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class CLIViewProfile extends AbstractCLIGraphicController {
