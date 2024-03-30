@@ -151,7 +151,7 @@ public class ReservationDAOCSV implements ReservationDAO{
 
             try{
                 csvWriter.writeAll(csvBody);
-            csvWriter.flush();
+                csvWriter.flush();
             }
             finally {
                 csvWriter.close();
