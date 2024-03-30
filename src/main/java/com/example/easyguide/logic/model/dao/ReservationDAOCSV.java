@@ -133,7 +133,6 @@ public class ReservationDAOCSV implements ReservationDAO{
 
 
         CSVReader reader = new CSVReader(new BufferedReader(new FileReader(fd)));
-        CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd)));
         try {
             List<String[]> csvBody = reader.readAll();
 
@@ -147,14 +146,14 @@ public class ReservationDAOCSV implements ReservationDAO{
                     csvBody.get(i)[INDEX_STATE] = String.valueOf(reservation.getState());
                 }
             }
-
+            reader.close();
+            CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd)));
             csvWriter.writeAll(csvBody);
             csvWriter.flush();
             csvWriter.close();
         }
         finally {
             reader.close();
-            csvWriter.close();
         }
     }
 
