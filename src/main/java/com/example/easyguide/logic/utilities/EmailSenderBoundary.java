@@ -23,9 +23,9 @@ public class EmailSenderBoundary implements Observer {
 
             checkFile();
                 String state = "";
-                if (reservation.getState() == 1)
+                if (reservation.getState().getId() == 1)
                     state = "accepted";
-                else if (reservation.getState() == 2)
+                else if (reservation.getState().getId() == 2)
                     state = "rejected";
                 printWriter.println("Email sent from: " + reservation.getGuideMail());
                 printWriter.println("Email sent to: " + reservation.getTouristMail());

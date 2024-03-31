@@ -12,7 +12,7 @@ public class Reservation extends Subject {
     private final java.sql.Date date;
     private Float price;
     private final String tourName;
-    private int state = 0;
+    private Status state = Status.OPEN;
 
     public Reservation( String touristMail, int people, java.sql.Time time, java.sql.Date date,
                        Float price, String tourName)  {
@@ -35,7 +35,7 @@ public class Reservation extends Subject {
         this.guideMail = guideMail;
 
     }
-    public Reservation(int state, String guideMail, String touristMail, java.sql.Date date, java.sql.Time time, String tourName) throws EmailSenderException{
+    public Reservation(Status state, String guideMail, String touristMail, java.sql.Date date, java.sql.Time time, String tourName) throws EmailSenderException{
         this.state = state;
         this.guideMail = guideMail;
         this.date = date;
@@ -57,7 +57,7 @@ public class Reservation extends Subject {
     public Float getPrice(){ return price; }
     public void setPrice(float price){ this.price = price; }
     public String getTourName(){ return tourName; }
-    public int getState(){ return state; }
+    public Status getState(){ return state; }
     public void notifyPublication(){
         super.notifyObservers();
     }

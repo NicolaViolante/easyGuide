@@ -109,7 +109,7 @@ public class ReservationDAOJDBC implements ReservationDAO{
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         try{
         stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        stmt.setInt(1, reservation.getState());
+        stmt.setInt(1, reservation.getState().getId());
         stmt.setString(2, reservation.getTouristMail());
         stmt.setString(3, reservation.getGuideMail());
         stmt.setDate(4, reservation.getDate());

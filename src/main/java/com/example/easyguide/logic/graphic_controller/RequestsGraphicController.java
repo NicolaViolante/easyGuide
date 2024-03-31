@@ -12,6 +12,7 @@ import com.example.easyguide.logic.beans.AcceptationBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.exceptions.EmailSenderException;
+import com.example.easyguide.logic.model.domain.Status;
 import com.example.easyguide.logic.session.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +64,7 @@ public class RequestsGraphicController extends AbstractGraphicController {
         choose = showConfirmationAlert("Accept or refuse","Do you want to accept or refuse","Do you want to accept this request(OK to accept, cancel to refuse)");
         if(choose == ButtonType.OK){
 
-            acceptationBean = new AcceptationBean(1,
+            acceptationBean = new AcceptationBean(Status.ACCEPTED,
                     SessionManager.getInstance().getCurrentUser().getEmail(),
                     touristMail.getCellData(index),
                     tourDate.getCellData(index),
@@ -75,7 +76,7 @@ public class RequestsGraphicController extends AbstractGraphicController {
             joinTourController.changeStatus(acceptationBean);
         }
         else if(choose == ButtonType.CANCEL){
-            acceptationBean = new AcceptationBean(2,
+            acceptationBean = new AcceptationBean(Status.DECLINED,
                     SessionManager.getInstance().getCurrentUser().getEmail(),
                     touristMail.getCellData(index),
                     tourDate.getCellData(index),

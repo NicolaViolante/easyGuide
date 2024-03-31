@@ -5,6 +5,7 @@ import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.exceptions.InvalidFormatException;
+import com.example.easyguide.logic.model.domain.Status;
 import com.example.easyguide.logic.utilities.CLIPrinter;
 
 import java.util.List;
@@ -75,14 +76,14 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
         AcceptationBean acceptationBean = null;
         int choice = getMenuChoice(1,2);
 
-        if (choice == 1)  acceptationBean = new AcceptationBean(1,
+        if (choice == 1)  acceptationBean = new AcceptationBean(Status.ACCEPTED,
                 reservationInfoBean.getGuideMail(),
                 reservationInfoBean.getTouristMail(),
                 reservationInfoBean.getDate(),
                 reservationInfoBean.getTime(),
                 reservationInfoBean.getTourName());
 
-        else if (choice == 2)  acceptationBean = new AcceptationBean(2,
+        else if (choice == 2)  acceptationBean = new AcceptationBean(Status.DECLINED,
                 reservationInfoBean.getGuideMail(),
                 reservationInfoBean.getTouristMail(),
                 reservationInfoBean.getDate(),
