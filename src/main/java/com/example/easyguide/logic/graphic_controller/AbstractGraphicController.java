@@ -25,8 +25,7 @@ public class AbstractGraphicController extends AbsDialogNavigationController {
     @FXML
     protected void goMessage(MouseEvent event) {
         if (SessionManager.getInstance().getCurrentUser().getUserType() == TOURIST) {
-            new JoinTourController().showMessages();
-            showInfoAlert("Not implemented","Not implemented","Not implemented");
+            goToPage("messages.fxml");
         } else if(SessionManager.getInstance().getCurrentUser().getUserType() == GUIDE){
             goToPage("selectionMessageOrRequests.fxml");
         }
@@ -42,8 +41,7 @@ public class AbstractGraphicController extends AbsDialogNavigationController {
     }
     @FXML
     protected void selectedViewMessages(ActionEvent event) {
-        new JoinTourController().showMessages();
-        showInfoAlert("Not implemented","Not implemented","Not implemented");
+        goToPage("messages.fxml");
     }
 
     @FXML

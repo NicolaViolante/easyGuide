@@ -42,12 +42,12 @@ public class CLIMessagesGraphicController extends AbstractCLIGraphicController {
     public int showMenu(List<RequestsInfoBean> requestsInfoBeanList) {
 
         for (RequestsInfoBean reservation : requestsInfoBeanList){
-            CLIPrinter.printRequest(reservation.getReservationInfoBean().getTourName(),
-                    reservation.getReservationInfoBean().getPrice(),
-                    reservation.getReservationInfoBean().getDate(),
-                    reservation.getReservationInfoBean().getTime(),
-                    reservation.getReservationInfoBean().getPeople(),
-                    reservation.getReservationInfoBean().getGuideMail(),
+            CLIPrinter.printRequest(reservation.getTourName(),
+                    reservation.getPrice(),
+                    reservation.getDate(),
+                    reservation.getTime(),
+                    reservation.getPeople(),
+                    reservation.getGuideMail(),
                     reservation.getStatus());
         }
         CLIPrinter.printMessage("------------\n");
