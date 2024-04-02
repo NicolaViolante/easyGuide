@@ -49,8 +49,8 @@ public abstract class AbstractCLIGraphicController {
             CLIPrinter.printMessage("Show requests\n");
             int choice = getMenuChoice(1, 2);
             if (choice == 1) {
-                new JoinTourController().showMessages();
-                new CLIMessagesGraphicController();
+                List<RequestsInfoBean> tourInfo = new JoinTourController().showMessages();
+                new CLIMessagesGraphicController().start(tourInfo);
             } else if (choice == 2) {
                 List<ReservationInfoBean> tourInfo = new JoinTourController().showRequests();
                 new CLIRequestsGraphicController().start(tourInfo);
