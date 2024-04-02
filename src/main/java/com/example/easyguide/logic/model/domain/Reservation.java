@@ -6,7 +6,7 @@ import com.example.easyguide.logic.utilities.EmailSenderBoundary;
 
 public class Reservation extends Subject {
     private String guideMail;
-    private final String touristMail;
+    private String touristMail;
     private int people;
     private final java.sql.Time time;
     private final java.sql.Date date;
@@ -22,6 +22,17 @@ public class Reservation extends Subject {
         this.touristMail = touristMail;
         this.tourName = tourName;
         this.time = time;
+
+    }
+    public Reservation( String guideMail, int people, java.sql.Time time, java.sql.Date date,
+                        Float price, String tourName, Status state)  {
+        this.date = date;
+        this.price = price;
+        this.people = people;
+        this.guideMail = guideMail;
+        this.tourName = tourName;
+        this.time = time;
+        this.state = state;
 
     }
     public Reservation( String guideMail, String touristMail, int people, java.sql.Time time, java.sql.Date date,

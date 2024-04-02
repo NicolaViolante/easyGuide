@@ -1,5 +1,6 @@
 package com.example.easyguide.logic.cli_graphic_controller;
 
+import com.example.easyguide.logic.beans.RequestsInfoBean;
 import com.example.easyguide.logic.beans.ReservationInfoBean;
 import com.example.easyguide.logic.controller.JoinTourController;
 import com.example.easyguide.logic.controller.LoginController;
@@ -39,8 +40,8 @@ public abstract class AbstractCLIGraphicController {
 
     protected void viewMessages(){
         if (SessionManager.getInstance().getCurrentUser().getUserType() == TOURIST) {
-            new JoinTourController().showMessages();
-            new CLIMessagesGraphicController();
+            List<RequestsInfoBean> tourInfo = new JoinTourController().showMessages();
+            new CLIMessagesGraphicController().start(tourInfo);
         } else {
             CLIPrinter.printNumbers(1);
             CLIPrinter.printMessage("Show messages\n");

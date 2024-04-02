@@ -1,10 +1,12 @@
 package com.example.easyguide.logic.model.dao;
 
 import com.example.easyguide.logic.model.domain.Reservation;
+import com.example.easyguide.logic.model.domain.Status;
 import com.example.easyguide.logic.model.domain.User;
 
 import java.io.*;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -161,6 +163,68 @@ public class ReservationDAOCSV implements ReservationDAO{
         }
         finally {
             reader.close();
+        }
+    }
+
+    @Override
+    public List<Reservation> findTourStatus(User user) throws IOException, CsvValidationException {
+        CSVReader csvReader = new CSVReader(new BufferedReader(new FileReader(fd)));
+
+        try {
+            String[] reservationRecord;
+            List<Reservation> reservationList = new ArrayList<>();
+
+            while ((reservationRecord = csvReader.readNext()) != null) {
+                String touristMail = reservationRecord[INDEX_TOURISTMAIL];
+                int people = Integer.parseInt(reservationRecord[INDEX_PEOPLE]);
+                Time time = Time.valueOf(reservationRecord[INDEX_TIME]);
+                String guideMail = reservationRecord[INDEX_GUIDEMAIL];
+                Date date = Date.valueOf(reservationRecord[INDEX_DATE]);
+                float price = Float.parseFloat(reservationRecord[INDEX_PRICE]);
+                String tourName = reservationRecord[INDEX_TOURNAME];
+                int state = Integer.parseInt(reservationRecord[INDEX_STATE]);
+
+
+                if (state == 0 && Objects.equals(touristMail, SessionManager.getInstance().getCurrentUser().getEmail())) {
+                    Reservation reservation = new Reservation(guideMail,
+                            people,
+                            time,
+                            date,
+                            price,
+                            tourName,
+                            Status.OPEN);
+
+                    reservationList.add(reservation);
+                }
+                if (state == 1 && Objects.equals(touristMail, SessionManager.getInstance().getCurrentUser().getEmail())) {
+                    Reservation reservation = new Reservation(guideMail,
+                            people,
+                            time,
+                            date,
+                            price,
+                            tourName,
+                            Status.ACCEPTED);
+
+                    reservationList.add(reservation);
+                }
+                if (state == 2 && Objects.equals(touristMail, SessionManager.getInstance().getCurrentUser().getEmail())) {
+                    Reservation reservation = new Reservation(guideMail,
+                            people,
+                            time,
+                            date,
+                            price,
+                            tourName,
+                            Status.DECLINED);
+
+                    reservationList.add(reservation);
+                }
+            }
+
+
+            return reservationList;
+        }
+        finally {
+            csvReader.close();
         }
     }
 

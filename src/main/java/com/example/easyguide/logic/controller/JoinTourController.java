@@ -5,6 +5,7 @@ import com.example.easyguide.logic.exceptions.EmailSenderException;
 import com.example.easyguide.logic.model.dao.ReservationDAO;
 import com.example.easyguide.logic.model.dao.TourDAO;
 import com.example.easyguide.logic.model.domain.Reservation;
+import com.example.easyguide.logic.model.domain.Status;
 import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.pattern.ReservationDAOFactory;
@@ -84,8 +85,36 @@ public class JoinTourController {
         new PaymentBoundary().pay();
     }
 
-    public void showMessages(){
-        CLIPrinter.printMessage("NOT IMPLEMENTED\n");
+    public List<RequestsInfoBean> showMessages(){
+        User user = SessionManager.getInstance().getCurrentUser();
+        List<RequestsInfoBean> requestsInfoBeansList = new ArrayList<>();
+        ReservationDAOFactory reservationDAOFactory = new ReservationDAOFactory();
+
+
+        try {
+            ReservationDAO reservationDAO = reservationDAOFactory.createReservationDAO();
+            List<Reservation> reservationList = reservationDAO.findTourStatus(user);
+
+            for (Reservation reservation : reservationList) {
+                ReservationInfoBean reservationInfoBean = new ReservationInfoBean(reservation.getGuideMail(),
+                        SessionManager.getInstance().getCurrentUser().getEmail(),
+                        reservation.getDate(),
+                        reservation.getTime(),
+                        reservation.getPeople(),
+                        reservation.getTourName(),
+                        reservation.getPrice());
+                Status status = reservation.getState();
+                RequestsInfoBean requestsInfoBean = new RequestsInfoBean(reservationInfoBean, status);
+
+                requestsInfoBeansList.add(requestsInfoBean);
+            }
+
+
+        }catch(Exception e){
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
+        }
+
+        return requestsInfoBeansList;
     }
 
     public List<ReservationInfoBean> showRequests(){

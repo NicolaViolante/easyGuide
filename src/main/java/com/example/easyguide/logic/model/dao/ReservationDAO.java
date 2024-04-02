@@ -15,4 +15,6 @@ public interface ReservationDAO {
     List<Reservation> findTourToAcceptOrDecline(User user) throws SQLException, IOException, CsvValidationException;
 
     void changeStatus(Reservation reservation) throws SQLException, IOException, CsvException;
+
+    List<Reservation> findTourStatus(User user) throws SQLException, IOException, CsvValidationException;
 }

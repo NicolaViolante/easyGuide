@@ -3,7 +3,9 @@ package com.example.easyguide.logic.model.dao;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.ConnectionFactory;
+import com.opencsv.exceptions.CsvValidationException;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -150,5 +152,10 @@ public class ReservationDAOJDBC implements ReservationDAO{
         }
 
 
+    }
+
+    @Override
+    public List<Reservation> findTourStatus(User user) throws SQLException, IOException, CsvValidationException {
+        return null;
     }
 }
