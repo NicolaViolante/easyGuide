@@ -23,7 +23,7 @@ class ReservationDAOJDBCTest {
         try{
             List<Reservation> reservations = reservationDAOJDBC.findTourToAcceptOrDecline(user);
             for(Reservation reservation : reservations){
-            assertEquals(0, reservation.getState());
+            assertEquals(0, reservation.getState().getId());
             }
         } catch (SQLException e){
             Assertions.fail(e.getMessage());
