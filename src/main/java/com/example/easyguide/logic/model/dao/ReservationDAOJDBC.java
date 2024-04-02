@@ -1,6 +1,7 @@
 package com.example.easyguide.logic.model.dao;
 
 import com.example.easyguide.logic.model.domain.Reservation;
+import com.example.easyguide.logic.model.domain.Status;
 import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.ConnectionFactory;
 import com.opencsv.exceptions.CsvValidationException;
@@ -155,7 +156,54 @@ public class ReservationDAOJDBC implements ReservationDAO{
     }
 
     @Override
-    public List<Reservation> findTourStatus(User user) throws SQLException, IOException, CsvValidationException {
-        return null;
+    public List<Reservation> findTourStatus(User user) throws SQLException {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        List<Reservation> reservations = new ArrayList<>();
+
+        conn = ConnectionFactory.getConnection();
+
+        String sql = "SELECT " +GUIDEMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
+                TOURNAME  +","+ STATE + " FROM reservation WHERE " + TOURISTMAIL + " = ?";
+
+        try {
+            stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            stmt.setString(1, user.getEmail());
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int choice = rs.getInt(7);
+                switch (choice){
+                case 0 -> {
+                    Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
+                            rs.getDate(4), rs.getFloat(5), rs.getString(6), Status.OPEN);
+
+                    reservations.add(reservation);
+
+                }
+                case 1 -> {
+                    Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
+                            rs.getDate(4), rs.getFloat(5), rs.getString(6), Status.ACCEPTED);
+
+                    reservations.add(reservation);
+
+                }
+                case 2 -> {
+                    Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
+                            rs.getDate(4), rs.getFloat(5), rs.getString(6), Status.DECLINED);
+
+                    reservations.add(reservation);
+
+                }
+            }
+            }
+            rs.close();
+        }
+        finally {
+            assert stmt != null;
+            stmt.close();
+        }
+        return reservations;
     }
 }
