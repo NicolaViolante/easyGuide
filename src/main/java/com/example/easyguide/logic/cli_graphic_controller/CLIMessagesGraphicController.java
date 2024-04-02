@@ -9,8 +9,8 @@ import java.util.logging.Level;
 
 public class CLIMessagesGraphicController extends AbstractCLIGraphicController {
     public void start(List<RequestsInfoBean> requestsInfoBeanList){
-        boolean bool = true;
-        while(bool){
+        boolean set = true;
+        while(set){
             int choice;
 
             try{
@@ -20,15 +20,15 @@ public class CLIMessagesGraphicController extends AbstractCLIGraphicController {
                 {
 
                     case 1 -> {
-                        bool = false;
+                        set = false;
                         goHome();
                     }
                     case 2 -> {
-                        bool = false;
+                        set = false;
                         logout();
                     }
                     case 3 -> {
-                        bool = false;
+                        set = false;
                         System.exit(0);
                     }
                     default -> throw new InvalidFormatException("Invalid choice");
