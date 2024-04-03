@@ -1,12 +1,11 @@
 package com.example.easyguide.logic.model.dao;
 
+import com.example.easyguide.logic.exceptions.DAOException;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Status;
 import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.ConnectionFactory;
-import com.opencsv.exceptions.CsvValidationException;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +25,8 @@ public class ReservationDAOJDBC implements ReservationDAO{
     protected static final String TOURNAME = "tourname";
     protected static final String STATE = "state";
     protected static final String AND = " and ";
+    protected static final String FRW = " FROM reservation WHERE ";
+    protected static final String SELECT = " SELECT ";
 
     @Override
     public int registerReservation(Reservation reservationInfo) throws SQLException {
@@ -73,8 +74,8 @@ public class ReservationDAOJDBC implements ReservationDAO{
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT " + TOURISTMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
-                TOURNAME  +" FROM reservation WHERE " + GUIDEMAIL + " = ?" + AND + STATE + " = ?";
+        String sql = SELECT + TOURISTMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
+                TOURNAME  +FRW + GUIDEMAIL + " = ?" + AND + STATE + " = ?";
 
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -130,7 +131,7 @@ public class ReservationDAOJDBC implements ReservationDAO{
             assert stmt != null;
             stmt.close();
         }
-        String sql1 = "SELECT " + PEOPLE + "," +  PRICE + " FROM reservation WHERE " + TOURISTMAIL + " = ?" +AND + GUIDEMAIL + " = ?" +AND
+        String sql1 = SELECT + PEOPLE + "," +  PRICE + FRW + TOURISTMAIL + " = ?" +AND + GUIDEMAIL + " = ?" +AND
                 + DATE + " = ?" +AND + TIME + " = ?"  + AND + TOURNAME + " = ?";
         try {
             stmt1 = conn.prepareStatement(sql1, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -163,8 +164,8 @@ public class ReservationDAOJDBC implements ReservationDAO{
 
         conn = ConnectionFactory.getConnection();
 
-        String sql = "SELECT " +GUIDEMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
-                TOURNAME  +","+ STATE + " FROM reservation WHERE " + TOURISTMAIL + " = ?";
+        String sql = SELECT +GUIDEMAIL + "," + PEOPLE + "," + TIME + "," + DATE + "," + PRICE + "," +
+                TOURNAME  +","+ STATE + FRW + TOURISTMAIL + " = ?";
 
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -196,9 +197,14 @@ public class ReservationDAOJDBC implements ReservationDAO{
                     reservations.add(reservation);
 
                 }
+                    default -> throw new DAOException("Invalid status%n");
             }
             }
             rs.close();
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.INFO, e.getMessage());
         }
         finally {
             assert stmt != null;

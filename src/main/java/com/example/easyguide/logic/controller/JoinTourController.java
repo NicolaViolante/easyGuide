@@ -10,7 +10,6 @@ import com.example.easyguide.logic.model.domain.Tour;
 import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.pattern.ReservationDAOFactory;
 import com.example.easyguide.logic.session.SessionManager;
-import com.example.easyguide.logic.utilities.CLIPrinter;
 import com.example.easyguide.logic.utilities.PaymentBoundary;
 
 import java.sql.SQLException;
