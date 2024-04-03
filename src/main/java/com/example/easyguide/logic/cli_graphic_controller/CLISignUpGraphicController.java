@@ -96,6 +96,7 @@ public class CLISignUpGraphicController extends AbstractCLIGraphicController{
 
         } catch (SQLException | IOException | InvalidRoleException | InvalidFormatException e) {
             logger.log(Level.INFO, e.getMessage());
+            start();
         }
     }
 }

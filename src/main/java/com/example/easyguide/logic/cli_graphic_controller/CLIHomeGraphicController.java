@@ -41,6 +41,7 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
             }
             catch (InvalidFormatException e){
                 logger.log(Level.INFO, e.getMessage());
+
             }
         }
     }
@@ -67,6 +68,7 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
         }
         catch(Exception e){
             logger.log(Level.INFO, e.getMessage());
+            start();
         }
     }
 
