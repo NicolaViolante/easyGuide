@@ -40,7 +40,7 @@ public class JoinTourController {
         List<SpecifiedTourBean> specifiedTourBeanList = new ArrayList<>();
 
         for (Tour tour : tourList){
-            SpecifiedTourBean specifiedTourBean = new SpecifiedTourBean(tour.getPhoto(),
+            SpecifiedTourBean specifiedTourBean = new SpecifiedTourBean(
                     tour.getName(),
                     tour.getDescription(),
                     tour.getGuide(),

@@ -4,7 +4,6 @@ import java.sql.Time;
 import java.util.List;
 
 public class SpecifiedTourBean {
-    private final String photo;
     private final String tourName;
     private final String description;
     private final String guide;
@@ -15,8 +14,7 @@ public class SpecifiedTourBean {
     private final String guideMail;
     private  String city;
 
-    public SpecifiedTourBean(String photo, String tourName, String description, String guide,String guideMail, float price, float duration) {
-        this.photo = photo;
+    public SpecifiedTourBean( String tourName, String description, String guide,String guideMail, float price, float duration) {
         this.tourName = tourName;
         this.description = description;
         this.guide = guide;
@@ -25,7 +23,6 @@ public class SpecifiedTourBean {
         this.guideMail = guideMail;
     }
 
-    public String getPhoto() { return photo; }
     public String getTourName() { return tourName; }
     public String getDescription() { return description; }
     public String getGuide() { return guide; }

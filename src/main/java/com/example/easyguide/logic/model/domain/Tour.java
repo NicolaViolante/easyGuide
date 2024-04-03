@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tour {
-    private String photo;
     private String name;
     private String description;
     private String guide;
@@ -25,9 +24,8 @@ public class Tour {
 
     }
 
-    public Tour(String photo, String name, String description, Float price, Float duration
+    public Tour(String name, String description, Float price, Float duration
             ,java.sql.Date date, String city) {
-        this.photo = photo;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -40,9 +38,6 @@ public class Tour {
         this.price = price;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
     public String getName() {
         return name;
     }
