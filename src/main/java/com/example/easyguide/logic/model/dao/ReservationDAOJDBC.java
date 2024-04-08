@@ -176,13 +176,7 @@ public class ReservationDAOJDBC implements ReservationDAO{
             while (rs.next()) {
                 int choice = rs.getInt(7);
                 switch (choice){
-                case 0 -> {
-                    Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
-                            rs.getDate(4), rs.getFloat(5), rs.getString(6), Status.OPEN);
 
-                    reservations.add(reservation);
-
-                }
                 case 1 -> {
                     Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
                             rs.getDate(4), rs.getFloat(5), rs.getString(6), Status.ACCEPTED);
@@ -197,15 +191,19 @@ public class ReservationDAOJDBC implements ReservationDAO{
                     reservations.add(reservation);
 
                 }
-                    default -> throw new DAOException("Invalid status%n");
+                default -> {
+                        Reservation reservation = new Reservation(rs.getString(1), rs.getInt(2), rs.getTime(3),
+                                rs.getDate(4), rs.getFloat(5), rs.getString(6), Status.OPEN);
+
+                        reservations.add(reservation);
+
+                    }
+
             }
             }
             rs.close();
         }
-        catch (DAOException e){
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.INFO, e.getMessage());
-        }
+
         finally {
             assert stmt != null;
             stmt.close();
