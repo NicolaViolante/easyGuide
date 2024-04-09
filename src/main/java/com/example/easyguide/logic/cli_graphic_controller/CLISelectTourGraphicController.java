@@ -32,7 +32,7 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
                 {
                     case 1 -> {
                         loop = false;
-                        specifiedTour(tourBean.get(tour).getTourName());
+                        specifyTour(tourBean.get(tour).getTourName());
                     }
                     case 2 -> {
                         loop = false;
@@ -82,7 +82,7 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
 
         return getMenuChoice(1,i+4);
     }
-    private void specifiedTour(String tour) throws SQLException {
+    private void specifyTour(String tour) throws SQLException {
         SelectedTourBean selectedTourBean = new SelectedTourBean(tour);
         List<SpecifiedTourBean> details = new JoinTourController().showTour(selectedTourBean);
         new CLISelectedTourGraphicController().start(details);

@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class RequestsInfoBean {
-    private ReservationInfoBean reservationInfoBean;
     private Status status;
     private String guideMail;
     private  java.sql.Date date;
