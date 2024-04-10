@@ -48,9 +48,9 @@ public class HomeGraphicController extends AbstractGraphicController{
         try {
             TourSearchBean bean = new TourSearchBean(textField.getText());
             List<TourBean> listOfTourBeans = joinTourController.findTourOfCity(bean);
-
-            goToWithController("selectTour.fxml", new SelectTourGraphicController(listOfTourBeans));
-
+            if (!listOfTourBeans.isEmpty())
+                goToWithController("selectTour.fxml", new SelectTourGraphicController(listOfTourBeans));
+            else showInfoAlert("No tour available","There are no tours for this city","Choose another city");
 
         } catch (InvalidFormatException e) {
             logger.log(Level.INFO, e.getMessage());

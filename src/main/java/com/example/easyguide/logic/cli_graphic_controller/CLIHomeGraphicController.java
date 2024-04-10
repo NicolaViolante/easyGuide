@@ -64,6 +64,11 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
             String city = reader.readLine();
             TourSearchBean bean = new TourSearchBean(city);
             List<TourBean> listOfTours = joinTourController.findTourOfCity(bean);
+            if(listOfTours.isEmpty()){
+                CLIPrinter.printMessage("No tour found, choose another city");
+                CLIPrinter.newLine();
+                start();
+            }
             new CLISelectTourGraphicController().start(listOfTours);
         }
         catch(Exception e){
