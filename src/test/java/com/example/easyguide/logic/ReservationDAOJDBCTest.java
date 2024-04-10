@@ -42,7 +42,8 @@ class ReservationDAOJDBCTest {
         try{
             int i = reservationDAOJDBC.registerReservation(reservation);
             assertEquals(1,i);
-        }catch (Exception ignored){
+        }catch (Exception e){
+            fail();
         }
     }
     @AfterAll
