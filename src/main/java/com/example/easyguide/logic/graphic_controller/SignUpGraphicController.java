@@ -49,7 +49,7 @@ public class SignUpGraphicController extends AbsDialogNavigationController {
 
     @FXML
     void signIn(ActionEvent event) {
-        goToPage("signup.fxml");
+        goToPage("login.fxml");
     }
 
     @FXML
