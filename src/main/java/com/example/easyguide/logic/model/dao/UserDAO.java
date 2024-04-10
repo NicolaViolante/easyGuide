@@ -42,7 +42,7 @@ public class UserDAO {
 
 
 
-    public User findUsername(String username ) throws SQLException {
+    public User findUsername(User username) throws SQLException {
         PreparedStatement stmt = null;
         Connection conn = null;
         User user = null;
@@ -53,7 +53,7 @@ public class UserDAO {
 
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            stmt.setString(1, username);
+            stmt.setString(1, username.getUsername());
 
             ResultSet rs = stmt.executeQuery();
 
@@ -77,7 +77,7 @@ public class UserDAO {
         return user;
     }
 
-    public User findUser(String username, String password) throws DAOException, SQLException {
+    public User findUser(User userCred) throws DAOException, SQLException {
         PreparedStatement stmt = null;
         Connection conn = null;
         User user = null;
@@ -88,8 +88,8 @@ public class UserDAO {
 
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            stmt.setString(1, username);
-            stmt.setString(2, password);
+            stmt.setString(1, userCred.getUsername());
+            stmt.setString(2, userCred.getPassword());
 
             ResultSet rs = stmt.executeQuery();
 
@@ -114,7 +114,7 @@ public class UserDAO {
         return user;
     }
 
-    public Integer registerUser(String username, String name, String surname, String email, String psw, String role) throws SQLException {
+    public Integer registerUser(User user) throws SQLException {
         PreparedStatement stmt = null;
         Connection conn = null;
         Integer result = -1;
@@ -126,12 +126,12 @@ public class UserDAO {
         // TYPE_SCROLL_INSENSITIVE: ResultSet can be slided but is sensible to db data variations
         try {
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            stmt.setString(1, username);
-            stmt.setString(2, name);
-            stmt.setString(3, surname);
-            stmt.setString(4, email);
-            stmt.setString(5, psw);
-            stmt.setString(6, role);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getName());
+            stmt.setString(3, user.getSurname());
+            stmt.setString(4, user.getEmail());
+            stmt.setString(5, user.getPassword());
+            stmt.setString(6, user.getUserType().getId());
 
             result = stmt.executeUpdate();
 
@@ -144,9 +144,10 @@ public class UserDAO {
         finally {
             assert stmt != null;
             stmt.close();
+            return result;
         }
 
 
-        return result;
+        //return result;
     }
 }

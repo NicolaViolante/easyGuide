@@ -11,9 +11,11 @@ import java.sql.SQLException;
 public class LoginController extends AbstractController {
 
     public void login(CredentialsBean credentialsBean) throws DAOException, SQLException {
-        User user = new UserDAO().findUser(
+        User userCred = new User(
                 credentialsBean.getUsername(),
-                credentialsBean.getPassword());
+                credentialsBean.getPassword()
+        );
+        User user = new UserDAO().findUser(userCred);
 
         storeSessionUser(user.getUsername(),
                 user.getName(),

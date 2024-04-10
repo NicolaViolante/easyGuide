@@ -1,6 +1,7 @@
 package com.example.easyguide.logic;
 
 import com.example.easyguide.logic.model.dao.UserDAO;
+import com.example.easyguide.logic.model.domain.Role;
 import com.example.easyguide.logic.model.domain.User;
 import com.example.easyguide.logic.session.ConnectionFactory;
 import org.junit.jupiter.api.AfterAll;
@@ -17,14 +18,15 @@ class UserDAOTest {
     @Test
     void signUp(){
         UserDAO userDAO = new UserDAO();
+        User newUser = new User("NicoViolans77",
+                "Nicola",
+                "Violante",
+                "nico.violans77@gmail.com",
+                "NicoViolans",
+                Role.GUIDE);
 
         try{
-            int i = userDAO.registerUser("NicoViolans77",
-                    "Nicola",
-                    "Violante",
-                    "nico.violans77@gmail.com",
-                    "NicoViolans",
-                    "guide");
+            int i = userDAO.registerUser(newUser);
             assertEquals(1,i);
         }
         catch (SQLException ignored){
@@ -33,10 +35,11 @@ class UserDAOTest {
     @Test
     void findUser(){
         UserDAO userDAO = new UserDAO();
+        User userCred = new User("NicoViolans",
+                "NicoViolans");
         User user;
         try {
-            user = userDAO.findUser("NicoViolans",
-                    "NicoViolans");
+            user = userDAO.findUser(userCred);
             assertEquals("Nicola",user.getName());
             assertEquals("Violante",user.getSurname());
             assertEquals("GUIDE",user.getUserType().toString());
