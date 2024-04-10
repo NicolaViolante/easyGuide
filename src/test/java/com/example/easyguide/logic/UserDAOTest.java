@@ -29,7 +29,8 @@ class UserDAOTest {
             int i = userDAO.registerUser(newUser);
             assertEquals(1,i);
         }
-        catch (SQLException ignored){
+        catch (SQLException e){
+            fail();
         }
     }
     @Test
