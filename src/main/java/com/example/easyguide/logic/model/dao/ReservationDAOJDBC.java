@@ -1,6 +1,5 @@
 package com.example.easyguide.logic.model.dao;
 
-import com.example.easyguide.logic.exceptions.DAOException;
 import com.example.easyguide.logic.model.domain.Reservation;
 import com.example.easyguide.logic.model.domain.Status;
 import com.example.easyguide.logic.model.domain.User;

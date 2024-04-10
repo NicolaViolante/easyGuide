@@ -144,10 +144,9 @@ public class UserDAO {
         finally {
             assert stmt != null;
             stmt.close();
-            return result;
         }
 
 
-        //return result;
+        return result;
     }
 }
