@@ -17,7 +17,6 @@ public class ConnectionFactory {
     private ConnectionFactory() {}
 
     static {
-        // Does not work if generating a jar file
         try (InputStream input = new FileInputStream("src/main/java/com/example/easyguide/logic/model/dao/config.properties")) {
             Properties properties = new Properties();
             properties.load(input);

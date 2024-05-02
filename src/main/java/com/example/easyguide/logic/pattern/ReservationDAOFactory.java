@@ -28,12 +28,4 @@ public class ReservationDAOFactory{
     }
 }
 
-        public ReservationDAO createReservationDAOJDBC(){
-
-        return new ReservationDAOJDBC();
-        }
-
-        public ReservationDAO createReservationDAOCSV() throws IOException {
-            return new ReservationDAOCSV();
-        }
 }

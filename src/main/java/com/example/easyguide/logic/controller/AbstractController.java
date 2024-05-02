@@ -14,7 +14,5 @@ public abstract class AbstractController {
                 role);
         sessionManager.login(currentUser);
     }
-    public static Role getCurrentRole() {
-        return SessionManager.getInstance().getCurrentUser().getUserType();
-    }
+
 }

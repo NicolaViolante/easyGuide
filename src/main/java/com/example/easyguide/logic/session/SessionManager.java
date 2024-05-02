@@ -12,17 +12,17 @@ public class SessionManager {
         currentUser = null;
     }
 
-    public static synchronized SessionManager getInstance(){
+    public static SessionManager getInstance(){
         if(SessionManager.instance == null)
             SessionManager.instance = new SessionManager();
         return instance;
     }
 
-    public synchronized void login(User user) {
+    public void login(User user) {
         currentUser = user;
     }
 
-    public synchronized void logout(){
+    public void logout(){
         currentUser = null;
     }
 }
