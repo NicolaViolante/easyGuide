@@ -50,12 +50,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="35.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:">
+      <Text layoutX="35.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price(€):">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="35.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration:">
+      <Text layoutX="35.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration(hours):">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -70,12 +70,12 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="price" layoutX="87.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
+      <Text fx:id="price" layoutX="107.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="duration" layoutX="120.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
+      <Text fx:id="duration" layoutX="180.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="224.0">
          <font>
             <Font size="18.0" />
          </font>

@@ -14,12 +14,12 @@ public class NavigatorSingleton {
     public Stage getStg() {return this.stg; }
     protected NavigatorSingleton(Stage stg) {this.stg = stg;}
 
-    public static synchronized NavigatorSingleton getInstance(Stage stg){
+    public static NavigatorSingleton getInstance(Stage stg){
         if(NavigatorSingleton.instance == null)
             NavigatorSingleton.instance = new NavigatorSingleton(stg);
         return instance;
     }
-    public static synchronized NavigatorSingleton getInstance() {return instance;}
+    public static NavigatorSingleton getInstance() {return instance;}
     public void goToPage(String fxml) throws IOException{
         Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
         stg.getScene().setRoot(pane);

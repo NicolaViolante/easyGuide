@@ -29,7 +29,7 @@ public class EmailSenderBoundary implements Observer {
                     state = "rejected";
                 printWriter.println("Email sent from: " + reservation.getGuideMail());
                 printWriter.println("Email sent to: " + reservation.getTouristMail());
-                printWriter.printf("The reservation for %s, date: %s, time: %s, people: %s, price: %s has been %s",
+                printWriter.printf("The reservation for %s, date: %s, time: %s, people: %s, price: %s€ has been %s",
                         reservation.getTourName(),
                         reservation.getDate(),
                         reservation.getTime(),

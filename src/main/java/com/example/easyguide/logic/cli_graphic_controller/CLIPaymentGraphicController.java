@@ -6,6 +6,6 @@ import com.example.easyguide.logic.utilities.CLIPrinter;
 public class CLIPaymentGraphicController {
     public void pay()  {
         new JoinTourController().pay(); //dummy
-        CLIPrinter.printMessage("You payed");
+        CLIPrinter.printMessage("You paid");
     }
 }
