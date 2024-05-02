@@ -76,7 +76,7 @@ public class CLISelectedTourGraphicController extends AbstractCLIGraphicControll
 
 
 
-    public int showMenu() {
+    private int showMenu() {
 
         CLIPrinter.printMessage("What do you want to do?: \n");
         CLIPrinter.printMessage("1) Select date and time\n");

@@ -39,7 +39,7 @@ public class CLIMessagesGraphicController extends AbstractCLIGraphicController {
         }
     }
 
-    public int showMenu(List<RequestsInfoBean> requestsInfoBeanList) {
+    private int showMenu(List<RequestsInfoBean> requestsInfoBeanList) {
 
         for (RequestsInfoBean reservation : requestsInfoBeanList){
             CLIPrinter.printRequest(reservation.getTourName(),

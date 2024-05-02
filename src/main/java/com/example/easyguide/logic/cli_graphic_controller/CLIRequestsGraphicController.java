@@ -52,7 +52,7 @@ public class CLIRequestsGraphicController extends AbstractCLIGraphicController{
         }
     }
 
-    public int showMenu(List<ReservationInfoBean> reservationInfoBeanList) {
+    private int showMenu(List<ReservationInfoBean> reservationInfoBeanList) {
 
         int i = 1;
         CLIPrinter.printMessage("Select a tour: \n");

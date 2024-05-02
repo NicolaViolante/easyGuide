@@ -61,7 +61,7 @@ public class CLISelectTourGraphicController extends AbstractCLIGraphicController
             }
         }
     }
-    public int showMenu(List<TourBean> tours)  {
+    private int showMenu(List<TourBean> tours)  {
 
         int i = 1;
         CLIPrinter.printMessage("Select a tour: \n");

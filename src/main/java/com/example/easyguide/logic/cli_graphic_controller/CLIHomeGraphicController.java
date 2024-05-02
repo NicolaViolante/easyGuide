@@ -46,7 +46,7 @@ public class CLIHomeGraphicController extends AbstractCLIGraphicController {
         }
     }
 
-    public int showMenu() {
+    private int showMenu() {
 
         CLIPrinter.printMessage("What do you want to do?\n");
         CLIPrinter.printMessage("1) Chose a city\n");
