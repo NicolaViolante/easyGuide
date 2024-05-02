@@ -54,6 +54,7 @@ class ReservationDAOJDBCTest {
             preparedStatement.execute();
         }catch (SQLException e){
             e.printStackTrace();
+            fail();
         }
     }
 }
