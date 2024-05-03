@@ -84,8 +84,7 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
 
     @FXML
     void sendSubscription(ActionEvent event) throws SQLException, MissingDatesException {
-            reservationInfoBean.setPeople(Integer.parseInt(peopleField.getText())
-            );
+            reservationInfoBean.setPeople(Integer.parseInt(peopleField.getText()));
         if (reservationInfoBean.getDate() == null || reservationInfoBean.getTime() == null || reservationInfoBean.getPeople() < 1){
             showErrorAlert("Dates missing","There are missing dates","Select date, time and people");
             throw new MissingDatesException("Impossible send reservation because there are dates missing");
