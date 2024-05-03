@@ -79,10 +79,6 @@ public class SelectedTourGraphicController extends AbstractGraphicController {
     @FXML
     void goBack(MouseEvent event) {
         goToWithController("selectTour.fxml", new SelectTourGraphicController(listOfTourBeans));
-
-        while (true){}
-
-
     }
 
 
