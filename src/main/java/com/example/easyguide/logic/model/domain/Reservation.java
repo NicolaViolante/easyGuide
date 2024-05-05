@@ -69,7 +69,7 @@ public class Reservation extends Subject {
     public void setPrice(float price){ this.price = price; }
     public String getTourName(){ return tourName; }
     public Status getState(){ return state; }
-    public void notifyPublication(){
+    public void notifyReservation(){
         super.notifyObservers();
     }
 }

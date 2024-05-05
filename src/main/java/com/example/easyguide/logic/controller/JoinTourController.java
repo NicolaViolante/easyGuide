@@ -156,7 +156,7 @@ public class JoinTourController {
         try {
             ReservationDAO reservationDAO = reservationDAOFactory.createReservationDAO();
             reservationDAO.changeStatus(reservation);
-            reservation.notifyPublication();
+            reservation.notifyReservation();
         } catch (Exception e){
             Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
